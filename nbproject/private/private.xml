@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/services/VideoEnDirectCrud.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/serviceinterface/ICrudVideoCom.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/services/CommentaireVideoTestCrud.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/HangarGame.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/entites/VideoTest.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/SidePanelContenent.fxml</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/AccueilController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/entites/VideoEnDirect.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/services/ServicesGamer.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/Login.fxml</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/entites/CommentaireVideoTest.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/connexionDB/ConnexionSingleton.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/entites/Gamer.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/Splash.fxml</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/serviceinterface/IServiceGamer.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/services/VideoTestCrud.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/FXMLInscription.fxml</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/Accueil.fxml</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/LoginController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/xml/SplashFXML.fxml</file>
+        </group>
+    </open-files>
+</project-private>

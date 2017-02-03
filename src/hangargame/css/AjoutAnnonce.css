@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2 févr. 2017, 17:27:12
+    Author     : mayss
+*/
+
+#ba  {
+    
+    -fx-background-radius: 5px ;
+    -fx-background-color: #f4f7f830 ;
+    
+    
+}
+
+
+#a{
+    
+    -fx-background-radius: 15px ;
+    -fx-background-color: #f4f7f830 ;
+    
+}

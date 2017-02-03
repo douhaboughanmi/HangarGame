@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutAnnonceController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Separator layoutX="433.0" layoutY="159.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Label layoutX="79.0" layoutY="393.0" text="Image de l'annonce">
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#267229" />
+                  <Stop color="#b3eea1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <JFXButton fx:id="btnAnnonce" layoutX="506.0" layoutY="462.0" onAction="#login" prefHeight="47.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: daa520;" text="Valider" textFill="WHITE">
+         <font>
+            <Font name="Century" size="25.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="79.0" layoutY="103.0" text="Votre annonces">
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#267229" />
+                  <Stop color="#b3eea1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Pane id="a" layoutX="90.0" layoutY="144.0" prefHeight="230.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <JFXTextField fx:id="titreAnnonce" cacheShape="false" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="24.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Titre de la console" unFocusColor="WHITE">
+               <opaqueInsets>
+                  <Insets bottom="500.0" left="500.0" right="500.0" top="500.0" />
+               </opaqueInsets>
+               <font>
+                  <Font name="Century" size="15.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.1" />
+               </effect>
+            </JFXTextField>
+            <JFXComboBox fx:id="typeAnnonce" layoutX="29.0" layoutY="59.0" prefHeight="25.0" prefWidth="264.0" />
+            <JFXTextField fx:id="prixAnnonce" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="86.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Prix" unFocusColor="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <TextArea fx:id="descriptionAnnonce" layoutX="29.0" layoutY="131.0" prefHeight="85.0" prefWidth="264.0" />
+         </children>
+      </Pane>
+      <Pane id="a" layoutX="91.0" layoutY="423.0" prefHeight="128.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css" />
+      <Pane id="a" layoutX="478.0" layoutY="144.0" prefHeight="161.0" prefWidth="139.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <JFXRadioButton layoutX="16.0" layoutY="12.0" text="PS3" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="16.0" layoutY="35.0" text="PS4" textFill="WHITE" toggleGroup="$a" />
+            <JFXRadioButton layoutX="16.0" layoutY="57.0" text="Xbox 360" textFill="WHITE" toggleGroup="$a" />
+            <JFXRadioButton layoutX="16.0" layoutY="81.0" text="Xbox One" textFill="WHITE" toggleGroup="$a" />
+            <JFXRadioButton layoutX="16.0" layoutY="102.0" text="Wi U" textFill="WHITE" toggleGroup="$a" />
+            <JFXRadioButton layoutX="16.0" layoutY="122.0" text="PS Vita" textFill="WHITE" toggleGroup="$a" />
+         </children>
+      </Pane>
+      <Label layoutX="454.0" layoutY="103.0" text="Console Supportée">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#69a836" offset="0.007662835249042145" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
