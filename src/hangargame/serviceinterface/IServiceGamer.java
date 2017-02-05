@@ -17,7 +17,8 @@ import hangargame.entites.Gamer;
  * @author lenovo
  */
 public interface IServiceGamer {
-    public void Inscription(Gamer g);
+    public boolean Inscription(String mail, String login , String password , String passwordConf, String nom,String prenom,String adresse, String tel);
     public boolean Authentification(String login, String password);
-    
+    public boolean VerifMail(String email);
+    public boolean VerifLogin(String login);
 }

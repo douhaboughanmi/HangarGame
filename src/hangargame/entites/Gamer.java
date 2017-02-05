@@ -91,20 +91,9 @@ public class Gamer {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Gamer other = (Gamer) obj;
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        return true;
-    }
+    
+
+   
 
     @Override
     public String toString() {

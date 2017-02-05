@@ -179,8 +179,7 @@ public class LoginController implements Initializable {
        LCon.setText("Coordonnées incorrectes");
         LCon.setTextFill(Color.web("#dc143c"));
         
-    // Image image = new Image(getClass().getResourceAsStream("C:/Users/lenovo/Documents/NetBeansProjects/HangarGameClient/src/hangargameclient/images/exlam.png"));
-     //LCon.setGraphic(new ImageView(image));
+    
 
     }
     

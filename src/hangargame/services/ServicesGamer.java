@@ -3,111 +3,133 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package hangargame.services;
 
+import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Gamer;
 import hangargame.serviceinterface.IServiceGamer;
-import hangargame.connexionDB.ConnexionSingleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
 /**
  *
  * @author lenovo
  */
-public class ServicesGamer implements IServiceGamer{
+public class ServicesGamer implements IServiceGamer {
 
-    
     Connection connect;
-    Statement ste ;
+    Statement ste;
     PreparedStatement prepste;
+
     public ServicesGamer() {
         try {
-           connect=  ConnexionSingleton.getInstance();
+            connect = ConnexionSingleton.getInstance();
 
             ste = connect.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     @Override
-    public void Inscription(Gamer g) {
-       
-        String req2 = "select * from Gamer where email= '" + g.getEmail() + "'";
-        String req3 = "select * from Gamer where login= '" + g.getLogin() + "'";
+    public boolean Inscription(String mail, String login, String password, String passwordConf, String nom, String prenom, String adresse, String tel) {
+
+      
         String req = "Insert into Gamer(login,nom,prenom,adresse,tel,email,password,dateInscription,codeValidation,LastModifMdp) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try {
-          prepste = connect.prepareStatement(req2);
-          
-           prepste.executeUpdate();
-           prepste = connect.prepareStatement(req3);
-          
-           prepste.executeUpdate();
-            int x = prepste.getMaxRows();
-            int y = prepste.getMaxRows();
-            if ((x != 0) && (y != 0)) {
-                System.out.println("Votre E-mail et login existe deja");
-            }
-            if (x != 0) {
-                System.out.println("Votre E-mail existe deja");
-            }
-            if (y != 0) {
-                System.out.println("Votre login existe deja");
-            } else if ((x == 0) && (y == 0)) {
+         
+                if (password.equals(passwordConf)) {
+                    prepste = connect.prepareStatement(req);
+                    Random rand = new Random();
+                    int codeValid = rand.nextInt(1001);
+                    int telephone = Integer.parseInt(tel);
 
-                prepste = connect.prepareStatement(req);
+                    prepste.setString(1, login);
+                    prepste.setString(2, nom);
+                    prepste.setString(3, prenom);
+                    prepste.setString(4, adresse);
+                    prepste.setInt(5, telephone);
+                    prepste.setString(6, mail);
 
-                 prepste.setString(1, g.getLogin());
-                 prepste.setString(2, g.getNom());
-                 prepste.setString(3, g.getPrenom());
-                 prepste.setString(4, g.getAdresse());
-                 prepste.setString(5, g.getTel());
-                 prepste.setString(6, g.getEmail());
-               
-                 prepste.setString(7, g.getPassword());
-                 prepste.setDate(8, g.getDateInscription());
-                 prepste.setString(9, g.getCodeValidation());
-                prepste.setDate(10, g.getLastModifMdp());
+                    prepste.setString(7, password);
+                    prepste.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
+                    prepste.setInt(9,codeValid);
+                    prepste.setTimestamp(10, new Timestamp(System.currentTimeMillis()));
+
+                    prepste.executeUpdate();
+
+                    return true;
                 
-              
-                 prepste.executeUpdate();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Gamer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
-    
-
-     @Override
+    @Override
     public boolean Authentification(String login, String password) {
         System.out.println(login);
         System.out.println(password);
-    String req4= "select * from Gamer where Login = '" + login + "'and Password = '" + password + "'";
+        String req4 = "select * from Gamer where login = '" + login + "'and password = '" + password + "'";
         try {
-            ResultSet res  =ste.executeQuery(req4);
-            while (res.next()) { 
-              
-              return true;
-                
+            ResultSet res = ste.executeQuery(req4);
+            while (res.next()) {
+
+                return true;
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    
-  }
 
-    
-    
+    @Override
+    public boolean VerifMail(String email) {
+        String req2 = "select * from Gamer where email= '" + email + "'";
 
+        try {
+            prepste = connect.prepareStatement(req2);
+            prepste.executeQuery();
+            int x = prepste.getMaxRows();
+            if (x != 0) {
+
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean VerifLogin(String login) {
+        String req2 = "select * from Gamer where login= '" + login + "'";
+
+        try {
+            prepste = connect.prepareStatement(req2);
+            prepste.executeQuery();
+            int x = prepste.getMaxRows();
+            if (x != 0) {
+
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return true;
+    }
+}
