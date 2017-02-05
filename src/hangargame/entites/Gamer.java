@@ -25,10 +25,11 @@ public class Gamer {
     private final Date dateInscription;
     private final String codeValidation;
     private final Date LastModifMdp;
+    private final int validation;
 
     
 
-    public Gamer(String login, String nom, String prenom, String adresse, String tel, String email, String password, Date dateInscription, String codeValidation, Date LastModifMdp) {
+    public Gamer(String login, String nom, String prenom, String adresse, String tel, String email, String password, Date dateInscription, String codeValidation, Date LastModifMdp,int validation) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
@@ -39,10 +40,13 @@ public class Gamer {
         this.dateInscription = dateInscription;
         this.codeValidation = codeValidation;
         this.LastModifMdp = LastModifMdp;
+        this.validation=validation;
     }
     
 
-    
+    public int getValidation() {
+        return validation;
+    } 
 
     public String getLogin() {
         return login;
@@ -95,11 +99,6 @@ public class Gamer {
 
    
 
-    @Override
-    public String toString() {
-        return "Gamer{" + "login=" + login + ", nom=" + nom + ", prenom=" + prenom + 
-       ", adresse=" + adresse + ", tel=" + tel + ", email=" + email + ", password=" + password +
-       ", dateInscription=" + dateInscription + ", codeValidation=" + codeValidation + ", LastModifMdp=" + LastModifMdp + '}';
-    }
+    
    
 }
