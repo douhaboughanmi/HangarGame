@@ -268,6 +268,7 @@ public class FXMLInscriptionController implements Initializable {
                      InterInscription.getChildren().setAll(inscri);
                 } else {
                     dialog.setHeaderText("Code non conforme");
+                    System.out.println("test");
                 }
             });
            
