@@ -15,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.utils.SendMail;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  *
@@ -40,27 +43,34 @@ public class CrudAnnonces {
     
     
   public void  ajouterAnnonces(
-          String nomAnnonces, String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix){
+          String nomAnnonces, String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix, String image){
       Annonces a = new Annonces(nomAnnonces,typeAnnonces,consoleAnnonces,descriptionAnnonces,prix);
       
-      String req1= " insert into annonces (nomAnnonces, typeAnnonces, consoleAnnonces, descriptionAnnonces, prixAnnonces,imageAnnonces,emailGamer)"
-        + " values (?, ?, ?, ?, ?,?,?)";
+      String req1= " insert into annonces (nomAnnonces, typeAnnonces, consoleAnnonces, descriptionAnnonces, prixAnnonces,imageAnnonces,emailGamer,dataAjout)"
+        + " values (?, ?, ?, ?, ?,?,?,?)";
       
+        
       
       
         try {
+            
+            InputStream inputStream= new FileInputStream(image);
+            
             prepste = connect.prepareStatement(req1);
             prepste.setString(1,a.getNomAnnonces());
             prepste.setString(2,a.getTypeAnnonces());
             prepste.setString(3, a.getConsoleAnnonces());
             prepste.setString(4, a.getDescriptionAnnonces());
             prepste.setInt(5,a.getPrix());
-            prepste.setBlob(6, connect.createBlob());
+            prepste.setBlob(6, inputStream);
             prepste.setString(7, "");
+            prepste.setDate(8, null);
             prepste.executeUpdate();
             System.out.println("c'est fait");
             
         } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
   
