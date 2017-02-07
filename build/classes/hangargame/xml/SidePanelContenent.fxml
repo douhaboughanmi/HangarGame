@@ -67,7 +67,7 @@
             </TitledPane>
         </panes>
       </Accordion>
-    <TitledPane animated="false" text="Annonce">
+    <TitledPane accessibleText="annonce" animated="false" text="Annonce">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>

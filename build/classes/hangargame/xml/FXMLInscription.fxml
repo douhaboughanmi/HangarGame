@@ -1,15 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="InterInscription" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.FXMLInscriptionController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/backgroud.jpg" />
+            <Image url="@../images/login.jpg" />
          </image>
       </ImageView>
+      <Pane id="ba" layoutX="14.0" layoutY="45.0" prefHeight="497.0" prefWidth="700.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <Label layoutX="34.0" layoutY="41.0" text="Ajouter un compte" textFill="TEAL">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField id="Text" fx:id="TF_email" focusColor="WHITE" layoutX="34.0" layoutY="99.0" maxWidth="297.0" minWidth="297.0" prefHeight="45.0" prefWidth="297.0" promptText="Adresse e-mail" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXTextField fx:id="TF_IoginIns" focusColor="WHITE" layoutX="34.0" layoutY="164.0" minWidth="311.0" promptText="Login" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXPasswordField fx:id="PF_passwordIns" focusColor="WHITE" layoutX="34.0" layoutY="226.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="PF_passwordConfIns" focusColor="WHITE" layoutX="34.0" layoutY="308.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Retapez votre mot de passe" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXPasswordField>
+            <Label layoutX="385.0" layoutY="41.0" text="Information personelle" textFill="TEAL">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Separator layoutX="363.0" layoutY="30.0" orientation="VERTICAL" prefHeight="437.0" prefWidth="0.0" />
+            <JFXTextField fx:id="TF_adresse" focusColor="WHITE" layoutX="385.0" layoutY="226.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="251.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXTextField fx:id="TF_prenom" focusColor="WHITE" layoutX="385.0" layoutY="164.0" maxWidth="162.0" minWidth="162.0" prefHeight="45.0" prefWidth="162.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXTextField fx:id="TF_Nom" focusColor="WHITE" layoutX="385.0" layoutY="109.0" maxWidth="162.0" minWidth="162.0" prefHeight="45.0" prefWidth="162.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXTextField fx:id="TF_tel" focusColor="WHITE" layoutX="392.0" layoutY="286.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="251.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXButton buttonType="RAISED" layoutX="431.0" layoutY="419.0" onAction="#Inscription" prefHeight="22.0" prefWidth="115.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+               <effect>
+                  <Bloom threshold="0.77" />
+               </effect>
+               <font>
+                  <Font name="Candara Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="L_mail" layoutX="43.0" layoutY="81.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse e-mail" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_Prenom" layoutX="374.0" layoutY="155.0" prefHeight="21.0" prefWidth="115.0" text="* Prénom" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_Nom" layoutX="374.0" layoutY="99.0" prefHeight="21.0" prefWidth="115.0" text="* Nom" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_PasswordConf" layoutX="43.0" layoutY="298.0" prefHeight="21.0" prefWidth="228.0" text="* Retapez votre mot de passe" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_password" layoutX="34.0" layoutY="216.0" prefHeight="21.0" prefWidth="115.0" text="* Mot de passe" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_Login" layoutX="34.0" layoutY="144.0" prefHeight="21.0" prefWidth="115.0" text="* Login" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_Tel" layoutX="374.0" layoutY="276.0" prefHeight="21.0" prefWidth="115.0" text="* Téléphone" textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_adresse" layoutX="374.0" layoutY="216.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse " textFill="#d30311">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

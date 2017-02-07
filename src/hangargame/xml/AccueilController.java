@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -32,6 +34,10 @@ public class AccueilController implements Initializable {
 
     @FXML
     private JFXHamburger hamburger;
+    
+      @FXML
+    private AnchorPane anchor;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { System.out.println("cest bon");
@@ -39,6 +45,38 @@ public class AccueilController implements Initializable {
     try {
             VBox box = FXMLLoader.load(getClass().getResource("SidePanelContenent.fxml"));
             drawer.setSidePane(box);
+            
+            for(Node node : box.getChildren()){
+            if(node.getAccessibleText()!=null){
+                node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+                
+                switch(node.getAccessibleText()){
+                case "annonce" : 
+            
+       try {
+            
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutAnnonce.fxml")); 
+                    anchor.getChildren().addAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+                    
+            }
+                
+                });
+                
+                
+                
+                
+                
+              
+            
+            
+            }
+            
+            }
+            
            
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

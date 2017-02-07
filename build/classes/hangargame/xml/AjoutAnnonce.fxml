@@ -26,7 +26,7 @@
          </image>
       </ImageView>
       <Separator layoutX="433.0" layoutY="159.0" orientation="VERTICAL" prefHeight="200.0" />
-      <Label layoutX="79.0" layoutY="393.0" text="Image de l'annonce">
+      <Label layoutX="79.0" layoutY="418.0" text="Image de l'annonce">
          <font>
             <Font name="Century" size="24.0" />
          </font>
@@ -39,7 +39,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <JFXButton fx:id="btnAnnonce" layoutX="506.0" layoutY="462.0" onAction="#login" prefHeight="47.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: daa520;" text="Valider" textFill="WHITE">
+      <JFXButton fx:id="btnAnnonce" layoutX="507.0" layoutY="423.0" onAction="#login" prefHeight="47.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: daa520;" text="Valider" textFill="WHITE">
          <font>
             <Font name="Century" size="25.0" />
          </font>
@@ -60,7 +60,7 @@
             <Bloom />
          </effect>
       </Label>
-      <Pane id="a" layoutX="90.0" layoutY="144.0" prefHeight="230.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="a" layoutX="90.0" layoutY="144.0" prefHeight="267.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <JFXTextField fx:id="titreAnnonce" cacheShape="false" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="24.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Titre de la console" unFocusColor="WHITE">
                <opaqueInsets>
@@ -73,8 +73,8 @@
                   <Bloom threshold="0.1" />
                </effect>
             </JFXTextField>
-            <JFXComboBox fx:id="typeAnnonce" layoutX="29.0" layoutY="59.0" prefHeight="25.0" prefWidth="264.0" />
-            <JFXTextField fx:id="prixAnnonce" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="86.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Prix" unFocusColor="WHITE">
+            <JFXComboBox fx:id="typeAnnonce" layoutX="29.0" layoutY="61.0" prefHeight="25.0" prefWidth="264.0" />
+            <JFXTextField fx:id="prixAnnonce" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="97.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Prix" unFocusColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -82,10 +82,16 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <TextArea fx:id="descriptionAnnonce" layoutX="29.0" layoutY="131.0" prefHeight="85.0" prefWidth="264.0" />
+            <TextArea fx:id="descriptionAnnonce" layoutX="29.0" layoutY="157.0" prefHeight="85.0" prefWidth="264.0" />
+            <Label fx:id="labelAnnonce" layoutX="37.0" layoutY="54.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
+            <Label fx:id="labelPrix" layoutX="37.0" layoutY="129.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
+            <Label fx:id="labelDesc" layoutX="33.0" layoutY="245.0" prefHeight="17.0" prefWidth="264.0" textFill="RED" />
          </children>
       </Pane>
-      <Pane id="a" layoutX="91.0" layoutY="423.0" prefHeight="128.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css" />
+      <Pane id="a" layoutX="91.0" layoutY="448.0" prefHeight="128.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <Label fx:id="labelImage" layoutX="32.0" layoutY="56.0" prefHeight="17.0" prefWidth="225.0" textFill="RED" />
+         </children></Pane>
       <Pane id="a" layoutX="478.0" layoutY="144.0" prefHeight="161.0" prefWidth="139.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <JFXRadioButton layoutX="16.0" layoutY="12.0" text="PS3" textFill="WHITE">
@@ -114,5 +120,10 @@
             <Font name="Century" size="24.0" />
          </font>
       </Label>
+      <JFXButton layoutX="507.0" layoutY="497.0" onAction="#selectImage" prefHeight="50.0" prefWidth="124.0" style="-fx-background-color: daa520;" text="Image" textFill="WHITE">
+         <font>
+            <Font name="Century" size="25.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
