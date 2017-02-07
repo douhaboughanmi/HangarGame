@@ -190,4 +190,11 @@ public class LoginController implements Initializable {
         AnchorPane  InterInscription =FXMLLoader.load(getClass().getResource("FXMLInscription.fxml"));
          root.getChildren().setAll( InterInscription);
     }
+       @FXML
+    void LinkForgotPassword(ActionEvent event) throws IOException {
+            AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("ForgotPassword.fxml"));
+            root.getChildren().clear();
+            //anchorPane.setPrefSize(300, 300);
+           root.getChildren().addAll(anchorPane);
+    }
 }

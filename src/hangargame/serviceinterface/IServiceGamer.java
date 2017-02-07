@@ -22,5 +22,6 @@ public interface IServiceGamer {
     public boolean VerifMail(String email);
     public boolean VerifLogin(String login);
     public boolean EmailValidation(String email);
-    public boolean ValidationCode(String email, String codeValidation );
+    public boolean ValidationCode(String email, String codeValidation  );
+    public String RecupererPassword(String email);
 }

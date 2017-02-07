@@ -60,7 +60,7 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <Hyperlink layoutX="181.0" layoutY="289.0" pickOnBounds="false" text="Mot de passe oublié ?" textFill="WHITE">
+            <Hyperlink layoutX="181.0" layoutY="289.0" onAction="#LinkForgotPassword" pickOnBounds="false" text="Mot de passe oublié ?" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

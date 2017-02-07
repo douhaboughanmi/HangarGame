@@ -6,9 +6,11 @@
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import hangargame.services.ServicesGamer;
+import java.awt.BorderLayout;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,12 +25,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * FXML Controller class
@@ -75,10 +86,19 @@ public class FXMLInscriptionController implements Initializable {
 
     @FXML
     private Label L_Login;
+       @FXML
+    private JFXSpinner chargement;
+
+    @FXML
+    private Label code;
+
+    @FXML
+    private JFXTextField TF_Code;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
+
         try {
             RequiredFieldValidator VLogin = new RequiredFieldValidator();
             TF_email.getValidators().add(VLogin);
@@ -231,49 +251,49 @@ public class FXMLInscriptionController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+    }
+    @FXML
+    void Inscription(ActionEvent event) throws IOException {
+       
+
+       
+        if (!PF_passwordIns.getText().equals(PF_passwordConfIns.getText())) {
+            L_PasswordConf.setText("Mot de passe non conforme !");
+            L_PasswordConf.setTextFill(Color.web("#ea5050"));
+            L_password.setText("Mot de passe non conforme !");
+            L_password.setTextFill(Color.web("#ea5050"));
+        } 
+        else if (!s.VerifMail(TF_email.getText())) {
+            L_mail.setText("E-mail existant !");
+            L_mail.setTextFill(Color.web("#ea5050"));
+         } 
+        else if (!s.VerifLogin(TF_IoginIns.getText())) {
+            L_Login.setText("Login existant !");
+            L_Login.setTextFill(Color.web("#ea5050"));
+        }
+        else if (!s.EmailValidation(TF_email.getText())) {
+            L_mail.setText("E-mail invalide !");
+            L_mail.setTextFill(Color.web("#ea5050"));
+        } else if (s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText())) {
+           
+         // chargement = new JFXSpinner();
+            
+        }
     }
 
     @FXML
-    void Inscription(ActionEvent event) throws IOException {
-        if (!PF_passwordIns.getText().equals(PF_passwordConfIns.getText())) {
-            L_PasswordConf.setText("Mot de passe non conforme");
-            L_PasswordConf.setTextFill(Color.web("white"));
-            L_password.setText("Mot de passe non conforme");
-            L_password.setTextFill(Color.web("white"));
-        } else if (!s.VerifMail(TF_email.getText())) {
-            L_mail.setText("E-mail existant");
-            L_mail.setTextFill(Color.web("white"));
-        } else if (!s.VerifLogin(TF_IoginIns.getText())) {
-            L_Login.setText("Login existant");
-            L_Login.setTextFill(Color.web("white"));
-        } else if (!s.EmailValidation(TF_email.getText())) {
-            L_mail.setText("E-mail invalide");
-            L_mail.setTextFill(Color.web("white"));
-        } else if (s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText())) {
-            TextInputDialog dialog = new TextInputDialog("");
-            dialog.setTitle("Validation du compte");
-            dialog.setHeaderText("Valider votre compte");
-            dialog.setContentText("Entrez votre code: ");
-            AnchorPane inscri = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
-// Traditional way to get the response value.
-            Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()) {
-                System.out.println("Your code: " + result.get());
-            }
-
-            result.ifPresent(code -> {
-                if (s.ValidationCode(TF_email.getText(), code)) {
-                    dialog.setHeaderText("Code conforme");
-                    
-                     InterInscription.getChildren().setAll(inscri);
-                } else {
-                    dialog.setHeaderText("Code non conforme");
-                    System.out.println("test");
-                }
-            });
-           
-        }
-
+    void VerificationCode(ActionEvent event) throws IOException {
+        
+       if(s.ValidationCode(TF_email.getText(),TF_Code.getText()))
+       {
+           AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Accueil.fxml"));
+            InterInscription.getChildren().addAll(anchorPane);
+       }
+       else
+       {   
+           code.setText("Code incorrect! ");
+       }
     }
-
+   
 }
