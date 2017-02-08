@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
+   <children>
+      <ImageView fx:id="btnaddsjt" fitHeight="402.0" fitWidth="631.0">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Pane focusTraversable="true" layoutX="25.0" layoutY="143.0" opacity="0.34" prefHeight="216.0" prefWidth="376.0" style="-fx-background-color: #4a494c;">
+         <opaqueInsets>
+            <Insets left="100.0" top="30.0" />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+         <effect>
+            <ColorAdjust brightness="0.98" contrast="0.69" />
+         </effect>
+      </Pane>
+      <JFXButton fx:id="btnAdd" alignment="BOTTOM_LEFT" buttonType="RAISED" contentDisplay="CENTER" defaultButton="true" graphicTextGap="10.0" layoutX="280.0" layoutY="315.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#Addsbjct" prefHeight="17.0" prefWidth="103.0" ripplerFill="#4a494c8c" style="-fx-background-color: daa520;" text="Ajouter Sujet" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS" underline="true" wrapText="true">
+         <font>
+            <Font name="Bookshelf Symbol 7" size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#525054" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </JFXButton>
+      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="37.0" layoutY="304.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
+      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="-16.0" layoutY="383.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
+      <JFXTextField fx:id="titresujet" layoutX="33.0" layoutY="164.0" maxWidth="118.0" minWidth="118.0" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: #ffffff;" text="Titre de votre sujet" />
+      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="28.0" layoutY="196.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
+      <JFXComboBox fx:id="comboCatgr" layoutX="264.0" layoutY="167.0" prefHeight="25.0" prefWidth="129.0" promptText="Categorie de Votre Sujet" style="-fx-background-color: #FFFFFFFF;" />
+      <JFXTreeTableView layoutX="422.0" layoutY="138.0" prefHeight="227.0" prefWidth="188.0">
+         <columns>
+            <TreeTableColumn prefWidth="91.0" text="Column X" />
+            <TreeTableColumn prefWidth="95.0" text="Column X" />
+         </columns>
+      </JFXTreeTableView>
+      <JFXTextArea fx:id="sujetArea" layoutX="31.0" layoutY="207.0" maxWidth="386.0" minWidth="367.0" prefHeight="64.0" prefWidth="367.0" text="Votre Sujet ...." />
+   </children>
 </AnchorPane>

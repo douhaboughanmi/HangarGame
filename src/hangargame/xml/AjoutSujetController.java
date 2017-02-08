@@ -1,28 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package hangargame.xml;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import hangargame.entites.Sujet;
+import hangargame.services.CrudSujet;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 
-/**
- * FXML Controller class
- *
- * @author Hamza
- */
-public class AjoutSujetController implements Initializable {
+public class AjoutSujetController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    CrudSujet crs = new CrudSujet();
+   
+    @FXML
+    private ImageView btnaddsjt;
+
+    @FXML
+    private JFXButton btnAdd;
+
+    @FXML
+    private JFXTextArea sujetArea;
+
+    @FXML
+    private JFXTextField titresujet;
+
+    @FXML
+    private JFXComboBox<?> comboCatgr;
+
+
+
+    @FXML
+    void Addsbjct(ActionEvent event) {
+        String txt = sujetArea.getText();
+        String titre = titresujet.getText();
+        String catgre = (String) comboCatgr.getValue();
+        Sujet sjt = new Sujet(txt,titre,catgre);
+        
+        crs.ajoutersujet(sjt);
+    }
+
 }
