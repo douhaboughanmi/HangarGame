@@ -5,61 +5,68 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
+<AnchorPane id="AnchorPane" fx:id="anacrosujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
    <children>
-      <ImageView fx:id="btnaddsjt" fitHeight="402.0" fitWidth="631.0">
+      <ImageView fx:id="btnaddsjt" fitHeight="600.0" fitWidth="1067.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane focusTraversable="true" layoutX="25.0" layoutY="143.0" opacity="0.34" prefHeight="216.0" prefWidth="376.0" style="-fx-background-color: #4a494c;">
-         <opaqueInsets>
-            <Insets left="100.0" top="30.0" />
-         </opaqueInsets>
-         <cursor>
-            <Cursor fx:constant="S_RESIZE" />
-         </cursor>
-         <effect>
-            <ColorAdjust brightness="0.98" contrast="0.69" />
-         </effect>
-      </Pane>
-      <JFXButton fx:id="btnAdd" alignment="BOTTOM_LEFT" buttonType="RAISED" contentDisplay="CENTER" defaultButton="true" graphicTextGap="10.0" layoutX="280.0" layoutY="315.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#Addsbjct" prefHeight="17.0" prefWidth="103.0" ripplerFill="#4a494c8c" style="-fx-background-color: daa520;" text="Ajouter Sujet" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS" underline="true" wrapText="true">
+      <JFXButton fx:id="btnAdd" alignment="BOTTOM_LEFT" buttonType="RAISED" contentDisplay="CENTER" defaultButton="true" graphicTextGap="10.0" layoutX="30.0" layoutY="453.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#Addsbjct" prefHeight="35.0" prefWidth="158.0" ripplerFill="#9e0505" style="-fx-background-color: daa520;" text="Ajouter Sujet" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
          <font>
-            <Font name="Bookshelf Symbol 7" size="14.0" />
+            <Font name="Arial Unicode MS" size="21.0" />
          </font>
          <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <LinearGradient endX="0.5857142857142857" endY="0.3142857142857143" startX="1.0">
                <stops>
-                  <Stop color="#525054" />
-                  <Stop color="WHITE" offset="1.0" />
+                  <Stop color="#f1f0f2" />
+                  <Stop color="#f1f0f2" offset="0.007662835249042145" />
+                  <Stop color="#053f5e" offset="1.0" />
                </stops>
             </LinearGradient>
          </textFill>
       </JFXButton>
-      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="37.0" layoutY="304.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
-      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="-16.0" layoutY="383.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
-      <JFXTextField fx:id="titresujet" layoutX="33.0" layoutY="164.0" maxWidth="118.0" minWidth="118.0" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: #ffffff;" text="Titre de votre sujet" />
-      <Separator blendMode="COLOR_DODGE" cache="true" cacheHint="SPEED" depthTest="ENABLE" layoutX="28.0" layoutY="196.0" opacity="0.45" prefHeight="11.0" prefWidth="367.0" />
-      <JFXComboBox fx:id="comboCatgr" layoutX="264.0" layoutY="167.0" prefHeight="25.0" prefWidth="129.0" promptText="Categorie de Votre Sujet" style="-fx-background-color: #FFFFFFFF;" />
-      <JFXTreeTableView layoutX="422.0" layoutY="138.0" prefHeight="227.0" prefWidth="188.0">
+      <JFXTextField fx:id="titresujet" focusColor="#d3c315" layoutX="30.0" layoutY="204.0" maxWidth="191.0" minWidth="118.0" prefHeight="39.0" prefWidth="178.0" promptText="Ajouter Titre" style="-fx-background-color: #ffffff;" unFocusColor="#049a95">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font></JFXTextField>
+      <JFXComboBox fx:id="comboCatgr" layoutX="302.0" layoutY="204.0" prefHeight="39.0" prefWidth="178.0" promptText="Catégorie..." style="-fx-background-color: #FFFFFFFF;" />
+      <JFXTreeTableView layoutX="612.0" layoutY="192.0" prefHeight="300.0" prefWidth="373.0">
          <columns>
-            <TreeTableColumn prefWidth="91.0" text="Column X" />
-            <TreeTableColumn prefWidth="95.0" text="Column X" />
+            <TreeTableColumn prefWidth="65.0" text="Column X" />
+            <TreeTableColumn minWidth="7.0" prefWidth="144.0" text="Column X" />
+            <TreeTableColumn prefWidth="110.0" text="Column Y" />
          </columns>
       </JFXTreeTableView>
-      <JFXTextArea fx:id="sujetArea" layoutX="31.0" layoutY="207.0" maxWidth="386.0" minWidth="367.0" prefHeight="64.0" prefWidth="367.0" text="Votre Sujet ...." />
+      <JFXTextArea fx:id="sujetArea" focusColor="#d3c315" layoutX="33.0" layoutY="280.0" maxWidth="447.0" minWidth="367.0" prefHeight="130.0" prefWidth="447.0" promptText="Votre Sujet ....">
+         <unFocusColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4d4d4d" />
+                  <Stop color="WHITE" offset="0.6268910218430301" />
+                  <Stop color="#5918db" offset="0.8888888888888888" />
+                  <Stop color="#5918db" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </unFocusColor></JFXTextArea>
+      <AmbientLight color="CHARTREUSE" layoutX="101.0" layoutY="113.0" lightOn="true" />
+      <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="892.0" layoutY="32.0" onDragDetected="#homeSujet" opacity="0.74">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

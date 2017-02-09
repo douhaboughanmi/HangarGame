@@ -38,6 +38,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -58,6 +59,9 @@ public class LoginController implements Initializable {
     @FXML
     private JFXTextField TF_login;
 
+    public TextField getText(){
+        return this.TF_login;
+    }
     @FXML
     private JFXPasswordField PF_password;
       

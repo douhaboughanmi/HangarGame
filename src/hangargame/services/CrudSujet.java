@@ -58,14 +58,14 @@ public class CrudSujet implements ISujetCrud {
     @Override
     public void ajoutersujet(Sujet s) {
           try {
-            String ajoutStatement = "INSERT INTO INTO  `sujet_forum`( `nomsujet`, `categorie`, `textsujet`,`etatsujet`, `gamer`) VALUES "
-                    + "VALUES(?,?,?,'2',?)";
+            String ajoutStatement = "insert into sujet_forum( nomsujet,categorie, textsujet,etatsujet,gamer) "
+                    + "VALUES(?,?,?,'2','zut@zut.tn')";
 
             prpste = connect.prepareStatement(ajoutStatement);
             prpste.setString(1, s.getNomSujet());
             prpste.setString(2, s.getCategorie());
             prpste.setString(3, s.gettextSujet());
-             prpste.setInt(4, s.getetat());
+           // prpste.setString(4, s.getGamer());
             prpste.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CrudSujet.class.getName()).log(Level.SEVERE, null, ex);
