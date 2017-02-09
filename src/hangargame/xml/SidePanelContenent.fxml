@@ -82,7 +82,7 @@
       </TitledPane>
       <Accordion />
       <Accordion />
-      <TitledPane animated="false" text="Forum">
+      <TitledPane accessibleText="forum" animated="false" text="Forum">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

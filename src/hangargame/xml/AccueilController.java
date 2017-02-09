@@ -48,14 +48,39 @@ public class AccueilController implements Initializable {
             
             for(Node node : box.getChildren()){
             if(node.getAccessibleText()!=null){
-                node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+                node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
                 
-                switch(node.getAccessibleText()){
-                case "annonce" : 
-            
+               
+            if ("annonce".equals(node.getAccessibleText())){
+                
        try {
             
              AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutAnnonce.fxml")); 
+                    anchor.getChildren().addAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            }
+            if ("forum".equals(node.getAccessibleText())){
+                 
+            
+       try {
+            
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutSujet.fxml")); 
+                    anchor.getChildren().addAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+                    
+            }
+            
+              if ("xxxx".equals(node.getAccessibleText())){
+                 
+            
+       try {
+            
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutJeuVideo.fxml")); 
                     anchor.getChildren().addAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
