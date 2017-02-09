@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -60,7 +61,7 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <Hyperlink layoutX="181.0" layoutY="289.0" pickOnBounds="false" text="Mot de passe oublié ?" textFill="WHITE">
+            <Hyperlink layoutX="181.0" layoutY="289.0" onAction="#LinkForgotPassword" pickOnBounds="false" text="Mot de passe oublié ?" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -139,7 +140,7 @@
             </Label>
          </children>
       </Pane>
-      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivez-nous sur : " wrappingWidth="205.42578125">
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscrivez vous à partir: " wrappingWidth="205.42578125">
          <effect>
             <Bloom threshold="1.0">
                <input>
@@ -151,5 +152,43 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
+      <Pane id="pane" fx:id="PaneCode" layoutX="739.0" layoutY="229.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="163.0" prefWidth="278.0" stylesheets="@../css/Login.css">
+         <effect>
+            <Bloom />
+         </effect>
+         <children>
+            <Label fx:id="code" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="186.0" text="Entrez votre code :" textFill="#5684da">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="TF_Code" focusColor="WHITE" layoutX="8.0" layoutY="62.0" maxWidth="251.0" minWidth="177.0" prefHeight="45.0" prefWidth="177.0" promptText="Code" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXTextField>
+            <JFXButton buttonType="RAISED" layoutX="100.0" layoutY="117.0" onAction="#VerificationCode" prefHeight="13.0" prefWidth="79.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="#00010a" textOverrun="LEADING_WORD_ELLIPSIS">
+               <effect>
+                  <Bloom threshold="0.77" />
+               </effect>
+               <font>
+                  <Font name="Candara Bold" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <JFXButton buttonType="RAISED" layoutX="239.0" layoutY="526.0" onAction="#LoginFB" opacity="0.0" prefHeight="45.0" prefWidth="52.0">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </JFXButton>
+      <ImageView disable="true" fitHeight="45.0" fitWidth="52.0" layoutX="237.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/social-icons.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

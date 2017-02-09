@@ -89,11 +89,7 @@ public class FXMLInscriptionController implements Initializable {
        @FXML
     private JFXSpinner chargement;
 
-    @FXML
-    private Label code;
-
-    @FXML
-    private JFXTextField TF_Code;
+  
 
     @Override
 
@@ -275,25 +271,19 @@ public class FXMLInscriptionController implements Initializable {
         else if (!s.EmailValidation(TF_email.getText())) {
             L_mail.setText("E-mail invalide !");
             L_mail.setTextFill(Color.web("#ea5050"));
-        } else if (s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText())) {
+        } else {
+            s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText());
            
-         // chargement = new JFXSpinner();
+            AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Login.fxml"));
+            InterInscription.getChildren().addAll(anchorPane);
             
         }
     }
 
-    @FXML
-    void VerificationCode(ActionEvent event) throws IOException {
-        
-       if(s.ValidationCode(TF_email.getText(),TF_Code.getText()))
-       {
-           AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Accueil.fxml"));
-            InterInscription.getChildren().addAll(anchorPane);
-       }
-       else
-       {   
-           code.setText("Code incorrect! ");
-       }
+  @FXML
+    void Inscription_Login(ActionEvent event) throws IOException {
+ AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Login.fxml"));
+           InterInscription.getChildren().addAll(anchorPane);
     }
    
 }

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Bloom?>
@@ -20,7 +21,7 @@
             <Image url="@../images/login.jpg" />
          </image>
       </ImageView>
-      <Pane id="ba" layoutX="23.0" layoutY="80.0" prefHeight="506.0" prefWidth="655.0">
+      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="643.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <Label layoutX="14.0" layoutY="26.0" text="Ajouter un compte" textFill="TEAL">
                <font>
@@ -64,8 +65,8 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="344.0" layoutY="31.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" />
-            <JFXTextField fx:id="TF_adresse" focusColor="WHITE" layoutX="364.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <Separator layoutX="337.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
+            <JFXTextField fx:id="TF_Nom" focusColor="WHITE" layoutX="363.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
                <font>
                   <Font size="18.0" />
                </font>
@@ -81,7 +82,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_Nom" focusColor="WHITE" layoutX="363.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_adresse" focusColor="WHITE" layoutX="364.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
                <font>
                   <Font size="18.0" />
                </font>
@@ -137,8 +138,8 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Separator layoutX="9.0" layoutY="488.0" prefHeight="21.0" prefWidth="647.0" />
-            <JFXButton buttonType="RAISED" layoutX="282.0" layoutY="483.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="643.0" />
+            <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="483.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
                <effect>
                   <Bloom threshold="0.77" />
                </effect>
@@ -147,40 +148,25 @@
                </font>
             </JFXButton>
             <JFXSpinner fx:id="chargement" layoutX="282.0" layoutY="485.0" />
+            <Separator layoutX="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
+            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="643.0" />
+            <Separator layoutX="640.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
          </children>
       </Pane>
-      <Pane id="pane" fx:id="PaneCode" layoutX="702.0" layoutY="174.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="163.0" prefWidth="278.0" stylesheets="@../css/Login.css">
-         <children>
-            <Label fx:id="code" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="186.0" text="Entrez votre code :" textFill="#5684da">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="TF_Code" focusColor="WHITE" layoutX="8.0" layoutY="62.0" maxWidth="251.0" minWidth="177.0" prefHeight="45.0" prefWidth="177.0" promptText="Code" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <effect>
-                  <Bloom />
-               </effect>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="100.0" layoutY="117.0" onAction="#VerificationCode" prefHeight="13.0" prefWidth="79.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="#00010a" textOverrun="LEADING_WORD_ELLIPSIS">
-               <effect>
-                  <Bloom threshold="0.77" />
-               </effect>
-               <font>
-                  <Font name="Candara Bold" size="16.0" />
-               </font>
-            </JFXButton>
-         </children>
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Label layoutX="256.0" layoutY="50.0" prefHeight="30.0" prefWidth="323.0" text="Inscrivez-vous !" textFill="#fadeff">
+      <Label layoutX="19.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Inscrivez-vous sur la plate-forme des Gamers la plus divertissante au monde!" textFill="#fadeff">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <JFXButton buttonType="RAISED" layoutX="1001.0" layoutY="537.0" onAction="#Inscription_Login" opacity="0.0" prefHeight="45.0" prefWidth="52.0">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </JFXButton>
+      <ImageView disable="true" fitHeight="53.0" fitWidth="67.0" layoutX="1000.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/homr.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

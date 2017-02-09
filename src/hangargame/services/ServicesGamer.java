@@ -113,7 +113,7 @@ public class ServicesGamer implements IServiceGamer {
             if (resultat.next()) {
                 String resultEmail = resultat.getString(6);
                 if (resultEmail.equals(email)) { //mail existant
-                  return false;
+                    return false;
                 }
                 resultat.close();
 
@@ -124,14 +124,14 @@ public class ServicesGamer implements IServiceGamer {
 
         }
         return true;
-       
+
     }
 
     @Override
     public boolean VerifLogin(String login) {
         String req2 = "select login from Gamer ";
 
-          try {
+        try {
 
             prepste = connect.prepareStatement(req2);
             ResultSet resultat = prepste.executeQuery();
@@ -139,7 +139,7 @@ public class ServicesGamer implements IServiceGamer {
             if (resultat.next()) {
                 String resultLogin = resultat.getString(1);
                 if (resultLogin.equals(login)) { //login existant
-                  return false;
+                    return false;
                 }
                 resultat.close();
 
@@ -168,10 +168,10 @@ public class ServicesGamer implements IServiceGamer {
     }
 
     @Override
-    public boolean ValidationCode(String email, String codeValidation) {
+    public boolean ValidationCode(String login, String codeValidation) {
 
-        String req1 = "select codeValidation from gamer where email= '" + email + "'";
-        String req = " update gamer set validation = '1' where email= '" + email + "'and codeValidation = '" + codeValidation + "'";
+        String req1 = "select codeValidation from gamer where login= '" + login + "'";
+        String req = " update gamer set validation = '1' where login= '" + login + "'and codeValidation = '" + codeValidation + "'";
         try {
 
             prepste = connect.prepareStatement(req1);
@@ -206,7 +206,7 @@ public class ServicesGamer implements IServiceGamer {
             if (resultat.next()) {
                 String passwordL = resultat.getString(1);
                 SendPassword sendMail = new SendPassword();
-                sendMail.send(email,passwordL);
+                sendMail.send(email, passwordL);
                 return passwordL;
 
             }
@@ -217,6 +217,35 @@ public class ServicesGamer implements IServiceGamer {
 
         }
         return null;
+    }
+
+    @Override
+    public boolean ActivationCompte(String login) {
+        String req = "select validation from gamer where login= '" + login + "'";
+        try {
+
+            prepste = connect.prepareStatement(req);
+            ResultSet resultat = prepste.executeQuery();
+
+            if (resultat.next()) {
+                
+                int resultValidation = resultat.getInt(1);
+                
+                if (resultValidation == 0) {
+                    return false;
+                } else if (resultValidation == 1) {
+                    return true;
+                }
+
+            }
+
+            resultat.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return  false;
     }
 
 }
