@@ -34,14 +34,24 @@ public class CrudActualite implements IActualiteCrud{
         }
     }
 
+
     @Override
     public void ajouterActualite(Actualite a) {
+       // 
+      String req1="insert into actualite (titre,text,image)values(?,?,?)";
         try {
-            String req1="insert into actualite (titre,text,date_debut,date_fin,image,video)values"
-                    + "("+a.getTitre()+",' "+a.getText()+","+a.getDate_debut()+",' "+a.getDate_fin()+",' "+a.getImage()+"',' "+a.getVideo()+"')";
+           prepste=connect.prepareStatement(req1);
+              prepste.setString(1,a.getTitre() );
+            prepste.setString(2,a.getText() );
+           
+            prepste.setString(3,a.getImage() );
+               prepste.executeUpdate();
+             
+               System.out.println("c'est fait");
+                   
             
            
-            ste.executeUpdate(req1);
+         
             
         } catch (SQLException ex) {
             Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);

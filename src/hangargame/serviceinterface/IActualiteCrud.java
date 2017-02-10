@@ -13,7 +13,7 @@ import hangargame.entites.Actualite;
  * @author mishka
  */
 public interface IActualiteCrud {
-    public void ajouterActualite(Actualite a);
+    public void ajouterActualite(Actualite a );
     public void supprimerActualite (Actualite a );
     public void modifierActualite(Actualite a);
     public void afficherActualite();

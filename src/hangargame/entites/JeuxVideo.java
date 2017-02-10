@@ -17,14 +17,14 @@ public class JeuxVideo {
     private int id ;
     private String nom ; 
     private String genre ; 
-    private Date date_sortie ; 
+    private String date_sortie ; 
     private String description ;
     private String image ; 
     private String nom_console ; 
     private String video_ba ; 
     
 
-    public JeuxVideo(String nom, String genre, Date date_sortie, String description, String image, String nom_console, String video_ba) {
+    public JeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console, String video_ba) {
         this.nom = nom;
         this.genre = genre;
         this.date_sortie = date_sortie;
@@ -42,7 +42,7 @@ public class JeuxVideo {
         return genre;
     }
 
-    public Date getDate_sortie() {
+    public String getDate_sortie() {
         return date_sortie;
     }
 
@@ -70,7 +70,7 @@ public class JeuxVideo {
         this.genre = genre;
     }
 
-    public void setDate_sortie(Date date_sortie) {
+    public void setDate_sortie(String date_sortie) {
         this.date_sortie = date_sortie;
     }
 

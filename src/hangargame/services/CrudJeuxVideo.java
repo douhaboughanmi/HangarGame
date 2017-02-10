@@ -8,7 +8,10 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.JeuxVideo;
 import hangargame.serviceinterface.IJeuxVideoCrud;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,27 +34,31 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
     }
 
     @Override
-    public void ajouterJeuxVideo(JeuxVideo j) {
-        
+    public void ajouterJeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console, String video_ba) {
+         JeuxVideo j = new JeuxVideo(nom, genre, date_sortie, description, image, nom_console, video_ba);
+         
+           String req1="insert into jeux_video(nom,genre,date_sortie,description,image,nom_console,video_ba)values(?,?,?,?,?,?,?)";
         try {
            // String req1="insert into jeux_video(nom,genre)values(?,?)";
-            String req1="insert into jeux_video(nom,genre,date_sortie,description,image,nom_console,video_ba)values(?,?,?,?,?,?,?)";
+         // InputStream inputStream= new FileInputStream(image);
+          
            prepste=connect.prepareStatement(req1);
            
            prepste.setString(1,j.getNom() );
             prepste.setString(2,j.getGenre() );
            
-            prepste.setDate(3,j.getDate_sortie() );
+            prepste.setString(3,j.getDate_sortie() );
              prepste.setString(4,j.getDescription() );
              prepste.setString(5,j.getImage() );
-             prepste.setString(6,j.getNom_console() );
-             prepste.setString(7,j.getVideo_ba() );
+             prepste.setString(6,"testNomConsole" );
+             prepste.setString(7,"testVideo" );
+              
 
 
 
           
            prepste.executeUpdate();
-            
+             System.out.println("c'est fait");
         } catch (SQLException ex) {
             Logger.getLogger(CrudJeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
         }

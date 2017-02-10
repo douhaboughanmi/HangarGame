@@ -18,7 +18,7 @@ public class Console {
     private String nom ;
     private String image ; 
     private String description ;
-    private String video_bd ;
+   
 
     
     private Date date_sortie ;
@@ -29,12 +29,12 @@ public class Console {
     
     }
     
-    public Console(String nom,String image,String description,String video_bd,Date date_sortie)
+    public Console(String nom,String image,String description,Date date_sortie)
     {
     this.nom = nom;
     this.image =image ; 
     this.description=description;
-    this.video_bd=video_bd;
+    
     this.date_sortie=date_sortie;
     }
 
@@ -50,10 +50,7 @@ public class Console {
         this.description = description;
     }
 
-    public void setVideo_bd(String video_bd) {
-        this.video_bd = video_bd;
-    }
-
+  
     public void setDate_sortie(Date date_sortie) {
         this.date_sortie = date_sortie;
     }
@@ -70,9 +67,7 @@ public class Console {
         return description;
     }
 
-    public String getVideo_bd() {
-        return video_bd;
-    }
+  
 
     public Date getDate_sortie() {
         return date_sortie;
@@ -84,7 +79,7 @@ public class Console {
         hash = 59 * hash + Objects.hashCode(this.nom);
         hash = 59 * hash + Objects.hashCode(this.image);
         hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.video_bd);
+       
         hash = 59 * hash + Objects.hashCode(this.date_sortie);
         return hash;
     }
@@ -112,9 +107,7 @@ public class Console {
         }
         if (!Objects.equals(this.description, other.description)) {
             return false;
-        }
-        if (!Objects.equals(this.video_bd, other.video_bd)) {
-            return false;
+     
         }
         if (!Objects.equals(this.date_sortie, other.date_sortie)) {
             return false;
@@ -124,6 +117,6 @@ public class Console {
 
     @Override
     public String toString() {
-        return "Console{" + "nom=" + nom + ", image=" + image + ", description=" + description + ", video_bd=" + video_bd + ", date_sortie=" + date_sortie + '}';
+        return "Console{" + "nom=" + nom + ", image=" + image + ", description=" + description + ",  date_sortie=" + date_sortie + '}';
     }
 }

@@ -39,8 +39,8 @@ public class CrudConsole implements IConsoleCrud{
     @Override
     public void ajouterConsole(Console c) {
         try {
-            String req1="insert into console (nom,image,description,video_bd,date_sortie)values"
-                    + "("+c.getNom()+",' "+c.getImage()+","+c.getDescription()+",' "+c.getVideo_bd()+",' "+c.getDate_sortie()+"')";
+            String req1="insert into console (nom,image,description,date_sortie)values"
+                    + "("+c.getNom()+",' "+c.getImage()+","+c.getDescription()+",' "+c.getDate_sortie()+"')";
             
            
             ste.executeUpdate(req1);

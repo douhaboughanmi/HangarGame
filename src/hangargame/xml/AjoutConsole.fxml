@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.102" fx:controller="hangargame.xml.AjoutConsoleController">
+   <children>
+      <ImageView accessibleText="jeux" fitHeight="600.0" fitWidth="1067.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnAct" layoutX="721.0" layoutY="521.0" onAction="#ajout" prefHeight="47.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: daa520;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="Century" size="25.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="252.0" layoutY="57.0" text="Ajout Console">
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#267229" />
+                  <Stop color="#b3eea1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Pane id="a" layoutX="101.0" layoutY="125.0" prefHeight="376.0" prefWidth="505.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <JFXTextField fx:id="titreConsole" cacheShape="false" focusColor="GOLDENROD" labelFloat="true" layoutX="23.0" layoutY="65.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Titre console" unFocusColor="WHITE">
+               <opaqueInsets>
+                  <Insets bottom="500.0" left="500.0" right="500.0" top="500.0" />
+               </opaqueInsets>
+               <font>
+                  <Font name="Century" size="15.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.1" />
+               </effect>
+            </JFXTextField>
+            <TextArea fx:id="descriptionConsole" layoutX="16.0" layoutY="121.0" prefHeight="222.0" prefWidth="473.0" promptText="Description Console" />
+            <Label fx:id="labeldesc" layoutX="124.0" layoutY="211.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
+            <Label layoutX="33.0" layoutY="100.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="btnImage" layoutX="854.0" layoutY="521.0" onAction="#selectImage" prefHeight="50.0" prefWidth="124.0" style="-fx-background-color: daa520;" text="Image" textFill="WHITE">
+         <font>
+            <Font name="Century" size="25.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="347.0" fitWidth="290.0" layoutX="754.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane id="a" layoutX="681.0" layoutY="126.0" prefHeight="385.0" prefWidth="339.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <Label fx:id="labelimage" layoutX="51.0" layoutY="151.0" prefHeight="21.0" prefWidth="238.0" />
+         </children>
+      </Pane>
+      <Separator layoutX="640.0" layoutY="125.0" orientation="VERTICAL" prefHeight="376.0" prefWidth="7.0" />
+      <Label layoutX="802.0" layoutY="58.0" prefHeight="30.0" prefWidth="214.0" text="Image">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#69a836" offset="0.007662835249042145" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
