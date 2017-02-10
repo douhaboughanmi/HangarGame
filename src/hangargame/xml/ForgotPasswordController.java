@@ -52,7 +52,7 @@ public class ForgotPasswordController implements Initializable {
              LPasswordForgot.setTextFill(Color.web("#ea5050"));
         }
         else if(!s.VerifMail(TF_FPEmail.getText()))
-        {  LPasswordForgot.setText("Mot de passe envoyé !");
+        {  LPasswordForgot.setText("Un mail vous a été envoyé!");
             LPasswordForgot.setTextFill(Color.web("#ea5050"));
             s.RecupererPassword(TF_FPEmail.getText());
         }

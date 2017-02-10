@@ -74,7 +74,6 @@ public class ServicesGamer implements IServiceGamer {
                 prepste.executeUpdate();
                 SendCodeValidation sendMail = new SendCodeValidation();
                 sendMail.send(mail, code);
-                System.out.println("test");
                 return true;
 
             }

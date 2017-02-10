@@ -249,8 +249,10 @@ public class LoginController implements Initializable {
                 + "user_events,user_photos,user_friends,user_games_activity,user_groups,user_hometown,user_interests,user_likes,user_location,user_photos,user_relationship_details,"
                 + "user_relationships,user_religion_politics,user_status,user_tagged_places,user_videos,user_website,user_work_history,ads_management,ads_read,email,"
                 + "manage_notifications,manage_pages,publish_actions,read_friendlists,read_insights,read_mailbox,read_page_mailboxes,read_stream,rsvp_event";
+      
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
          WebDriver driver = new ChromeDriver();
+         
          driver.get(authUrl);
          String accessToken ;
          while(true){
