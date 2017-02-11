@@ -25,4 +25,8 @@ public interface IServiceGamer {
     public boolean ValidationCode(String login, String codeValidation  );
     public String RecupererPassword(String email);
     public boolean ActivationCompte(String login);
+    public boolean AuthentificationWithFb(String email);
+     public boolean ActivationCompteFB(String email);
+     public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login);
+     public Gamer Afficher(String login);
 }

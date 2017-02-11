@@ -247,5 +247,99 @@ public class ServicesGamer implements IServiceGamer {
         }
         return  false;
     }
+      @Override
+    public boolean ActivationCompteFB(String email) {
+        String req = "select validation from gamer where email= '" + email + "'";
+        try {
 
+            prepste = connect.prepareStatement(req);
+            ResultSet resultat = prepste.executeQuery();
+
+            if (resultat.next()) {
+                
+                int resultValidation = resultat.getInt(1);
+                
+                if (resultValidation == 0) {
+                    return false;
+                } else if (resultValidation == 1) {
+                    return true;
+                }
+
+            }
+
+            resultat.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return  false;
+    }
+
+
+    @Override
+    public boolean AuthentificationWithFb(String email) {
+        
+       String req = "select * from gamer where email= '" + email + "'";
+        try {
+
+            prepste = connect.prepareStatement(req);
+            ResultSet resultat = prepste.executeQuery();
+
+            if (resultat.next()) {
+                
+                String resultEmail= resultat.getString(6);
+                
+                if (resultEmail.equals(email)) {
+                    return true;
+                } else if (!resultEmail.equals(email)) {
+                    return false;
+                }
+
+            }
+
+            resultat.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return  false;
+    }
+
+
+    @Override
+    public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login) {
+    return null;
+    }
+    
+
+    @Override
+    public Gamer Afficher(String login) {
+        String req = "select nom,prenom,adresse,tel,email,dateInscription from gamer where login= '" + login + "'";
+        try {
+
+            prepste = connect.prepareStatement(req);
+            ResultSet resultat = prepste.executeQuery();
+
+            if (resultat.next()) {
+                String resultNom= resultat.getString(1);
+                String resultPrenom= resultat.getString(2);
+                String resultAdresse= resultat.getString(3);
+                int resultTel= resultat.getInt(4);
+                String resultEmail= resultat.getString(5);
+                Timestamp resultDateInscri= resultat.getTimestamp(6);
+           Gamer g = new Gamer(resultNom,resultPrenom, resultAdresse, resultTel, resultEmail, resultDateInscri);
+           return g;
+         }
+            resultat.close();
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+       return null;
+    }
+    
 }
+
