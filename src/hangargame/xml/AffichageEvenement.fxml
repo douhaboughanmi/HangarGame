@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AffichageEvenementController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableEvenement" layoutX="39.0" layoutY="51.0" prefHeight="462.0" prefWidth="991.0">
+        <columns>
+          <TableColumn fx:id="colNom" minWidth="0.0" prefWidth="173.0" sortable="false" text="Nom Evenement" />
+            <TableColumn fx:id="colDesc" prefWidth="352.0" sortable="false" text="Description" />
+            <TableColumn fx:id="colAdresse" prefWidth="163.0" sortable="false" text="Adresse" />
+            <TableColumn fx:id="colDateDebut" prefWidth="152.0" sortable="false" text="Date debut" />
+            <TableColumn fx:id="colDateFin" minWidth="0.0" prefWidth="150.0" sortable="false" text="Date fin " />
+            <TableColumn prefWidth="75.0" text="Id" visible="false" />
+        </columns>
+         <effect>
+            <DropShadow color="WHITE" />
+         </effect>
+      </TableView>
+      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="412.0" layoutY="535.0" onAction="#SupprimerEvenement" prefHeight="49.0" prefWidth="227.0" style="-fx-background-color: #daa520;" text="Supprimer" textFill="WHITE">
+         <effect>
+            <Bloom threshold="0.65" />
+         </effect>
+      </JFXButton>
+   </children>
+</AnchorPane>

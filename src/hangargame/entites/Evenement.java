@@ -19,14 +19,15 @@ public class Evenement {
     private String nom ;
     private String description ;
     private String adresse ;
-    private Date datedebut ;
-    private Date datefin ;
+    private String datedebut ;
+    private String datefin ;
 
     public Evenement() {
     }
     
 
-    public Evenement(String nom, String description, String adresse, Date datedebut, Date datefin) {
+    public Evenement(int id ,String nom, String description, String adresse, String datedebut, String datefin) {
+        this.id = id ;
         this.nom = nom;
         this.description = description;
         this.adresse = adresse;
@@ -50,11 +51,11 @@ public class Evenement {
         return adresse;
     }
 
-    public Date getDatedebut() {
+    public String getDatedebut() {
         return datedebut;
     }
 
-    public Date getDatefin() {
+    public String getDatefin() {
         return datefin;
     }
 
@@ -74,11 +75,11 @@ public class Evenement {
         this.adresse = adresse;
     }
 
-    public void setDatedebut(Date datedebut) {
+    public void setDatedebut(String datedebut) {
         this.datedebut = datedebut;
     }
 
-    public void setDatefin(Date datefin) {
+    public void setDatefin(String datefin) {
         this.datefin = datefin;
     }
 

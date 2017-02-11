@@ -31,7 +31,7 @@ public class EvenementCrud implements IEvenementCrud{
 
             ste = connect.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(TournoiCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -43,25 +43,28 @@ public class EvenementCrud implements IEvenementCrud{
             
             prepste=connect.prepareStatement(req1);
             prepste.setString(1,e.getNom());
-            prepste.setString(2,e.getDescription());
-            prepste.setString(3,e.getAdresse());
-            prepste.setDate(4,e.getDatedebut());
-            prepste.setDate(5,e.getDatefin());
+            prepste.setString(3,e.getDescription());
+            prepste.setString(2,e.getAdresse());
+            prepste.setString(4,e.getDatedebut());
+            prepste.setString(5,e.getDatefin());
             
             prepste.executeUpdate();
+            System.out.println("Louuu");
         } catch (SQLException ex) {
             Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void supprimerEvenement(Evenement e) {
+    public void supprimerEvenement(int id) {
        try {
+           Evenement e = new Evenement();
              String req2= "delete from evenement where id=?";
              
              prepste = connect.prepareStatement(req2);
-             prepste.setInt(1, e.getId());
-             prepste.executeUpdate();
+             prepste.setInt(1,id);
+             prepste.execute();
+             System.out.println("Mchat");
          } catch (SQLException ex) {
              Logger.getLogger(Evenement.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -94,9 +97,9 @@ public class EvenementCrud implements IEvenementCrud{
                  System.out.println(
                          ": "+ res.getString("nom")+" "+
                            "Description: "+ res.getString("description")+" "+
-                           "adresse: "+ res.getInt("adresse")+" "+
-                         "Date Debut: "+ res.getTimestamp("datedebut")+" "+
-                                    "Date Fin :" +res.getTimestamp("datefin"));
+                           "adresse: "+ res.getString("adresse")+" "+
+                         "Date Debut: "+ res.getString("datedebut")+" "+
+                                    "Date Fin :" +res.getString("datefin"));
                  
                  
                  
