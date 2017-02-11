@@ -13,6 +13,8 @@ package hangargame;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.User;
+import hangargame.entites.Evenement;
+import hangargame.services.EvenementCrud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,7 +51,11 @@ public class HangarGame extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-      
+     // Evenement e = new Evenement("Louay","lol","Evenement de la semaine","2017-01-02","2018-12-23") ;
+       EvenementCrud EC = new EvenementCrud();
+       // EC.ajouterEvenement(e);
+        //EC.supprimerEvenement(17);
+        EC.afficherEvenement();
        
     }
     

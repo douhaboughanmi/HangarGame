@@ -20,7 +20,7 @@ public class ConnexionSingleton {
    String url="jdbc:mysql://localhost/hangargame";
    static Connection instanceConnection;
 
-    private ConnexionSingleton() {
+    public ConnexionSingleton() {
         
          try {
             instanceConnection= DriverManager.getConnection(url,login, pwd);
