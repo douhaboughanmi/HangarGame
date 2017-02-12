@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,6 +48,7 @@ public class AccueilController implements Initializable {
             drawer.setSidePane(box);
             
             for(Node node : box.getChildren()){
+                System.out.println(node.getAccessibleText());
             if(node.getAccessibleText()!=null){
                 node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
                 
@@ -89,15 +91,23 @@ public class AccueilController implements Initializable {
                     
             }
                 
-                });
+             if ("GoToIUserInformation".equals(node.getAccessibleText())){
                 
-                
-                
-                
-                
+       try {
+            
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("InformationPersonnelle.fxml")); 
+                    anchor.getChildren().addAll(pane);
+                  
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            }
               
-            
-            
+              
+              
+              
+                });//apartir
+         
             }
             
             }

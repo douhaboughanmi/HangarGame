@@ -153,7 +153,7 @@
             <Separator layoutX="640.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
          </children>
       </Pane>
-      <Label layoutX="19.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Inscrivez-vous sur la plate-forme des Gamers la plus divertissante au monde!" textFill="#fadeff">
+      <Label fx:id="L_Inscri" layoutX="19.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Inscrivez-vous sur la plate-forme des Gamers la plus divertissante au monde!" textFill="#fadeff">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -168,5 +168,10 @@
             <Image url="@../images/homr.png" />
          </image>
       </ImageView>
+      <Label fx:id="L_Inscri1" layoutX="33.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Un e-mail contenant le code de validation de votre compte a été envoyer" textFill="#6f0b31">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

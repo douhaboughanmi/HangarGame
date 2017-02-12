@@ -89,11 +89,15 @@ public class FXMLInscriptionController implements Initializable {
        @FXML
     private JFXSpinner chargement;
 
-  
+    @FXML
+    private Label L_Inscri;
+    @FXML
+    private Label L_Inscri1;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
+          L_Inscri1.setVisible(false);
 
         try {
             RequiredFieldValidator VLogin = new RequiredFieldValidator();
@@ -273,9 +277,10 @@ public class FXMLInscriptionController implements Initializable {
             L_mail.setTextFill(Color.web("#ea5050"));
         } else {
             s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText());
-           
-            AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Login.fxml"));
-            InterInscription.getChildren().addAll(anchorPane);
+          L_Inscri.setVisible(false);
+          L_Inscri1.setVisible(true);
+          
+            
             
         }
     }

@@ -7,6 +7,7 @@
 package hangargame.entites;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -14,22 +15,22 @@ import java.util.Objects;
  * @author lenovo
  */
 public class Gamer {
-    private final String login;
-    private final String nom;
-    private final String prenom;
-    private final String adresse;
-    private final String tel;
-    private final String email;
+    private  String login;
+    private String nom;
+    private  String prenom;
+    private  String adresse;
+    private int tel;
+    private  String email;
    
-    private final String password;
-    private final Date dateInscription;
-    private final String codeValidation;
-    private final Date LastModifMdp;
-    private final int validation;
+    private String password;
+    private  Timestamp dateInscription;
+    private  String codeValidation;
+    private  Timestamp LastModifMdp;
+    private  int validation;
 
     
 
-    public Gamer(String login, String nom, String prenom, String adresse, String tel, String email, String password, Date dateInscription, String codeValidation, Date LastModifMdp,int validation) {
+    public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
@@ -42,7 +43,16 @@ public class Gamer {
         this.LastModifMdp = LastModifMdp;
         this.validation=validation;
     }
-    
+
+    public Gamer(String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
+        this.dateInscription = dateInscription;
+    }
+  
 
     public int getValidation() {
         return validation;
@@ -64,7 +74,7 @@ public class Gamer {
         return adresse;
     }
 
-    public String getTel() {
+    public int getTel() {
         return tel;
     }
 
@@ -76,7 +86,7 @@ public class Gamer {
         return password;
     }
 
-    public Date getDateInscription() {
+    public Timestamp getDateInscription() {
         return dateInscription;
     }
 
@@ -84,7 +94,7 @@ public class Gamer {
         return codeValidation;
     }
 
-    public Date getLastModifMdp() {
+    public Timestamp getLastModifMdp() {
         return LastModifMdp;
     }
 
