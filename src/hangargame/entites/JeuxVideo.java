@@ -22,6 +22,9 @@ public class JeuxVideo {
     private String image ; 
     private String nom_console ; 
     private String video_ba ; 
+
+    public JeuxVideo() {
+    }
     
 
     public JeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console, String video_ba) {

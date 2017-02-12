@@ -74,7 +74,7 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
              String req2= "delete from jeux_video where nom=?";
              
              prepste = connect.prepareStatement(req2);
-             prepste.setString(2,nom);
+             prepste.setString(1,nom);
              prepste.execute();
              System.out.println("ciiiiiiiii ");
          } catch (SQLException ex) {
