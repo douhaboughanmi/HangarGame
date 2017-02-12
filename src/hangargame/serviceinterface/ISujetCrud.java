@@ -9,6 +9,7 @@ package hangargame.serviceinterface;
 
 import hangargame.entites.Sujet;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -18,6 +19,6 @@ public interface ISujetCrud {
     
  public void ajoutersujet(Sujet s);
  public void supprimerSujet(Sujet s);
- public void rechercherSujet(Sujet s);
- public List<Sujet> rechercherSujetCategorie(String c);
+  public ObservableList<Sujet>  rechercherSujet(String s);
+ public ObservableList<Sujet> AffichageSuhetSujetCategorie();
 }

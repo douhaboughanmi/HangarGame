@@ -21,9 +21,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -35,7 +36,7 @@ public class CrudSujet implements ISujetCrud {
     Connection connect;
     Statement stat;
     PreparedStatement prpste;
-
+ public ObservableList<Sujet> data;
     public CrudSujet() {
         try {
             connect = ConnexionSingleton.getInstance();
@@ -50,10 +51,7 @@ public class CrudSujet implements ISujetCrud {
     
     
 
-    @Override
-    public List<Sujet> rechercherSujetCategorie(String c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void ajoutersujet(Sujet s) {
@@ -88,22 +86,39 @@ public class CrudSujet implements ISujetCrud {
     }
 
     @Override
-    public void rechercherSujet(Sujet s) {
-         String req4= "select * from sujet_forum ORDER BY nomsujet";
+    public ObservableList<Sujet>  rechercherSujet(String s) {
+        
         try {
-            ResultSet res  =stat.executeQuery(req4);
-            while (res.next()) { 
-               String nomSujet= res.getString("nomsujet");
-               Date date = res.getDate("datepub");
-               String text = res.getString("textsujet");
-               String categrie = res.getString("categorie");
-            System.out.println(""+nomSujet+date+categrie+"");
+            String req4= "SELECT `nomsujet`,`datepub`,`textsujet`,`categorie`,`gamer`,`etatsujet` from  sujet_forum where nomsujet=?";
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            prpste = connect.prepareStatement(req4);
+            prpste.setString(1,s);
+          ResultSet rs= prpste.executeQuery();
+            while (rs.next()) {
+                data.add(new Sujet(rs.getString(1), rs.getTimestamp(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
             }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(CrudSujet.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+            System.err.println("Erreur" + ex);
+        }
+return data ;
+}
 
+    @Override
+    public ObservableList<Sujet> AffichageSuhetSujetCategorie() {
+       try {
+            
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            ResultSet rs = connect.createStatement().executeQuery("SELECT `nomsujet`,`datepub`,`textsujet`,`categorie`,`gamer`,`etatsujet` from  sujet_forum");
+            while (rs.next()) {
+                data.add(new Sujet(rs.getString(1), rs.getTimestamp(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur" + ex);
+        }
+return data ;
     }
+}
 
 
