@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" accessibleText="ajoutvideotest" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutVideoTestController">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-17.7803955078125" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-17.0">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Separator layoutX="438.0" layoutY="101.0" orientation="VERTICAL" prefHeight="272.0" prefWidth="4.0" style="-fx-background-color: #daa520;" />
+      <Pane layoutX="62.0" layoutY="74.0" prefHeight="326.0" prefWidth="320.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXTextField fx:id="nomVideoTest" layoutX="32.0" layoutY="14.0" maxWidth="256.0" minWidth="256.0" prefHeight="31.0" prefWidth="256.0" promptText="entrer le nom du vidéo" unFocusColor="GOLDENROD" />
+            <JFXCheckBox fx:id="cv1" layoutX="25.0" layoutY="183.0" text="PS3" />
+            <JFXTextField fx:id="genreVideoTest" layoutX="32.0" layoutY="74.0" maxWidth="256.0" minWidth="247.0" prefHeight="31.0" prefWidth="256.0" promptText="entrer le genre" unFocusColor="GOLDENROD" />
+            <JFXCheckBox fx:id="cv2" layoutX="25.0" layoutY="200.0" text="PS4" />
+            <JFXCheckBox fx:id="cv3" layoutX="26.0" layoutY="217.0" text="Xbox360" />
+            <JFXCheckBox fx:id="cv4" layoutX="26.0" layoutY="234.0" text="Xbox One" />
+            <JFXCheckBox fx:id="cv5" layoutX="26.0" layoutY="251.0" text="Wi u" />
+            <JFXCheckBox fx:id="cv6" layoutX="27.0" layoutY="268.0" text="PC" />
+            <Label fx:id="urlVideoTest" layoutX="27.0" layoutY="146.0" prefHeight="17.0" prefWidth="184.0" text="ajouter un video" />
+            <JFXButton fx:id="btn_urlVideoTest" buttonType="RAISED" layoutX="221.0" layoutY="142.0" onAction="#selectVideo" style="-fx-background-color: #daa520;" text="ajouter video">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="GOLDENROD" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <Label fx:id="labelnom" layoutX="42.0" layoutY="57.0" prefHeight="17.0" prefWidth="237.0" />
+            <Label fx:id="labelgenre" layoutX="42.0" layoutY="114.0" prefHeight="17.0" prefWidth="237.0" />
+         </children></Pane>
+      <Pane layoutX="485.0" layoutY="101.0" prefHeight="200.0" prefWidth="285.0" style="-fx-background-color: #ffffffff;">
+         <children>
+            <JFXTextArea fx:id="descVideoTest" maxWidth="285.0" minWidth="191.0" prefHeight="172.0" prefWidth="285.0" promptText="description" />
+            <Label fx:id="labeldesc" layoutX="1.0" layoutY="174.0" prefHeight="25.0" prefWidth="285.0" />
+         </children></Pane>
+      <Text layoutX="120.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une video-test" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.46190476190476193" startY="0.6142857142857143">
+               <stops>
+                  <Stop color="#7cee59" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <JFXButton fx:id="btnAjoutVideo" buttonType="RAISED" layoutX="485.0" layoutY="339.0" onAction="#ajoutVideo" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #daa520;" text="ajouter">
+         <ripplerFill>
+            <LinearGradient endX="0.2857142857142857" endY="1.0">
+               <stops>
+                  <Stop color="GOLDENROD" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="636.0" layoutY="339.0" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #daa520;" text="retour">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,29 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
-import hangargame.serviceinterface.ICrudVideoCom;
 import hangargame.entites.VideoTest;
+import hangargame.serviceinterface.ICrudVideoTest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
  *
  * @author DELL
  */
-public class VideoTestCrud implements ICrudVideoCom{
+public class VideoTestCrud implements ICrudVideoTest{
+    private ObservableList<VideoTest> data;
     
      Connection connect;
     Statement ste ;
@@ -41,47 +39,75 @@ public class VideoTestCrud implements ICrudVideoCom{
     }
 
     @Override
-    public void ajouter(Object o) {
-        
-        VideoTest v = (VideoTest)o;
-        String req1="insert into video_test (id,nom,url,description,date)values(?,?,?,?,?)";
-                    
-            
-           
+    public void ajouter(VideoTest v) {
+        String req1= " insert into video_test ( nom,url,description,date,genre,console)values( ?,?,?,?,?,?)";
          try {
-             ste.executeUpdate(req1);
+               
+             	
+             
+             prepste = connect.prepareStatement(req1);
+             prepste.setString(1,v.getNom_videoTest());
+             prepste.setString(2,v.getUrl_videoTest());
+             prepste.setString(3, v.getDescription_videoTest());
+             prepste.setTimestamp(4, v.getDate_videoTest());
+    
+             prepste.setString(5, v.getGenre_videoTest());
+              prepste.setString(6, v.getConsole_videoTest());
+             
+             
+             prepste.executeUpdate();
+             System.out.println("ajout avec fait");
+           
          } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
+            
+             
          }
+                    
+            
+         
+        
       
     }
 
     @Override
-    public void supprimer(Object o) {
+    public void supprimer(int id) {
         
-         VideoTest v = (VideoTest)o;
+   
          try {
+             VideoTest v = new VideoTest();
              String req2= "delete from video_test where id=?";
              
-             prepste = connect.prepareStatement(req2);
-             prepste.setInt(1, v.getId_videoTest() );
-             prepste.executeUpdate();
+            prepste = connect.prepareStatement(req2);
+             prepste.setInt(1,id);
+             prepste.execute();
+                System.out.println("leeeeeeeeeeee");
          } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
+          
          }
     }
 
     @Override
-    public void modifier(Object o) {
+    public void modifier(VideoTest v) {
         
-         VideoTest v = (VideoTest)o;
-          String req3="UPDATE video_test SET id=?"
-                 + "nom=?"
-                 + "url=?"
-                 + "description=?"
-                 + "date=?" ;
          try {
-             ste.executeUpdate(req3);
+           
+             
+             String req3="UPDATE video_test SET id=?"
+                     + "nom=?"
+                     + "url=?"
+                     + "description=?"
+                     + "date=?" ;
+             
+             prepste = connect.prepareStatement(req3);
+             prepste.setString(1,v.getNom_videoTest());
+             prepste.setString(2,v.getUrl_videoTest());
+             prepste.setString(3, v.getDescription_videoTest());
+             prepste.setTimestamp(4, v.getDate_videoTest());
+             
+             
+             prepste.executeUpdate();
          } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -111,13 +137,31 @@ public class VideoTestCrud implements ICrudVideoCom{
                  
              }    } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
+         }}
+         
+         public ObservableList<VideoTest>  afficherVideoTest(){
+         
+         
+          try {
+            Connection connect;
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            ResultSet rs = connect.createStatement().executeQuery("select * from video_test");
+            while (rs.next()) {
+                data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur" + ex);
+        }
+        return data;
+         
+         
          }
     
 
     
-
    
 
     
     
-}}
+}

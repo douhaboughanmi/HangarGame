@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.VideoTestBackController">
+   <children>
+      <ImageView fitHeight="483.0" fitWidth="722.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="72.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des vidéos test">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4de848" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <TableView fx:id="listeVideo" layoutX="14.0" layoutY="78.0" prefHeight="236.0" prefWidth="694.0">
+        <columns>
+          <TableColumn fx:id="nomVideo" prefWidth="75.0" text="titre" />
+          <TableColumn fx:id="urlVideo" prefWidth="87.0" text="url" />
+            <TableColumn fx:id="descVideo" prefWidth="155.0" text="description" />
+            <TableColumn fx:id="dateVideo" prefWidth="99.0" text="date" />
+            <TableColumn fx:id="genreVideo" prefWidth="89.0" text="genre" />
+            <TableColumn fx:id="consoleVideo" prefWidth="95.0" text="consoles" />
+            <TableColumn fx:id="user" prefWidth="116.0" text="Utilisateur" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnsupprimer" layoutX="149.0" layoutY="340.0" onAction="#supprimerVideo" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #daa520;" text="supprimer">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="447.0" layoutY="340.0" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #daa520;" text="retour">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package hangargame.entites;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-/**
- *
- * @author DELL
- */
+
 public class VideoTest {
     
     private int id_videoTest;
@@ -20,13 +12,29 @@ public class VideoTest {
     private String url_videoTest;      
     private String description_videoTest;
     private Timestamp date_videoTest;
+    private String genre_videoTest;
+    private String console_videoTest;
 
-    public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest) {
+    public VideoTest() {
+    }
+
+    public VideoTest(String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest) {
+        this.nom_videoTest = nom_videoTest;
+        this.url_videoTest = url_videoTest;
+        this.description_videoTest = description_videoTest;
+        this.date_videoTest = date_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
+    }
+
+    public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest) {
         this.id_videoTest = id_videoTest;
         this.nom_videoTest = nom_videoTest;
         this.url_videoTest = url_videoTest;
         this.description_videoTest = description_videoTest;
         this.date_videoTest = date_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
     }
 
     public int getId_videoTest() {
@@ -69,14 +77,32 @@ public class VideoTest {
         this.date_videoTest = date_videoTest;
     }
 
+    public String getGenre_videoTest() {
+        return genre_videoTest;
+    }
+
+    public void setGenre_videoTest(String genre_videoTest) {
+        this.genre_videoTest = genre_videoTest;
+    }
+
+    public String getConsole_videoTest() {
+        return console_videoTest;
+    }
+
+    public void setConsole_videoTest(String console_videoTest) {
+        this.console_videoTest = console_videoTest;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.id_videoTest;
-        hash = 83 * hash + Objects.hashCode(this.nom_videoTest);
-        hash = 83 * hash + Objects.hashCode(this.url_videoTest);
-        hash = 83 * hash + Objects.hashCode(this.description_videoTest);
-        hash = 83 * hash + Objects.hashCode(this.date_videoTest);
+        int hash = 7;
+        hash = 97 * hash + this.id_videoTest;
+        hash = 97 * hash + Objects.hashCode(this.nom_videoTest);
+        hash = 97 * hash + Objects.hashCode(this.url_videoTest);
+        hash = 97 * hash + Objects.hashCode(this.description_videoTest);
+        hash = 97 * hash + Objects.hashCode(this.date_videoTest);
+        hash = 97 * hash + Objects.hashCode(this.genre_videoTest);
+        hash = 97 * hash + Objects.hashCode(this.console_videoTest);
         return hash;
     }
 
@@ -104,13 +130,24 @@ public class VideoTest {
         if (!Objects.equals(this.date_videoTest, other.date_videoTest)) {
             return false;
         }
+        if (!Objects.equals(this.genre_videoTest, other.genre_videoTest)) {
+            return false;
+        }
+        if (!Objects.equals(this.console_videoTest, other.console_videoTest)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "VideoTest{" + "id_videoTest=" + id_videoTest + ", nom_videoTest=" + nom_videoTest + ", url_videoTest=" + url_videoTest + ", description_videoTest=" + description_videoTest + ", date_videoTest=" + date_videoTest + '}';
+        return "VideoTest{" + "id_videoTest=" + id_videoTest + ", nom_videoTest=" + nom_videoTest + ", url_videoTest=" + url_videoTest + ", description_videoTest=" + description_videoTest + ", date_videoTest=" + date_videoTest + ", genre_videoTest=" + genre_videoTest + ", console_videoTest=" + console_videoTest + '}';
     }
+
+
+
+
+
     
     
     
