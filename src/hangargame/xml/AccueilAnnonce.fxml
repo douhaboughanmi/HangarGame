@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.102" fx:controller="hangargame.xml.AccueilAnnonceController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AccueilAnnonceController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
+      <Pane id="pane2" layoutX="192.0" layoutY="87.0" prefHeight="499.0" prefWidth="380.0" stylesheets="@../css/AcceuilAnnonce.css">
+         <children>
+            <JFXListView id="annonces" fx:id="listAnnonces" layoutX="66.0" layoutY="59.0" stylesheets="@../css/AcceuilAnnonce.css" />
+         </children>
+      </Pane>
+      <Pane id="pane2" layoutX="628.0" layoutY="159.0" prefHeight="157.0" prefWidth="350.0" stylesheets="@../css/AcceuilAnnonce.css">
+         <children>
+            <JFXButton layoutX="33.0" layoutY="36.0" onAction="#reccupererAnnoncePC" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: daa520;" text="PC" textFill="WHITE" />
+            <JFXButton layoutX="106.0" layoutY="36.0" onAction="#reccupererAnnoncePS4" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: daa520;" text="PS4" textFill="WHITE" />
+            <JFXButton layoutX="196.0" layoutY="36.0" onAction="#reccupererAnnoncePS3" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: daa520;" text="PS3" textFill="WHITE" />
+            <JFXButton layoutX="266.0" layoutY="36.0" onAction="#reccupererAnnoncePSVita" style="-fx-background-color: daa520;" text="PS Vita" textFill="WHITE" />
+            <JFXButton layoutX="104.0" layoutY="88.0" onAction="#reccupererAnnonceXbox360" style="-fx-background-color: daa520;" text="Xbox 360" textFill="WHITE" />
+            <JFXButton layoutX="192.0" layoutY="88.0" onAction="#reccupererAnnonceXboxOne" style="-fx-background-color: daa520;" text="Xbox One" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane id="pane2" layoutX="720.0" layoutY="337.0" prefHeight="134.0" prefWidth="188.0" stylesheets="@../css/AcceuilAnnonce.css">
+         <children>
+            <JFXButton layoutX="64.0" layoutY="33.0" onAction="#reccupererAnnonceEchange" style="-fx-background-color: daa520;" text="Echange" textFill="WHITE" />
+            <JFXButton layoutX="71.0" layoutY="76.0" onAction="#reccupererAnnonceVente" style="-fx-background-color: daa520;" text="Vente" textFill="WHITE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

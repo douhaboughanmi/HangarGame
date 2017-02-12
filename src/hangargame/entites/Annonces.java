@@ -6,6 +6,8 @@
 
 package hangargame.entites;
 
+import java.io.InputStream;
+
 /**
  *
  * @author mayss
@@ -17,15 +19,30 @@ public class Annonces {
     private String consoleAnnonces;
     private String descriptionAnnonces;
     private int prix;
+    private InputStream inputStream;
+
+    @Override
+    public String toString() {
+        return "Annonces{" + "nomAnnonces=" + nomAnnonces + ", typeAnnonces=" + typeAnnonces + ", consoleAnnonces=" + consoleAnnonces + ", descriptionAnnonces=" + descriptionAnnonces + ", prix=" + prix + ", inputStream=" + inputStream + '}';
+    }
     
 
-    public Annonces(String nomAnnonces,String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix) {
+    public Annonces(String nomAnnonces,String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix ,InputStream inputStream) {
        
         this.nomAnnonces = nomAnnonces;
         this.typeAnnonces = typeAnnonces;
         this.consoleAnnonces = consoleAnnonces;
         this.descriptionAnnonces=descriptionAnnonces;
         this.prix = prix;
+        this.inputStream=inputStream;
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 
     public String getNomAnnonces() {
@@ -71,8 +88,6 @@ public class Annonces {
     public Annonces() {
     }
   
-
-    
 
    
     

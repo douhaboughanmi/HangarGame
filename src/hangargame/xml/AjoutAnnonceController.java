@@ -22,9 +22,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.entites.Annonces;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +47,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author mayss
  */
 public class AjoutAnnonceController implements Initializable {
+InputStream inputStream;
 
     @FXML
     private JFXButton btnAnnonce = new JFXButton();
@@ -77,7 +84,13 @@ public class AjoutAnnonceController implements Initializable {
 
     @FXML
     void login(ActionEvent event) {
-       String typeA = typeAnnonce.getValue().getText();
+        
+        String choixConsole = a.getSelectedToggle().toString();
+        String x=choixConsole.substring(66);
+        System.out.println(x);
+        
+        
+      String typeA = typeAnnonce.getValue().getText();
         String nomA = titreAnnonce.getText();
         String desc = descriptionAnnonce.getText();
         String ab = prixAnnonce.getText();
@@ -94,9 +107,10 @@ public class AjoutAnnonceController implements Initializable {
                  {
 
             System.out.println("");
-
+            Annonces annonces = new Annonces(nomA, typeA, choixConsole, desc, prix, inputStream );
             CrudAnnonces crud = new CrudAnnonces();
-            crud.ajouterAnnonces(nomA, typeA, "", desc, prix, path);
+            crud.ajouterAnnonces(annonces);
+            
         }
 
         if (nomA.isEmpty()) {
@@ -143,8 +157,18 @@ public class AjoutAnnonceController implements Initializable {
 
         }
         
-
-       
+       /* Instant x ;
+       CrudAnnonces crud =new CrudAnnonces();
+        List<Timestamp> list= crud.reccupererSimple();
+        list.forEach(e->{
+            System.out.println(e.toInstant().getEpochSecond());
+        
+        
+        
+        
+        })
+        ;*/
+        
     }
     
     
@@ -159,7 +183,11 @@ public class AjoutAnnonceController implements Initializable {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-          
+            try {
+                 inputStream = new FileInputStream(path);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AjoutAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
           
             System.out.println("image");
           //  labelImage.setIcon(imageIcon);
