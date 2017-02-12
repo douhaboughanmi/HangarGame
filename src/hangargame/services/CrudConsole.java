@@ -7,6 +7,7 @@ package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Console;
+import hangargame.entites.JeuxVideo;
 import hangargame.serviceinterface.IConsoleCrud;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,6 +28,7 @@ public class CrudConsole implements IConsoleCrud{
      Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+        private ObservableList<Console> data;
     public CrudConsole() {
         try {
            connect=  ConnexionSingleton.getInstance();
@@ -38,12 +42,17 @@ public class CrudConsole implements IConsoleCrud{
 
     @Override
     public void ajouterConsole(Console c) {
+         String req1="insert into console (nom,image,description,date_sortie)values(?,?,?,?)";
         try {
-            String req1="insert into console (nom,image,description,date_sortie)values"
-                    + "("+c.getNom()+",' "+c.getImage()+","+c.getDescription()+",' "+c.getDate_sortie()+"')";
-            
+           prepste=connect.prepareStatement(req1);
+              prepste.setString(1,c.getNom() );
+            prepste.setString(2,c.getImage() );
            
-            ste.executeUpdate(req1);
+            prepste.setString(3,c.getDescription());
+             prepste.setString(4,c.getDate_sortie());
+               prepste.executeUpdate();
+             
+               System.out.println("c'est fait");
             
         } catch (SQLException ex) {
             Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,24 +89,21 @@ public class CrudConsole implements IConsoleCrud{
             Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public void afficherConsole() {
-         String req4= "select * from console";
-        try {
-            ResultSet res  =ste.executeQuery(req4);
-            while (res.next()) { 
-                System.out.println("nom : "+res.getString("nom")+" "+
-                                   "image: "+ res.getString("image")+" "+
-                                    " description: "+ res.getString("description")+" "+
-                                    "video bande d'annonce: "+ res.getString("video_bd")+" "+
-                                    "Date de sortie :" +res.getDate("date_sortie"));
-                
+ @Override
+    public ObservableList<Console>  afficherConsole() {
+         data = FXCollections.observableArrayList();
+          try {
+            ResultSet rs = connect.createStatement().executeQuery("select * from console");
+            while (rs.next()) {
+                data.add(new Console(rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5)));
             }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Erreur" + ex);
         }
-    
-}
+          return data;
+    }
+
+    public ObservableList<Console> ajouterConsole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

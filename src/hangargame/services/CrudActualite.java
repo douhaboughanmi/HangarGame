@@ -15,15 +15,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author mishka
  */
 public class CrudActualite implements IActualiteCrud{
+     
      Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+     private ObservableList<Actualite> data;
     public CrudActualite() {
         try {
            connect=  ConnexionSingleton.getInstance();
@@ -92,22 +96,17 @@ public class CrudActualite implements IActualiteCrud{
         }    }
 
     @Override
-    public void afficherActualite() {String req4= "select * from actualite";
-        try {
-            ResultSet res  =ste.executeQuery(req4);
-            while (res.next()) { 
-                System.out.println("titre : "+res.getString("titre")+" "+
-                                   "text: "+ res.getString("text")+" "+
-                                    " date_debut: "+ res.getDate("date_debut")+" "+
-                                     " date_fin: "+ res.getDate("date_fin")+" "+
-                                    "image: "+ res.getString("image")+" "+
-                                    "video :" +res.getDate("video"));
-                
+  public ObservableList<Actualite> afficherActualite() {
+         data = FXCollections.observableArrayList();
+          try {
+            ResultSet rs = connect.createStatement().executeQuery("select * from actualite");
+            while (rs.next()) {
+                data.add(new Actualite(rs.getString(2),rs.getString(3), rs.getString(4)));
             }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Erreur" + ex);
         }
+          return data;
     }
     }
 

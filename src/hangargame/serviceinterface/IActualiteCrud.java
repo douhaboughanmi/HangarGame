@@ -6,6 +6,7 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Actualite;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -16,7 +17,7 @@ public interface IActualiteCrud {
     public void ajouterActualite(Actualite a );
     public void supprimerActualite (Actualite a );
     public void modifierActualite(Actualite a);
-    public void afficherActualite();
+     public ObservableList<Actualite>  afficherActualite();
     
 }
 

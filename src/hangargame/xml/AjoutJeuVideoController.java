@@ -75,8 +75,12 @@ public class AjoutJeuVideoController implements Initializable {
         
         String titrej = titreJeu.getText();
         String genrej = genreJeu.getText();
-     //  String datej= dateJeu.getValue().format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
-        String datej="date";
+        String datej= dateJeu.
+                getValue()
+                .format
+        (DateTimeFormatter.
+                ofPattern("YYYY-MM-DD"));
+       // String datej="date";
         String descj = descriptionJeu.getText();
         
       

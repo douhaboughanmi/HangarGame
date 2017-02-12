@@ -21,7 +21,7 @@ public class Console {
    
 
     
-    private Date date_sortie ;
+    private String date_sortie ;
     
     
     public Console()
@@ -29,7 +29,7 @@ public class Console {
     
     }
     
-    public Console(String nom,String image,String description,Date date_sortie)
+    public Console(String nom,String image,String description,String date_sortie)
     {
     this.nom = nom;
     this.image =image ; 
@@ -51,7 +51,7 @@ public class Console {
     }
 
   
-    public void setDate_sortie(Date date_sortie) {
+    public void setDate_sortie(String date_sortie) {
         this.date_sortie = date_sortie;
     }
 
@@ -69,7 +69,7 @@ public class Console {
 
   
 
-    public Date getDate_sortie() {
+    public String getDate_sortie() {
         return date_sortie;
     }
     @Override

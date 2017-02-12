@@ -7,6 +7,8 @@ package hangargame.serviceinterface;
 
 import hangargame.entites.JeuxVideo;
 import java.sql.Date;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -14,7 +16,8 @@ import java.sql.Date;
  */
 public interface IJeuxVideoCrud {
     public void ajouterJeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console, String video_ba);
-    public void supprimerJeuxVideo(JeuxVideo j);
+    public void supprimerJeuxVideo(String nom);
     public void modifierJeuxVideo(JeuxVideo j);
-    public void afficherJeuxVideo();
+    public ObservableList<JeuxVideo>  afficherJeuxVideo();
+    
 }

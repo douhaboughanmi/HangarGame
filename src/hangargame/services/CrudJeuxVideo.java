@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -27,6 +29,7 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
      Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+    private ObservableList<JeuxVideo> data;
     public CrudJeuxVideo() {
         
            connect=  ConnexionSingleton.getInstance();
@@ -65,16 +68,18 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
     }
 
     @Override
-    public void supprimerJeuxVideo(JeuxVideo j) {
-        try {
-            String req2= "delete from jeux_video where nom=?";
-            
-            prepste = connect.prepareStatement(req2);
-           prepste.setString(1, j.getNom());
-           prepste.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(CrudJeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void supprimerJeuxVideo(String nom) {
+       try {
+          JeuxVideo je = new JeuxVideo();
+             String req2= "delete from jeux_video where nom=?";
+             
+             prepste = connect.prepareStatement(req2);
+             prepste.setString(2,nom);
+             prepste.execute();
+             System.out.println("ciiiiiiiii ");
+         } catch (SQLException ex) {
+             Logger.getLogger(JeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
 
@@ -98,26 +103,25 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
         }
     }
 
-    @Override
-    public void afficherJeuxVideo() {
-         String req4= "select * from jeux_video";
-        try {
-            ResultSet res  =ste.executeQuery(req4);
-            while (res.next()) { 
-                System.out.println("nom : "+res.getString("nom")+" "+
-                                   "genre "+ res.getString("genre")+" "+
-                                    " date de sortie: "+ res.getDate("date_sortie")+" "+
-                                     " description: "+ res.getString("description")+" "+
-                                     " image: "+ res.getString("image")+" "+
-                                    "nom console: "+ res.getString("nom_console")+" "+
-                                    "video bande d'annonce :" +res.getDate("video_ba"));
-                
+    
+     @Override
+    public ObservableList<JeuxVideo>  afficherJeuxVideo() {
+         data = FXCollections.observableArrayList();
+          try {
+            ResultSet rs = connect.createStatement().executeQuery("select * from jeux_video");
+            while (rs.next()) {
+                data.add(new JeuxVideo(rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), "", ""));
             }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(CrudJeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Erreur" + ex);
         }
+          return data;
     }
+    
+    
+    
+    
+    
     }
 
    

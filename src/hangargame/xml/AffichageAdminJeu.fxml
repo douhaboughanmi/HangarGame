@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AffichageAdminJeuController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablejeu" layoutX="55.0" layoutY="49.0" prefHeight="460.0" prefWidth="958.0">
+        <columns>
+            <TableColumn fx:id="colid" prefWidth="75.0" text="id" visible="false" />
+          <TableColumn fx:id="nomjeu" prefWidth="119.0" text="Titre Jeu" />
+          <TableColumn fx:id="genrejeu" prefWidth="230.0" text="Genre jeu" />
+            <TableColumn fx:id="datejeu" prefWidth="188.0" text="Date de sortie" />
+            <TableColumn fx:id="descj" prefWidth="172.0" text="Description" />
+            <TableColumn fx:id="image" prefWidth="248.0" text="image" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnSup" layoutX="547.0" layoutY="547.0" onAction="#supprimer" text="supprimer" textFill="WHITE" />
+   </children>
+</AnchorPane>
