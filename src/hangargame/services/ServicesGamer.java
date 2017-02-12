@@ -10,6 +10,10 @@ import hangargame.entites.Gamer;
 import hangargame.serviceinterface.IServiceGamer;
 import hangargame.utils.SendCodeValidation;
 import hangargame.utils.SendPassword;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,11 +47,12 @@ public class ServicesGamer implements IServiceGamer {
     }
 
     @Override
-    public boolean Inscription(String mail, String login, String password, String passwordConf, String nom, String prenom, String adresse, String tel) {
+    public boolean Inscription(String mail, String login, String password, String passwordConf, String nom, String prenom, String adresse, String tel, String image) {
 
-        String req = "Insert into Gamer(login,nom,prenom,adresse,tel,email,password,dateInscription,codeValidation,LastModifMdp,validation) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String req = "Insert into Gamer(login,nom,prenom,adresse,tel,email,password,dateInscription,codeValidation,LastModifMdp,validation,image) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
+            InputStream inputStream= new FileInputStream(image);
 
             if (password.equals(passwordConf)) {
                 prepste = connect.prepareStatement(req);
@@ -71,6 +76,7 @@ public class ServicesGamer implements IServiceGamer {
                 prepste.setString(9, code);
                 prepste.setTimestamp(10, new Timestamp(System.currentTimeMillis()));
                 prepste.setInt(11, validation);
+                prepste.setBlob(12, inputStream);
                 prepste.executeUpdate();
                 SendCodeValidation sendMail = new SendCodeValidation();
                 sendMail.send(mail, code);
@@ -79,6 +85,8 @@ public class ServicesGamer implements IServiceGamer {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Gamer.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -228,9 +236,9 @@ public class ServicesGamer implements IServiceGamer {
             ResultSet resultat = prepste.executeQuery();
 
             if (resultat.next()) {
-                
+
                 int resultValidation = resultat.getInt(1);
-                
+
                 if (resultValidation == 0) {
                     return false;
                 } else if (resultValidation == 1) {
@@ -245,9 +253,10 @@ public class ServicesGamer implements IServiceGamer {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        return  false;
+        return false;
     }
-      @Override
+
+    @Override
     public boolean ActivationCompteFB(String email) {
         String req = "select validation from gamer where email= '" + email + "'";
         try {
@@ -256,9 +265,9 @@ public class ServicesGamer implements IServiceGamer {
             ResultSet resultat = prepste.executeQuery();
 
             if (resultat.next()) {
-                
+
                 int resultValidation = resultat.getInt(1);
-                
+
                 if (resultValidation == 0) {
                     return false;
                 } else if (resultValidation == 1) {
@@ -273,23 +282,22 @@ public class ServicesGamer implements IServiceGamer {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        return  false;
+        return false;
     }
-
 
     @Override
     public boolean AuthentificationWithFb(String email) {
-        
-       String req = "select * from gamer where email= '" + email + "'";
+
+        String req = "select * from gamer where email= '" + email + "'";
         try {
 
             prepste = connect.prepareStatement(req);
             ResultSet resultat = prepste.executeQuery();
 
             if (resultat.next()) {
-                
-                String resultEmail= resultat.getString(6);
-                
+
+                String resultEmail = resultat.getString(6);
+
                 if (resultEmail.equals(email)) {
                     return true;
                 } else if (!resultEmail.equals(email)) {
@@ -304,15 +312,27 @@ public class ServicesGamer implements IServiceGamer {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        return  false;
+        return false;
     }
-
 
     @Override
-    public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login) {
-    return null;
+    public Gamer ModifierInfo(String nom, String prenom, String adresse, int tel, String login) {
+        String req = "update gamer set nom=?, prenom=?, adresse=?, tel=? where login='" + login + "'";
+        try {
+            prepste = connect.prepareStatement(req);
+            prepste.setString(1, nom);
+            prepste.setString(2, prenom);
+            prepste.setString(3, adresse);
+            prepste.setInt(4, tel);
+            
+            prepste.executeUpdate();
+            Gamer g = new Gamer(nom, prenom, adresse, tel);
+            return g;
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return null;
     }
-    
 
     @Override
     public Gamer Afficher(String login) {
@@ -323,23 +343,42 @@ public class ServicesGamer implements IServiceGamer {
             ResultSet resultat = prepste.executeQuery();
 
             if (resultat.next()) {
-                String resultNom= resultat.getString(1);
-                String resultPrenom= resultat.getString(2);
-                String resultAdresse= resultat.getString(3);
-                int resultTel= resultat.getInt(4);
-                String resultEmail= resultat.getString(5);
-                Timestamp resultDateInscri= resultat.getTimestamp(6);
-           Gamer g = new Gamer(resultNom,resultPrenom, resultAdresse, resultTel, resultEmail, resultDateInscri);
-           return g;
-         }
+                String resultNom = resultat.getString(1);
+                String resultPrenom = resultat.getString(2);
+                String resultAdresse = resultat.getString(3);
+                int resultTel = resultat.getInt(4);
+                String resultEmail = resultat.getString(5);
+                Timestamp resultDateInscri = resultat.getTimestamp(6);
+                
+                Gamer g = new Gamer(resultNom, resultPrenom, resultAdresse, resultTel, resultEmail, resultDateInscri);
+                return g;
+            }
             resultat.close();
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-       return null;
+        return null;
     }
-    
-}
 
+    @Override
+    public boolean ChangePassword(String password1, String password2, String login) {
+        String req = "update gamer set password=? where login='" + login + "'";
+         try {
+             if (password1.equals(password2)) {
+                prepste = connect.prepareStatement(req);
+
+                prepste.setString(1,password1);
+                prepste.executeUpdate();
+              
+                return true;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+    }
+
+}

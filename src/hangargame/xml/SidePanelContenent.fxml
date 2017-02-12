@@ -85,7 +85,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </TitledPane>
-      <TitledPane accessibleText="GoToIUserInformation" animated="false" text="Mon compte">
+      <TitledPane accessibleText="GoToIUserInformation" animated="false" prefHeight="204.0" prefWidth="261.0" text="Mon compte">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="259.0">
                <children>
@@ -100,6 +100,11 @@
                      </font>
                   </JFXButton>
                   <JFXButton buttonType="RAISED" layoutY="84.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes favoris" textFill="#0b0753">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" layoutY="124.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Changer mot de passe" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

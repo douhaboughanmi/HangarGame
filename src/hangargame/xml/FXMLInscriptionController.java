@@ -10,12 +10,11 @@ import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import hangargame.services.ServicesGamer;
-import java.awt.BorderLayout;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,21 +24,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -49,6 +40,7 @@ import javax.swing.JPanel;
 public class FXMLInscriptionController implements Initializable {
 
     ServicesGamer s = new ServicesGamer();
+     private String path = "";
     @FXML
     private AnchorPane InterInscription;
 
@@ -275,8 +267,8 @@ public class FXMLInscriptionController implements Initializable {
         else if (!s.EmailValidation(TF_email.getText())) {
             L_mail.setText("E-mail invalide !");
             L_mail.setTextFill(Color.web("#ea5050"));
-        } else {
-            s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText());
+        } else { 
+            s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText(),path);
           L_Inscri.setVisible(false);
           L_Inscri1.setVisible(true);
           
@@ -289,6 +281,25 @@ public class FXMLInscriptionController implements Initializable {
     void Inscription_Login(ActionEvent event) throws IOException {
  AnchorPane anchorPane =FXMLLoader.load(getClass().getResource("Login.fxml"));
            InterInscription.getChildren().addAll(anchorPane);
+    }
+     @FXML
+    void PhotoUser(ActionEvent event) {
+ JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+          
+          
+            System.out.println("image");
+          //  labelImage.setIcon(imageIcon);
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+
+            System.out.println("No Data");
+        }
     }
    
 }

@@ -21,14 +21,14 @@
             <Image url="@../images/login.jpg" />
          </image>
       </ImageView>
-      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="643.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="764.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <Label layoutX="14.0" layoutY="26.0" text="Ajouter un compte" textFill="TEAL">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <JFXTextField id="Text" fx:id="TF_email" focusColor="WHITE" layoutX="9.0" layoutY="98.0" maxWidth="311.0" minWidth="297.0" prefHeight="45.0" prefWidth="311.0" promptText="Adresse e-mail" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField id="Text" fx:id="TF_email" focusColor="#e4a136" layoutX="9.0" layoutY="98.0" maxWidth="311.0" minWidth="290.0" prefHeight="45.0" prefWidth="311.0" promptText="Adresse e-mail" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_IoginIns" focusColor="WHITE" layoutX="9.0" layoutY="194.0" minWidth="311.0" promptText="Login" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_IoginIns" focusColor="#e4a136" layoutX="9.0" layoutY="194.0" minWidth="311.0" prefWidth="297.0" promptText="Login" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXPasswordField fx:id="PF_passwordIns" focusColor="WHITE" layoutX="9.0" layoutY="297.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" unFocusColor="GOLDENROD">
+            <JFXPasswordField fx:id="PF_passwordIns" focusColor="#e4a136" layoutX="9.0" layoutY="297.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <JFXPasswordField fx:id="PF_passwordConfIns" focusColor="WHITE" layoutX="2.0" layoutY="405.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Retapez votre mot de passe" unFocusColor="GOLDENROD">
+            <JFXPasswordField fx:id="PF_passwordConfIns" focusColor="#e4a136" layoutX="2.0" layoutY="405.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Retapez votre mot de passe" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -66,7 +66,7 @@
                </font>
             </Label>
             <Separator layoutX="337.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <JFXTextField fx:id="TF_Nom" focusColor="WHITE" layoutX="363.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_Nom" focusColor="#e4a136" layoutX="363.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_prenom" focusColor="WHITE" layoutX="369.0" layoutY="204.0" maxWidth="223.0" minWidth="162.0" prefHeight="45.0" prefWidth="223.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_prenom" focusColor="#e4a136" layoutX="369.0" layoutY="204.0" maxWidth="223.0" minWidth="162.0" prefHeight="45.0" prefWidth="223.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -82,7 +82,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_adresse" focusColor="WHITE" layoutX="364.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_adresse" focusColor="#e4a136" layoutX="364.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -90,7 +90,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_tel" focusColor="WHITE" layoutX="374.0" layoutY="422.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_tel" focusColor="#e4a136" layoutX="374.0" layoutY="422.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -138,7 +138,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="643.0" />
+            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="870.0" />
             <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="483.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
                <effect>
                   <Bloom threshold="0.77" />
@@ -149,8 +149,23 @@
             </JFXButton>
             <JFXSpinner fx:id="chargement" layoutX="282.0" layoutY="485.0" />
             <Separator layoutX="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="643.0" />
-            <Separator layoutX="640.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
+            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="864.0" />
+            <Separator layoutX="864.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
+            <Label layoutX="665.0" layoutY="202.0" text="Image" textFill="TEAL">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView disable="true" fitHeight="88.0" fitWidth="99.0" layoutX="650.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/photoUser.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="651.0" layoutY="104.0" onAction="#PhotoUser" opacity="0.0" prefHeight="79.0" prefWidth="88.0">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </Pane>
       <Label fx:id="L_Inscri" layoutX="19.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Inscrivez-vous sur la plate-forme des Gamers la plus divertissante au monde!" textFill="#fadeff">

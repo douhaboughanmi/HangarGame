@@ -140,7 +140,7 @@
             </Label>
          </children>
       </Pane>
-      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscrivez vous à partir: " wrappingWidth="205.42578125">
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connectez vous à partir: " wrappingWidth="255.42578125">
          <effect>
             <Bloom threshold="1.0">
                <input>
@@ -180,12 +180,12 @@
             </JFXButton>
          </children>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="239.0" layoutY="526.0" onAction="#LoginFB" opacity="0.0" prefHeight="45.0" prefWidth="52.0">
+      <JFXButton buttonType="RAISED" layoutX="261.0" layoutY="527.0" onAction="#LoginFB" opacity="0.0" prefHeight="45.0" prefWidth="52.0">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </JFXButton>
-      <ImageView disable="true" fitHeight="45.0" fitWidth="52.0" layoutX="237.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView disable="true" fitHeight="45.0" fitWidth="52.0" layoutX="263.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/social-icons.png" />
          </image>

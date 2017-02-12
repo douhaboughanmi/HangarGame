@@ -234,7 +234,7 @@ public class LoginController implements Initializable {
 
     @FXML
     void LoginFB(ActionEvent event) throws IOException {
-        String accessToken = "EAACEdEose0cBANmrL31vXessmHQF1ejqIAs3c6xnZB4jPSQ2dVh47ZCRkoJIDYLxmxKRBawFlaLZA7ysUx2HRtnAA8qJm6ajf2g7hQZBq9f3PFa94ZAeaofZBHsBYeqGWYhkU0P3v0WLFDkCb4YZA0KiXSd1GYqa2CZBHZC5JQLgLLBHknmr7AsZCrStSOgUEcl2sZD";
+        String accessToken = "EAACEdEose0cBAKMxiGH3CZCTkE0ZCLAfapR6UxUHzuZAmBaKZCdj0VSQLXCUZBxBhqKOf8WE6ULg9vLudJ7WYcM0tY6ZC3Y5rdiUjvIuxQMVRXSvSfEOrnoWij2HnZC9DyOwDr2O9HjyPU2MlmPs8WOAE9X1qgUn3uEGWZC43yXaTViOQXoVVbSACZCJI2lUtKZBYZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
         String mailFB = me.getEmail();

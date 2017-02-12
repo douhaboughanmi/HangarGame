@@ -11,13 +11,14 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Gamer;
+import java.sql.Blob;
 
 /**
  *
  * @author lenovo
  */
 public interface IServiceGamer {
-    public boolean Inscription(String mail, String login , String password , String passwordConf, String nom,String prenom,String adresse, String tel);
+    public boolean Inscription(String mail, String login , String password , String passwordConf, String nom,String prenom,String adresse, String tel, String image);
     public boolean Authentification(String login, String password);
     public boolean VerifMail(String email);
     public boolean VerifLogin(String login);
@@ -29,4 +30,5 @@ public interface IServiceGamer {
      public boolean ActivationCompteFB(String email);
      public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login);
      public Gamer Afficher(String login);
+     public boolean ChangePassword(String password1, String password2 , String login);
 }

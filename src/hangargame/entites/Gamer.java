@@ -6,7 +6,7 @@
 
 package hangargame.entites;
 
-import java.sql.Date;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -27,10 +27,14 @@ public class Gamer {
     private  String codeValidation;
     private  Timestamp LastModifMdp;
     private  int validation;
+    private Blob image;
+
+    public Gamer() {
+    }
 
     
 
-    public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation) {
+    public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation, Blob image) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
@@ -42,6 +46,7 @@ public class Gamer {
         this.codeValidation = codeValidation;
         this.LastModifMdp = LastModifMdp;
         this.validation=validation;
+        this.image=image;
     }
 
     public Gamer(String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription) {
@@ -51,6 +56,15 @@ public class Gamer {
         this.tel = tel;
         this.email = email;
         this.dateInscription = dateInscription;
+    }
+
+    public Gamer(String nom, String prenom, String adresse, int tel) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+         this.image=image;
+
     }
   
 
