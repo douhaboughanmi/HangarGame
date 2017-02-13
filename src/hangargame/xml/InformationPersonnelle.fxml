@@ -103,32 +103,42 @@
             <Separator layoutX="688.0" orientation="VERTICAL" prefHeight="474.0" prefWidth="0.0" />
             <Separator orientation="VERTICAL" prefHeight="477.0" prefWidth="0.0" />
             <Separator layoutX="1.0" layoutY="464.0" prefHeight="21.0" prefWidth="689.0" />
-            <Label fx:id="LNom" layoutX="232.0" layoutY="132.0" textFill="#721010">
+            <Label fx:id="LNom" layoutX="326.0" layoutY="140.0" prefHeight="19.0" prefWidth="22.0" textFill="#721010">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="LAdresse" layoutX="232.0" layoutY="300.0" textFill="#721010">
+            <Label fx:id="LAdresse" layoutX="326.0" layoutY="310.0" prefHeight="19.0" prefWidth="22.0" textFill="#721010">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="LPrenom" layoutX="230.0" layoutY="191.0" textFill="#721010">
+            <Label fx:id="LPrenom" layoutX="326.0" layoutY="207.0" prefHeight="19.0" prefWidth="22.0" textFill="#721010">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="LTel" layoutX="232.0" layoutY="350.0" textFill="#721010">
+            <Label fx:id="LTel" layoutX="326.0" layoutY="356.0" prefHeight="19.0" prefWidth="22.0" textFill="#721010">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="LImage" layoutX="63.0" layoutY="82.0" prefHeight="164.0" prefWidth="174.0" />
-            <Label fx:id="LLogin" layoutX="113.0" layoutY="250.0" text="mayssa" textFill="#720b0b">
+            <Label fx:id="LImage" layoutX="46.0" layoutY="87.0" prefHeight="187.0" prefWidth="218.0" />
+            <Label fx:id="LLogin" layoutX="122.0" layoutY="287.0" text="mayssa" textFill="#720b0b">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="26.0" />
                </font>
             </Label>
+            <ImageView disable="true" fitHeight="65.0" fitWidth="52.0" layoutX="30.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/photoUser.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="280.0" onAction="#MODIFPhotoUser" opacity="0.0" prefHeight="51.0" prefWidth="52.0">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </Pane>
       <JFXButton buttonType="RAISED" layoutX="1001.0" layoutY="18.0" onAction="#InformationPersonnelle_Login" opacity="0.0" prefHeight="45.0" prefWidth="52.0">

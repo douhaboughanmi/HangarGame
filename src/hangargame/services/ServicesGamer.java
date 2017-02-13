@@ -6,6 +6,7 @@
 package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
+import hangargame.entites.Annonces;
 import hangargame.entites.Gamer;
 import hangargame.serviceinterface.IServiceGamer;
 import hangargame.utils.SendCodeValidation;
@@ -20,17 +21,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author lenovo
  */
 public class ServicesGamer implements IServiceGamer {
+    
+    List<Gamer> list = new ArrayList<>();
 
     Connection connect;
     Statement ste;
@@ -49,7 +55,7 @@ public class ServicesGamer implements IServiceGamer {
     @Override
     public boolean Inscription(String mail, String login, String password, String passwordConf, String nom, String prenom, String adresse, String tel, String image) {
 
-        String req = "Insert into Gamer(login,nom,prenom,adresse,tel,email,password,dateInscription,codeValidation,LastModifMdp,validation,image) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String req = "Insert into Gamer(login,nom,prenom,adresse,tel,email,password,dateInscription,codeValidation,LastModifMdp,validation,image,role) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             InputStream inputStream= new FileInputStream(image);
@@ -77,6 +83,7 @@ public class ServicesGamer implements IServiceGamer {
                 prepste.setTimestamp(10, new Timestamp(System.currentTimeMillis()));
                 prepste.setInt(11, validation);
                 prepste.setBlob(12, inputStream);
+                prepste.setString(13,"gamer");
                 prepste.executeUpdate();
                 SendCodeValidation sendMail = new SendCodeValidation();
                 sendMail.send(mail, code);
@@ -93,15 +100,16 @@ public class ServicesGamer implements IServiceGamer {
 
     @Override
     public boolean Authentification(String login, String password) {
-        System.out.println(login);
-        System.out.println(password);
-        String req4 = "select * from Gamer where login = '" + login + "'and password = '" + password + "'";
+     //   System.out.println(login);
+       // System.out.println(password);
+       String role="gamer";
+        String req4 = "select * from Gamer where login = '" + login + "'and password = '" + password +"'and role = '" + role +       "'";
         try {
             ResultSet res = ste.executeQuery(req4);
             while (res.next()) {
 
-                return true;
-
+                 //String resultLogin = res.getString(13);
+                 return true;
             }
 
         } catch (SQLException ex) {
@@ -316,17 +324,18 @@ public class ServicesGamer implements IServiceGamer {
     }
 
     @Override
-    public Gamer ModifierInfo(String nom, String prenom, String adresse, int tel, String login) {
-        String req = "update gamer set nom=?, prenom=?, adresse=?, tel=? where login='" + login + "'";
+    public Gamer ModifierInfo(String nom, String prenom, String adresse, int tel, String login,InputStream input) {
+        String req = "update gamer set nom=?, prenom=?, adresse=?, tel=? , image=? where login='" + login + "'";
         try {
+             
             prepste = connect.prepareStatement(req);
             prepste.setString(1, nom);
             prepste.setString(2, prenom);
             prepste.setString(3, adresse);
             prepste.setInt(4, tel);
-            
+            prepste.setBlob(5, input);
             prepste.executeUpdate();
-            Gamer g = new Gamer(nom, prenom, adresse, tel);
+            Gamer g = new Gamer(nom, prenom, adresse, tel,input);
             return g;
         } catch (SQLException ex) {
             Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
@@ -336,7 +345,7 @@ return null;
 
     @Override
     public Gamer Afficher(String login) {
-        String req = "select nom,prenom,adresse,tel,email,dateInscription from gamer where login= '" + login + "'";
+        String req = "select nom,prenom,adresse,tel,email,dateInscription,image from gamer where login= '" + login + "'";
         try {
 
             prepste = connect.prepareStatement(req);
@@ -349,8 +358,9 @@ return null;
                 int resultTel = resultat.getInt(4);
                 String resultEmail = resultat.getString(5);
                 Timestamp resultDateInscri = resultat.getTimestamp(6);
+                InputStream image = resultat.getBlob(7).getBinaryStream();
                 
-                Gamer g = new Gamer(resultNom, resultPrenom, resultAdresse, resultTel, resultEmail, resultDateInscri);
+                Gamer g = new Gamer(resultNom, resultPrenom, resultAdresse, resultTel, resultEmail, resultDateInscri,image);
                 return g;
             }
             resultat.close();
@@ -381,4 +391,61 @@ return null;
          return false;
     }
 
+    @Override
+    public boolean AuthentificationAdmin(String login, String password) {
+        String role="admin";
+        String req4 = "select * from Gamer where login = '" + login + "'and password = '" + password +"'and role = '" + role +       "'";
+
+        try {
+            ResultSet res = ste.executeQuery(req4);
+            while (res.next()) {
+
+            
+                 return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+  /*  @Override
+    public ObservableList<Gamer>AfficherListeGamer() {
+        
+      String query = "Select * from gamer ";
+    
+        try {
+            prepste = connect.prepareStatement(query);
+            ResultSet rs = prepste.executeQuery();
+            while(rs.next()){
+            String loginG =rs.getString("login");
+            String typeAnnonces = rs.getString("nom");
+            int prixAnnonces = rs.getInt("prenom");
+            //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
+            Blob image = rs.getBlob("imageAnnonces");
+                
+                   InputStream inputStream= image.getBinaryStream();
+                     Annonces annonces = new Annonces(nomA, typeAnnonces,"", "",prixAnnonces,  inputStream);
+                     list.add(annonces);
+                
+          
+            
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list ;
+    }
+*/
+
+    @Override
+    public ObservableList<Gamer> AfficherListeGamer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
+
+    
+    
 }

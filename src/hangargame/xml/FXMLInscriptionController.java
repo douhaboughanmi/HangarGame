@@ -24,13 +24,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -38,7 +41,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author lenovo
  */
 public class FXMLInscriptionController implements Initializable {
-
+//String loginStat=LoginController.LoginStatic;
+  
     ServicesGamer s = new ServicesGamer();
      private String path = "";
     @FXML
@@ -85,6 +89,7 @@ public class FXMLInscriptionController implements Initializable {
     private Label L_Inscri;
     @FXML
     private Label L_Inscri1;
+   
 
     @Override
 
@@ -268,11 +273,20 @@ public class FXMLInscriptionController implements Initializable {
             L_mail.setText("E-mail invalide !");
             L_mail.setTextFill(Color.web("#ea5050"));
         } else { 
-            s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText(),path);
-          L_Inscri.setVisible(false);
-          L_Inscri1.setVisible(true);
-          
             
+            s.Inscription(TF_email.getText(), TF_IoginIns.getText(), PF_passwordIns.getText(), PF_passwordConfIns.getText(), TF_adresse.getText(), TF_prenom.getText(), TF_Nom.getText(), TF_tel.getText(),path);
+         
+          //  Image img = new Image("images/TickConfirmation.png");
+             hangargame.xml.LoginController.LoginStatic = TF_IoginIns.getText();
+            Notifications notificationBuilder = Notifications.create()
+                     .title("Inscription réussite "+TF_IoginIns.getText())
+                     .text("Vous allez recevoir un code de validation sur votre E-mail")
+                     .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.TOP_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
+      
             
         }
     }

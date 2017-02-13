@@ -21,7 +21,7 @@
             <Image url="@../images/login.jpg" />
          </image>
       </ImageView>
-      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="764.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="765.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <Label layoutX="14.0" layoutY="26.0" text="Ajouter un compte" textFill="TEAL">
                <font>
@@ -60,13 +60,13 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <Label layoutX="363.0" layoutY="31.0" text="Information personelle" textFill="TEAL">
+            <Label layoutX="499.0" layoutY="31.0" text="Information personelle" textFill="TEAL">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <Separator layoutX="337.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <JFXTextField fx:id="TF_Nom" focusColor="#e4a136" layoutX="363.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_Nom" focusColor="#e4a136" layoutX="499.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_prenom" focusColor="#e4a136" layoutX="369.0" layoutY="204.0" maxWidth="223.0" minWidth="162.0" prefHeight="45.0" prefWidth="223.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_prenom" focusColor="#e4a136" layoutX="505.0" layoutY="204.0" maxWidth="223.0" minWidth="162.0" prefHeight="45.0" prefWidth="223.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -82,7 +82,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_adresse" focusColor="#e4a136" layoutX="364.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_adresse" focusColor="#e4a136" layoutX="500.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -90,7 +90,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_tel" focusColor="#e4a136" layoutX="374.0" layoutY="422.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_tel" focusColor="#e4a136" layoutX="503.0" layoutY="422.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="#641106">
                <font>
                   <Font size="18.0" />
                </font>
@@ -103,12 +103,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Prenom" layoutX="374.0" layoutY="166.0" prefHeight="21.0" prefWidth="115.0" text="* Prénom" textFill="#e4a136">
+            <Label fx:id="L_Prenom" layoutX="510.0" layoutY="166.0" prefHeight="21.0" prefWidth="115.0" text="* Prénom" textFill="#e4a136">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Nom" layoutX="374.0" layoutY="71.0" prefHeight="21.0" prefWidth="115.0" text="* Nom" textFill="#e4a136">
+            <Label fx:id="L_Nom" layoutX="510.0" layoutY="71.0" prefHeight="21.0" prefWidth="115.0" text="* Nom" textFill="#e4a136">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -128,17 +128,17 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Tel" layoutX="374.0" layoutY="378.0" prefHeight="21.0" prefWidth="115.0" text="* Téléphone" textFill="#e4a136">
+            <Label fx:id="L_Tel" layoutX="510.0" layoutY="378.0" prefHeight="21.0" prefWidth="115.0" text="* Téléphone" textFill="#e4a136">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_adresse" layoutX="366.0" layoutY="266.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse " textFill="#e4a136">
+            <Label fx:id="L_adresse" layoutX="502.0" layoutY="266.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse " textFill="#e4a136">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="870.0" />
+            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="770.0" />
             <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="483.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
                <effect>
                   <Bloom threshold="0.77" />
@@ -149,19 +149,19 @@
             </JFXButton>
             <JFXSpinner fx:id="chargement" layoutX="282.0" layoutY="485.0" />
             <Separator layoutX="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="864.0" />
-            <Separator layoutX="864.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <Label layoutX="665.0" layoutY="202.0" text="Image" textFill="TEAL">
+            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="764.0" />
+            <Separator layoutX="764.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
+            <Label layoutX="381.0" layoutY="129.0" text="Image" textFill="TEAL">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView disable="true" fitHeight="88.0" fitWidth="99.0" layoutX="650.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="88.0" fitWidth="99.0" layoutX="366.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/photoUser.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="651.0" layoutY="104.0" onAction="#PhotoUser" opacity="0.0" prefHeight="79.0" prefWidth="88.0">
+            <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="47.0" onAction="#PhotoUser" opacity="0.0" prefHeight="79.0" prefWidth="88.0">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>

@@ -57,7 +57,7 @@ public class AccueilController implements Initializable {
                 
        try {
             
-             AnchorPane pane = FXMLLoader.load(getClass().getResource("AccueilAnnonce.fxml")); 
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutAnnonce.fxml")); 
                     anchor.getChildren().addAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,7 +95,7 @@ public class AccueilController implements Initializable {
                 
        try {
             
-             AnchorPane pane = FXMLLoader.load(getClass().getResource("ChangePassword.fxml")); 
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("InformationPersonnelle.fxml")); 
                     anchor.getChildren().addAll(pane);
                   
         } catch (IOException ex) {

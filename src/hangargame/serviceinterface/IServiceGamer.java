@@ -11,7 +11,10 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Gamer;
+import java.io.InputStream;
 import java.sql.Blob;
+import java.util.Observable;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -28,7 +31,12 @@ public interface IServiceGamer {
     public boolean ActivationCompte(String login);
     public boolean AuthentificationWithFb(String email);
      public boolean ActivationCompteFB(String email);
-     public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login);
+     public Gamer ModifierInfo(String nom, String prenom, String adresse,int tel, String login, InputStream path);
      public Gamer Afficher(String login);
      public boolean ChangePassword(String password1, String password2 , String login);
+     
+     public boolean AuthentificationAdmin(String login, String password);
+     public ObservableList<Gamer> AfficherListeGamer(); 
+     
+   
 }

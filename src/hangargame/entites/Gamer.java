@@ -6,7 +6,7 @@
 
 package hangargame.entites;
 
-import java.sql.Blob;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -27,14 +27,14 @@ public class Gamer {
     private  String codeValidation;
     private  Timestamp LastModifMdp;
     private  int validation;
-    private Blob image;
-
+    private InputStream image;
+    private String role;
     public Gamer() {
     }
 
     
 
-    public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation, Blob image) {
+    public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation, InputStream image) {
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
@@ -49,21 +49,39 @@ public class Gamer {
         this.image=image;
     }
 
-    public Gamer(String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription) {
+    public InputStream getImage() {
+        return image;
+    }
+
+    public void setImage(InputStream image) {
+        this.image = image;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Gamer(String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription,InputStream image) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.tel = tel;
         this.email = email;
         this.dateInscription = dateInscription;
+        this.image = image;
     }
 
-    public Gamer(String nom, String prenom, String adresse, int tel) {
+    public Gamer(String nom, String prenom, String adresse, int tel , InputStream image) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.tel = tel;
-         this.image=image;
+        this.image=image;
+       
 
     }
   
