@@ -30,7 +30,9 @@ public class HangarGame extends Application {
      public static Boolean isSplashLoaded = false;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("xml/MesAnnonces.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("xml/Login.fxml"));
+
         
         Scene scene = new Scene(root);
         

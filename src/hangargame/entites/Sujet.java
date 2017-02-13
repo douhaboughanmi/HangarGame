@@ -6,6 +6,7 @@
 package hangargame.entites;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -16,20 +17,27 @@ public class Sujet {
 
     private int idSjt;
     private String nomSjt;
-    private Date datePub;
+    private Timestamp datePub;
     private String gamer;
     private String txtSjt;
     private String categorie;
-    static private int etat;
+    private int etat;
 
     public Sujet(String s, String st, String cat) {
-       // this.gamer = g;
-//   this.datePub =d;
-//this.id=i;
+
         this.txtSjt = st;
         this.nomSjt = s;
         this.categorie = cat;
-        // Sujet.etat=e = 0;
+
+    }
+
+    public Sujet(String n, Timestamp t, String txt, String cat, String g, int i) {
+        this.gamer = g;
+        this.datePub = t;
+        this.txtSjt = txt;
+        this.nomSjt = n;
+        this.categorie = cat;
+        this.etat = i = 0;
     }
 
     public Sujet() {
@@ -40,7 +48,7 @@ public class Sujet {
         return this.idSjt;
     }
 
-    public Date getdateSjt() {
+    public Timestamp getdateSjt() {
         return this.datePub;
     }
 
@@ -72,7 +80,7 @@ public class Sujet {
         this.nomSjt = nmsjt;
     }
 
-    public void setDateSjt(Date dsjt) {
+    public void setDateSjt(Timestamp dsjt) {
         this.datePub = dsjt;
     }
 
@@ -115,4 +123,10 @@ public class Sujet {
     public int hashCode() {
         return this.idSjt;
     }
+
+    @Override
+    public String toString() {
+        return "Sujet{" + "idSjt=" + idSjt + ", nomSjt=" + nomSjt + ", datePub=" + datePub + ", gamer=" + gamer + ", txtSjt=" + txtSjt + ", categorie=" + categorie + ", etat=" + etat + '}';
+    }
+    
 }

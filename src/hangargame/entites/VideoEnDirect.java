@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hangargame.entites;
 
 import java.util.Objects;
 
-/**
- *
- * @author DELL
- */
+
 public class VideoEnDirect {
 
     private int id_videoEnDirect;
@@ -18,12 +10,25 @@ public class VideoEnDirect {
     private String url_videoEnDirect;
     private String description_videoEnDirect;
 
+    public VideoEnDirect() {
+    }
+    
+    
+
+    public VideoEnDirect(String nom_videoEnDirect, String url_videoEnDirect, String description_videoEnDirect) {
+        this.nom_videoEnDirect = nom_videoEnDirect;
+        this.url_videoEnDirect = url_videoEnDirect;
+        this.description_videoEnDirect = description_videoEnDirect;
+    }
+
     public VideoEnDirect(int id_videoEnDirect, String nom_videoEnDirect, String url_videoEnDirect, String description_videoEnDirect) {
         this.id_videoEnDirect = id_videoEnDirect;
         this.nom_videoEnDirect = nom_videoEnDirect;
         this.url_videoEnDirect = url_videoEnDirect;
         this.description_videoEnDirect = description_videoEnDirect;
     }
+    
+    
 
     public int getId_videoEnDirect() {
         return id_videoEnDirect;
@@ -60,10 +65,10 @@ public class VideoEnDirect {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + this.id_videoEnDirect;
-        hash = 23 * hash + Objects.hashCode(this.nom_videoEnDirect);
-        hash = 23 * hash + Objects.hashCode(this.url_videoEnDirect);
-        hash = 23 * hash + Objects.hashCode(this.description_videoEnDirect);
+        hash = 41 * hash + this.id_videoEnDirect;
+        hash = 41 * hash + Objects.hashCode(this.nom_videoEnDirect);
+        hash = 41 * hash + Objects.hashCode(this.url_videoEnDirect);
+        hash = 41 * hash + Objects.hashCode(this.description_videoEnDirect);
         return hash;
     }
 
@@ -96,6 +101,9 @@ public class VideoEnDirect {
         return "VideoEnDirect{" + "id_videoEnDirect=" + id_videoEnDirect + ", nom_videoEnDirect=" + nom_videoEnDirect + ", url_videoEnDirect=" + url_videoEnDirect + ", description_videoEnDirect=" + description_videoEnDirect + '}';
     }
     
+     
+
+   
     
 
 }

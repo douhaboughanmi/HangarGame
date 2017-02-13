@@ -71,17 +71,7 @@ public class AffichageEvenementController implements Initializable {
         
     }
      void LoadData(){
-        try {
-            Connection connect;
-            connect = ConnexionSingleton.getInstance();
-            data = FXCollections.observableArrayList();
-            ResultSet rs = connect.createStatement().executeQuery("select * from evenement");
-            while (rs.next()) {
-                data.add(new Evenement(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-            }
-        } catch (SQLException ex) {
-            System.err.println("Erreur" + ex);
-        }
+        
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
