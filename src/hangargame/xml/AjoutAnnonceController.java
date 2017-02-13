@@ -85,9 +85,9 @@ InputStream inputStream;
     @FXML
     void login(ActionEvent event) {
         
-        String choixConsole = a.getSelectedToggle().toString();
-        String x=choixConsole.substring(66);
-        System.out.println(x);
+        String choixConsole = a.getSelectedToggle().toString().substring(66);
+        
+        
         
         
       String typeA = typeAnnonce.getValue().getText();
@@ -157,17 +157,7 @@ InputStream inputStream;
 
         }
         
-       /* Instant x ;
-       CrudAnnonces crud =new CrudAnnonces();
-        List<Timestamp> list= crud.reccupererSimple();
-        list.forEach(e->{
-            System.out.println(e.toInstant().getEpochSecond());
-        
-        
-        
-        
-        })
-        ;*/
+       
         
     }
     

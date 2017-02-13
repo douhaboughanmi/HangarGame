@@ -13,7 +13,7 @@ import java.io.InputStream;
  * @author mayss
  */
 public class Annonces {
-    
+    private int idAnnonces ;
     private String nomAnnonces ;
     private String typeAnnonces;
     private String consoleAnnonces;
@@ -24,6 +24,20 @@ public class Annonces {
     @Override
     public String toString() {
         return "Annonces{" + "nomAnnonces=" + nomAnnonces + ", typeAnnonces=" + typeAnnonces + ", consoleAnnonces=" + consoleAnnonces + ", descriptionAnnonces=" + descriptionAnnonces + ", prix=" + prix + ", inputStream=" + inputStream + '}';
+    }
+
+    public Annonces(int idAnnonces, String nomAnnonces, String typeAnnonces, String consoleAnnonces, String descriptionAnnonces, int prix, InputStream inputStream) {
+        this.idAnnonces = idAnnonces;
+        this.nomAnnonces = nomAnnonces;
+        this.typeAnnonces = typeAnnonces;
+        this.consoleAnnonces = consoleAnnonces;
+        this.descriptionAnnonces = descriptionAnnonces;
+        this.prix = prix;
+        this.inputStream = inputStream;
+    }
+
+    public int getIdAnnonces() {
+        return idAnnonces;
     }
     
 
