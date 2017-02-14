@@ -410,27 +410,30 @@ return null;
         return false;
     }
 
-  /*  @Override
-    public ObservableList<Gamer>AfficherListeGamer() {
-        
-      String query = "Select * from gamer ";
+ @Override
+    public List<Gamer>AfficherListeGamer() {
+        String role="gamer";
+      String query = "Select * from gamer where role ='" + role +   "'";
     
         try {
             prepste = connect.prepareStatement(query);
             ResultSet rs = prepste.executeQuery();
             while(rs.next()){
             String loginG =rs.getString("login");
-            String typeAnnonces = rs.getString("nom");
-            int prixAnnonces = rs.getInt("prenom");
-            //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
-            Blob image = rs.getBlob("imageAnnonces");
-                
-                   InputStream inputStream= image.getBinaryStream();
-                     Annonces annonces = new Annonces(nomA, typeAnnonces,"", "",prixAnnonces,  inputStream);
-                     list.add(annonces);
-                
-          
+            String nomG = rs.getString("nom");
+             String prenomG = rs.getString("prenom");
+            String emailG= rs.getString("email");
+            String adresseG= rs.getString("adresse");
+            int telG= rs.getInt("tel");
+            Timestamp dateInsriG = rs.getTimestamp("dateInscription");
+            Blob imageG=rs.getBlob("image");
+            int compte= rs.getInt("etat");
             
+     
+            Gamer gamers = new Gamer(loginG, nomG, prenomG, adresseG, telG, emailG, dateInsriG,imageG.getBinaryStream(),compte);
+                
+                   list.add(gamers);
+              
             }
         
         } catch (SQLException ex) {
@@ -438,12 +441,29 @@ return null;
         }
         return list ;
     }
-*/
+
+   
 
     @Override
-    public ObservableList<Gamer> AfficherListeGamer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean BloquerGamer(String login) {
+       String req = "update gamer set etat=? where login='" + login + "'";
+        try {
+             
+            prepste = connect.prepareStatement(req);
+           
+            prepste.setInt(1, 1);
+            prepste.executeUpdate();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
+
+
+  
    
 
     

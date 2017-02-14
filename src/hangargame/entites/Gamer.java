@@ -29,7 +29,28 @@ public class Gamer {
     private  int validation;
     private InputStream image;
     private String role;
+    private int etat;
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
     public Gamer() {
+    }
+
+    public Gamer(String login, String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription, InputStream image,int etat) {
+        this.login = login;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
+        this.dateInscription = dateInscription;
+        this.image=image;
+        this.etat=etat;
     }
 
     

@@ -13,6 +13,7 @@ package hangargame.serviceinterface;
 import hangargame.entites.Gamer;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.List;
 import java.util.Observable;
 import javafx.collections.ObservableList;
 
@@ -36,7 +37,11 @@ public interface IServiceGamer {
      public boolean ChangePassword(String password1, String password2 , String login);
      
      public boolean AuthentificationAdmin(String login, String password);
-     public ObservableList<Gamer> AfficherListeGamer(); 
+     public List<Gamer> AfficherListeGamer(); 
+
+     
+     public boolean BloquerGamer(String login);
+     
      
    
 }

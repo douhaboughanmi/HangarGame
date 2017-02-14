@@ -29,6 +29,7 @@ import com.restfb.types.User;
 import com.restfb.types.User.Picture;
 import hangargame.HangarGame;
 import hangargame.services.ServicesGamer;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,8 +55,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 
 /**
  *
@@ -99,7 +101,20 @@ public class LoginController implements Initializable {
         if (!HangarGame.isSplashLoaded) {
             loadSplashScreen();
         }
-
+        
+       /* InputStream in;
+        try {
+                in= new FileInputStream(new File("C:\\Users\\lenovo\\Music\\Music\\divers\\a.mp3"));
+             
+                 AudioStream audios = new AudioStream((in));
+                 AudioPlayer.player.start(audios);
+           
+           
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        */
+        
         rootPane = root;
         PaneCode.setVisible(false);
         try {
@@ -205,7 +220,7 @@ public class LoginController implements Initializable {
         }
         if(s.AuthentificationAdmin(TF_login.getText(), PF_password.getText()))
         {
-            AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("AccueilAdmin.fxml"));
+            AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("AfficherListGamerAdmin.fxml"));
                 root.getChildren().setAll(InterInscription1);
         }
         else
@@ -245,7 +260,7 @@ public class LoginController implements Initializable {
 
     @FXML
     void LoginFB(ActionEvent event) throws IOException {
-        String accessToken = "EAACEdEose0cBAKMxiGH3CZCTkE0ZCLAfapR6UxUHzuZAmBaKZCdj0VSQLXCUZBxBhqKOf8WE6ULg9vLudJ7WYcM0tY6ZC3Y5rdiUjvIuxQMVRXSvSfEOrnoWij2HnZC9DyOwDr2O9HjyPU2MlmPs8WOAE9X1qgUn3uEGWZC43yXaTViOQXoVVbSACZCJI2lUtKZBYZD";
+        String accessToken = "EAACEdEose0cBADmBKLHThVbOy3XEROElNAin0P7rkn65AtJUIZCuSPwu595IEgCJBPWWCvPtSBx1hG9vjFZBuBZASJYuJFj2zkky8qJWqRl4A29Vv0YAqvs2dAR0ZCxPcq5wKJO0z8iAv54aL2eYvLyGMfA2HNYASbM7UtIrwvtkWr0SvjoiZCBZAngK1dpKIZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
         String mailFB = me.getEmail();

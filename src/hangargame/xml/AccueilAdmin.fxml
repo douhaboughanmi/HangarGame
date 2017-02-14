@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AccueilAdminController">
-   <children>
-      <ImageView fitHeight="671.0" fitWidth="1182.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/backgroud.jpg" />
-         </image>
-      </ImageView>
-      <TableView layoutX="180.0" layoutY="126.0" prefHeight="385.0" prefWidth="682.0">
-        <columns>
-            <TableColumn prefWidth="106.0" text="Login" />
-            <TableColumn minWidth="7.0" prefWidth="99.0" text="Nom" />
-            <TableColumn prefWidth="99.0" text="Prenom" />
-          <TableColumn prefWidth="158.0" text="E-mail" />
-            <TableColumn prefWidth="118.0" text="Adresse" />
-            <TableColumn prefWidth="101.0" text="Téléphone" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AccueilAdminController">
+    
 </AnchorPane>

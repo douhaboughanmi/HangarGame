@@ -31,7 +31,7 @@ public class HangarGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("xml/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("xml/AfficherListGamerAdmin.fxml"));
 
         
         Scene scene = new Scene(root);
