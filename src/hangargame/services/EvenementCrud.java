@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import hangargame.connexionDB.ConnexionSingleton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,6 +27,7 @@ public class EvenementCrud implements IEvenementCrud{
     Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+     private ObservableList<Evenement> data;
     public EvenementCrud() {
         try {
            connect=  ConnexionSingleton.getInstance();
@@ -39,7 +42,6 @@ public class EvenementCrud implements IEvenementCrud{
     public void ajouterEvenement(Evenement e) {
         String req1="insert into evenement (nom,description,adresse,datedebut,datefin)values(?,?,?,?,?)";
         try {
-            System.out.println("Wiouwwwww");
             
             prepste=connect.prepareStatement(req1);
             prepste.setString(1,e.getNom());
@@ -49,7 +51,6 @@ public class EvenementCrud implements IEvenementCrud{
             prepste.setString(5,e.getDatefin());
             
             prepste.executeUpdate();
-            System.out.println("Louuu");
         } catch (SQLException ex) {
             Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,7 +65,7 @@ public class EvenementCrud implements IEvenementCrud{
              prepste = connect.prepareStatement(req2);
              prepste.setInt(1,id);
              prepste.execute();
-             System.out.println("Mchat");
+             
          } catch (SQLException ex) {
              Logger.getLogger(Evenement.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -72,13 +73,14 @@ public class EvenementCrud implements IEvenementCrud{
 
     @Override
     public void modifierEvenement(Evenement e) {
-          String req3="UPDATE evenement SET id=?"
+         try { 
+        String req3="UPDATE evenement SET id=?"
                  + "nom=?"
                  + "description=?"
                  + "adresse=?"
                  + "datedebut=?"
                   + "datefin=?";
-         try {
+        
              ste.executeUpdate(req3);
          } catch (SQLException ex) {
              Logger.getLogger(Evenement.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,26 +88,21 @@ public class EvenementCrud implements IEvenementCrud{
     }
 
     @Override
-    public void afficherEvenement() {
-       String req4= "select * from evenement";
+    public ObservableList<Evenement> afficherEvenement() {
+       
           
-         try {
-          
-             
-             ResultSet res  =ste.executeQuery(req4);
-             while (res.next()) {
-                 System.out.println(
-                         ": "+ res.getString("nom")+" "+
-                           "Description: "+ res.getString("description")+" "+
-                           "adresse: "+ res.getString("adresse")+" "+
-                         "Date Debut: "+ res.getString("datedebut")+" "+
-                                    "Date Fin :" +res.getString("datefin"));
-                 
-                 
-                 
-             }    } catch (SQLException ex) {
-             Logger.getLogger(Evenement.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            Connection connect;
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            ResultSet rs = connect.createStatement().executeQuery("select * from evenement");
+            while (rs.next()) {
+                data.add(new Evenement(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur" + ex);
+        }
+        return data;
     }
 
     

@@ -6,6 +6,7 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Tournoi;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -13,7 +14,9 @@ import hangargame.entites.Tournoi;
  */
 public interface ITournoiCrud {
     public  void ajouterTournoi(Tournoi e);
-    public void supprimerTournoi(Tournoi e);
+    public void supprimerTournoi(int id);
     public void modifierTournoi(Tournoi e);
-    public void  afficherTournoi();
+    public ObservableList<Tournoi> afficherTournoi();
+        public ObservableList<Tournoi> RechercherTournoi(String nom);
+
 }

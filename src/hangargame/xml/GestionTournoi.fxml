@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.GestionTournoiController">
+   <children>
+      <ImageView fitHeight="696.0" fitWidth="1182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="336.0" layoutY="51.0" prefHeight="393.0" prefWidth="264.0">
+         <children>
+            <JFXTextField fx:id="txtNomTournoi" focusColor="GOLDENROD" layoutX="35.0" layoutY="48.0" promptText="Nom Tournoi" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtNomJeu" layoutX="35.0" layoutY="107.0" promptText="Nom Jeu" />
+            <JFXTextField fx:id="nbrMax" layoutX="35.0" layoutY="160.0" promptText="Nombre Gamers" />
+            <JFXDatePicker fx:id="dateDebut" layoutX="35.0" layoutY="220.0" promptText="Date Debut" />
+            <JFXDatePicker fx:id="dateFin" layoutX="35.0" layoutY="274.0" promptText="Date Fin " />
+         </children>
+      </Pane>
+      <TableView fx:id="tableTournoi" layoutX="622.0" layoutY="86.0" prefHeight="322.0" prefWidth="536.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="colNom" prefWidth="109.0" sortable="false" text="Nom Tournoi" />
+            <TableColumn fx:id="colNJeu" prefWidth="129.0" sortable="false" text="Nom Jeu" />
+            <TableColumn fx:id="colNbr" prefWidth="103.0" sortable="false" text="Nombre Max" />
+            <TableColumn fx:id="ColdateDebut" prefWidth="95.0" sortable="false" text="Date Debut" />
+            <TableColumn fx:id="ColdateFin" prefWidth="99.0" sortable="false" text="Date Fin " />
+        </columns>
+         <effect>
+            <DropShadow color="WHITE" />
+         </effect>
+      </TableView>
+      <JFXButton fx:id="btnValider" buttonType="RAISED" layoutX="624.0" layoutY="455.0" onAction="#ajout" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Valider" textAlignment="CENTER" textFill="WHITE">
+         <effect>
+            <Bloom />
+         </effect>
+      </JFXButton>
+      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="869.0" layoutY="455.0" onAction="#SupprimerTournoi" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Supprimer" textAlignment="CENTER" textFill="WHITE">
+         <effect>
+            <Bloom />
+         </effect></JFXButton>
+      <JFXTextField fx:id="txtRe" layoutX="623.0" layoutY="521.0" maxWidth="446.0" minWidth="446.0" prefHeight="37.0" prefWidth="446.0" promptText="Recherche" />
+   </children>
+</AnchorPane>

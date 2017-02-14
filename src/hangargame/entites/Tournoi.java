@@ -18,19 +18,19 @@ public class Tournoi {
     private String nom ;
     private String nom_jeu ;
     private int nbr_max ;
-    private Timestamp datedebut ;
-    private Timestamp datefin ;
+    private String datedebut ;
+    private String datefin ;
     private String id_gamer ;
 
     public Tournoi() {
     }
 
-    public Tournoi( String nom, String nom_jeu, int nbr_max, Timestamp date_debut, Timestamp datefin,String id_gamer) {
-       
+    public Tournoi(int id , String nom, String nom_jeu, int nbr_max, String datedebut, String datefin,String id_gamer) {
+        this.id=id;
         this.nom = nom;
         this.nom_jeu = nom_jeu;
         this.nbr_max = nbr_max;
-        this.datedebut = date_debut;
+        this.datedebut = datedebut;
         this.datefin = datefin;
         this.id_gamer = id_gamer ;
     }
@@ -51,11 +51,11 @@ public class Tournoi {
         return nbr_max;
     }
 
-    public Timestamp getDatedebut() {
+    public String getDatedebut() {
         return datedebut;
     }
 
-    public Timestamp getDatefin() {
+    public String getDatefin() {
         return datefin;
     }
 
@@ -79,11 +79,11 @@ public class Tournoi {
         this.nbr_max = nbr_max;
     }
 
-    public void setDate_debut(Timestamp date_debut) {
+    public void setDatedebut(String datedebut) {
         this.datedebut = datedebut;
     }
 
-    public void setDatefin(Timestamp datefin) {
+    public void setDatefin(String datefin) {
         this.datefin = datefin;
     }
 

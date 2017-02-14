@@ -6,6 +6,8 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Evenement;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,5 +17,5 @@ public interface IEvenementCrud {
     public  void ajouterEvenement(Evenement e);
     public void supprimerEvenement(int id);
     public void modifierEvenement(Evenement e);
-    public void  afficherEvenement();
+    public ObservableList<Evenement> afficherEvenement();
 }
