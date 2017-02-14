@@ -7,6 +7,7 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.CommentaireSujet;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,5 +17,7 @@ public interface ICommentaireCrud {
     public void ajouterComentaire(CommentaireSujet c);
  public void supprimerCommentaire(CommentaireSujet c);
  public void afficherCommentaire();
+   public ArrayList<CommentaireSujet> afficherCommentaire(String s);
+    public void  updateEtat(String s);
     
 }

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package hangargame.entites;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -15,19 +15,19 @@ import java.util.Objects;
  * @author Hamza
  */
 public class CommentaireSujet {
-   
 
     private int idComentaire;
     private String nomComnt;
-    private Date datePubComnt;
+    private Timestamp datePubComnt;
     private String sujet;
     private String txtComnt;
     private int etatCommentaire;
-/*Instant dpc,*/
-    public CommentaireSujet( String nomcomment, String textcomment,
+    /*Instant dpc,*/
+
+    public CommentaireSujet(String nomcomment, String textcomment,
             String sujet, int etatcmmentaire) {
         //this.idComentaire = idc;
-      //  this.datePubComnt = dpc;
+        //  this.datePubComnt = dpc;
         this.nomComnt = nomcomment;
         this.txtComnt = textcomment;
         this.sujet = sujet;
@@ -38,48 +38,66 @@ public class CommentaireSujet {
 
     }
 
+    public CommentaireSujet(String s, String sjt) {
+        this.txtComnt = s;
+        //this.datePubComnt = t;
+        this.sujet = sjt;
+    }
+     public CommentaireSujet(String s, Timestamp t) {
+        this.txtComnt = s;
+        this.datePubComnt = t;
+//        this.sujet = sjt;
+    }
+
     public int getidCommentaire() {
         return this.idComentaire;
     }
- public void setidCommentaire(int idcomnt){
-     this.idComentaire=idcomnt;
- }
-    public Date getdatecoment() {
+
+    public void setidCommentaire(int idcomnt) {
+        this.idComentaire = idcomnt;
+    }
+
+    public Timestamp getdatecoment() {
         return this.datePubComnt;
     }
-public void setdateCommentaire(Date datecomnt){
-     this.datePubComnt=datecomnt;
-}
+
+    public void setdateCommentaire(Timestamp datecomnt) {
+        this.datePubComnt = datecomnt;
+    }
+
     public String getNomCmnt() {
         return this.nomComnt;
     }
-public void setNomComnt(String nmcmnt){
-    this.nomComnt = nmcmnt;
-}
+
+    public void setNomComnt(String nmcmnt) {
+        this.nomComnt = nmcmnt;
+    }
+
     public String gettextCommnt() {
         return this.txtComnt;
     }
-    
-    public void setTextCmnt(String txtcmnt){
+
+    public void setTextCmnt(String txtcmnt) {
         this.txtComnt = txtcmnt;
     }
 
     public String getsujet() {
         return this.sujet;
     }
-    
-    public void setSujet(String sjt){
-        this.sujet=sjt;
+
+    public void setSujet(String sjt) {
+        this.sujet = sjt;
     }
 
     public int getetatCmnt() {
         return this.etatCommentaire;
     }
-    
-    public void setetatCmnt(int etatcmnt){
+
+    public void setetatCmnt(int etatcmnt) {
         this.etatCommentaire = etatcmnt;
     }
- @Override
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -91,17 +109,15 @@ public void setNomComnt(String nmcmnt){
             return false;
         }
         final CommentaireSujet other = (CommentaireSujet) obj;
-        
+
         if (!Objects.equals(this.idComentaire, other.getidCommentaire())) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public int hashCode() {
-       return this.idComentaire;
+        return this.idComentaire;
     }
 }
-
-

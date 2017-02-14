@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="consulterSujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.ConsulterSujetController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="24.0" layoutY="288.0" prefHeight="148.0" prefWidth="586.0">
+         <children>
+            <JFXButton layoutX="14.0" layoutY="2.0" text="partage facebook " />
+            <JFXButton layoutX="248.0" layoutY="2.0" text="j'aime" />
+            <JFXButton fx:id="signalerSujet" layoutX="520.0" layoutY="2.0" onAction="#signal" text="Signaler" />
+         </children>
+      </Pane>
+      <JFXListView fx:id="commentaires" depthProperty="8" layoutX="42.0" layoutY="340.0" onMouseClicked="#signaler" prefHeight="79.0" prefWidth="543.0" showTooltip="true" />
+      <Text fx:id="titreSujet" layoutX="48.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="222.13671875">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.004761904761904762">
+               <stops>
+                  <Stop color="#30ad2f" />
+                  <Stop color="#30ad2f" offset="0.09961685823754789" />
+                  <Stop color="WHITE" offset="0.7088122605363985" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="datesujet" layoutX="465.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="105.13671875" />
+      <Text fx:id="note" layoutX="48.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="127.13671875" />
+      <Label fx:id="sujet" contentDisplay="TOP" layoutX="38.0" layoutY="109.0" prefHeight="142.0" prefWidth="543.0" style="-fx-background-color: #FFFFFF;" text="aaaaaaaaa" textFill="#a39f27" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="ajoutCmntBtn" layoutX="555.0" layoutY="561.0" onAction="#ajoutCmnt" text="ajouter" />
+      <JFXTextArea fx:id="textAreaAjout" layoutX="33.0" layoutY="461.0" maxWidth="554.0" minWidth="530.0" prefHeight="68.0" prefWidth="554.0" />
+      <JFXButton fx:id="afficherCmnt" layoutX="601.0" layoutY="432.0" onAction="#afficher" text="Ajouter un commentaire" />
+   </children>
+</AnchorPane>

@@ -18,7 +18,7 @@
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="table" layoutX="61.0" layoutY="186.0" prefHeight="307.0" prefWidth="934.0">
+      <TableView fx:id="table" layoutX="61.0" layoutY="186.0" onMouseClicked="#choisirSujet" prefHeight="307.0" prefWidth="934.0">
         <columns>
           <TableColumn fx:id="A" prefWidth="109.0" text="Nom" />
           <TableColumn fx:id="B" prefWidth="137.0" text="Text" />
@@ -47,5 +47,6 @@
             <Image url="@../images/recherche.png" />
          </image>
       </ImageView>
+      <JFXButton layoutX="152.0" layoutY="529.0" onAction="#choisirSujetBtn" text="Consulter" />
    </children>
 </AnchorPane>

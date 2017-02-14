@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -118,6 +119,32 @@ return data ;
             System.err.println("Erreur" + ex);
         }
 return data ;
+    }
+    
+     @Override
+    public Sujet consulterSujet(String s) {
+        String req = "SELECT `nomsujet`,`datepub`,`textsujet`,`categorie`,`gamer`,`etatsujet` from  sujet_forum where nomsujet = ?";
+        Sujet sujet = null;
+        try {
+
+            prpste = connect.prepareStatement(req);
+            prpste.setString(1, s);
+            ResultSet rs = prpste.executeQuery();
+            while (rs.next()) {
+                String nomsujet = rs.getString("nomsujet");
+                Timestamp datesujet = rs.getTimestamp("datepub");
+                String textsujet = rs.getString("textsujet");
+                String categorie = rs.getString("categorie");
+                String gamer = rs.getString("gamer");
+                int etat = rs.getInt("etatsujet");
+                sujet = new Sujet(nomsujet, datesujet, textsujet, categorie, gamer, etat);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sujet;
+
     }
 }
 
