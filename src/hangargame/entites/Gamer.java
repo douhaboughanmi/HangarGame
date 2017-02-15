@@ -41,6 +41,16 @@ public class Gamer {
     public Gamer() {
     }
 
+    public Gamer(String login,String nom, String prenom, String adresse, String email, String password, InputStream image) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.password = password;
+      this.login=login;
+        this.image = image;
+    }
+
     public Gamer(String login, String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription, InputStream image,int etat) {
         this.login = login;
         this.nom = nom;

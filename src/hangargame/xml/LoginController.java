@@ -28,6 +28,7 @@ import com.restfb.Version;
 import com.restfb.types.User;
 import com.restfb.types.User.Picture;
 import hangargame.HangarGame;
+import hangargame.entites.Gamer;
 import hangargame.services.ServicesGamer;
 import java.io.File;
 import java.io.FileInputStream;
@@ -260,24 +261,27 @@ public class LoginController implements Initializable {
 
     @FXML
     void LoginFB(ActionEvent event) throws IOException {
-        String accessToken = "EAACEdEose0cBADmBKLHThVbOy3XEROElNAin0P7rkn65AtJUIZCuSPwu595IEgCJBPWWCvPtSBx1hG9vjFZBuBZASJYuJFj2zkky8qJWqRl4A29Vv0YAqvs2dAR0ZCxPcq5wKJO0z8iAv54aL2eYvLyGMfA2HNYASbM7UtIrwvtkWr0SvjoiZCBZAngK1dpKIZD";
+        String accessToken = "EAACEdEose0cBAMffACGAO0BbiRz3Lq5vPPEZAtRdKCHlWdZBDO0gcq6RNf3Q1aJjpG3arwlzqhCD5ZBBRn21sZCLgDC1iVgPxA7uTzbizty8ZAwbrPuk0hoypfhD4YqhqFkk88RTTve4gXegZBD31amFVLUYRX8rZB5fTHbZBD8VQ0MuXvnrZAyBfr6GOCwYYQAsZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         User me = fbClient.fetchObject("me", User.class);
         String mailFB = me.getEmail();
+        String NomFB = me.getLastName();
+        String PrenomFB = me.getFirstName();
+        String passwordFB="hangargame";
+        String adresseFB= me.getHometownName();
+       // String photoFB = me.getPicture().getUrl();
+        InputStream inputStream = new FileInputStream("C:\\Users\\lenovo\\Pictures\\Pictures\\mayss.jpg");
+        
+      
+        String loginFB= me.getName();
+        Gamer g = new Gamer(loginFB, NomFB, PrenomFB, adresseFB, mailFB, passwordFB, inputStream);
+        s.InscriptionFB(g);
+        
+        
+        
+        
          
-        if (s.AuthentificationWithFb(mailFB)) {
-            if (s.ActivationCompteFB(mailFB)) {
-                LCon.setText("Bienvenue " + TF_login.getText());
-                LCon.setTextFill(Color.web("#dc143c"));
-                Guest.disableProperty();
-                AnchorPane InterInscription = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
-                root.getChildren().setAll(InterInscription);
-            } else {
-                PaneCode.setVisible(true);
-                LCon.setText("Vous devez activez votre compte");
-                LCon.setTextFill(Color.web("#dc143c"));
-            }
-        }
+        
 
     }
 

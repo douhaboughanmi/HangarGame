@@ -6,7 +6,6 @@
 package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
-import hangargame.entites.Annonces;
 import hangargame.entites.Gamer;
 import hangargame.serviceinterface.IServiceGamer;
 import hangargame.utils.SendCodeValidation;
@@ -28,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -293,35 +291,7 @@ public class ServicesGamer implements IServiceGamer {
         return false;
     }
 
-    @Override
-    public boolean AuthentificationWithFb(String email) {
-
-        String req = "select * from gamer where email= '" + email + "'";
-        try {
-
-            prepste = connect.prepareStatement(req);
-            ResultSet resultat = prepste.executeQuery();
-
-            if (resultat.next()) {
-
-                String resultEmail = resultat.getString(6);
-
-                if (resultEmail.equals(email)) {
-                    return true;
-                } else if (!resultEmail.equals(email)) {
-                    return false;
-                }
-
-            }
-
-            resultat.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ServicesGamer.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        return false;
-    }
+  
 
     @Override
     public Gamer ModifierInfo(String nom, String prenom, String adresse, int tel, String login,InputStream input) {
@@ -462,10 +432,39 @@ return null;
         return false;
     }
 
+    @Override
+    public boolean InscriptionFB(Gamer g) {
+        String req = "Insert into Gamer(login,nom,prenom,adresse,email,password,dateInscription,LastModifMdp,validation,image,role) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        
+         try {
+             
+               InputStream inputStream = g.getImage();
+                prepste = connect.prepareStatement(req);
+
+                
+                int validation = 1;
+
+                prepste.setString(1, g.getLogin());
+                prepste.setString(2, g.getNom());
+                prepste.setString(3, g.getPrenom());
+                prepste.setString(4, g.getAdresse());
+                prepste.setString(5, g.getEmail());
+                prepste.setString(6, g.getPassword());
+                prepste.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+               prepste.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
+                prepste.setInt(9, validation);
+                prepste.setBlob(10, inputStream );
+                prepste.setString(11,"gamer");
+                prepste.executeUpdate();
+               
+                return true;
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Gamer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
   
-   
-
-    
-    
 }
