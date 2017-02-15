@@ -14,20 +14,12 @@ public class VideoTest {
     private Timestamp date_videoTest;
     private String genre_videoTest;
     private String console_videoTest;
+    private String user_videoTest;
 
     public VideoTest() {
     }
 
-    public VideoTest(String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest) {
-        this.nom_videoTest = nom_videoTest;
-        this.url_videoTest = url_videoTest;
-        this.description_videoTest = description_videoTest;
-        this.date_videoTest = date_videoTest;
-        this.genre_videoTest = genre_videoTest;
-        this.console_videoTest = console_videoTest;
-    }
-
-    public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest) {
+    public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest, String user_videoTest) {
         this.id_videoTest = id_videoTest;
         this.nom_videoTest = nom_videoTest;
         this.url_videoTest = url_videoTest;
@@ -35,6 +27,17 @@ public class VideoTest {
         this.date_videoTest = date_videoTest;
         this.genre_videoTest = genre_videoTest;
         this.console_videoTest = console_videoTest;
+        this.user_videoTest = user_videoTest;
+    }
+
+    public VideoTest(String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest, String user_videoTest) {
+        this.nom_videoTest = nom_videoTest;
+        this.url_videoTest = url_videoTest;
+        this.description_videoTest = description_videoTest;
+        this.date_videoTest = date_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
+        this.user_videoTest = user_videoTest;
     }
 
     public int getId_videoTest() {
@@ -93,16 +96,25 @@ public class VideoTest {
         this.console_videoTest = console_videoTest;
     }
 
+    public String getUser_videoTest() {
+        return user_videoTest;
+    }
+
+    public void setUser_videoTest(String user_videoTest) {
+        this.user_videoTest = user_videoTest;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id_videoTest;
-        hash = 97 * hash + Objects.hashCode(this.nom_videoTest);
-        hash = 97 * hash + Objects.hashCode(this.url_videoTest);
-        hash = 97 * hash + Objects.hashCode(this.description_videoTest);
-        hash = 97 * hash + Objects.hashCode(this.date_videoTest);
-        hash = 97 * hash + Objects.hashCode(this.genre_videoTest);
-        hash = 97 * hash + Objects.hashCode(this.console_videoTest);
+        int hash = 5;
+        hash = 53 * hash + this.id_videoTest;
+        hash = 53 * hash + Objects.hashCode(this.nom_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.url_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.description_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.date_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.genre_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.console_videoTest);
+        hash = 53 * hash + Objects.hashCode(this.user_videoTest);
         return hash;
     }
 
@@ -136,13 +148,18 @@ public class VideoTest {
         if (!Objects.equals(this.console_videoTest, other.console_videoTest)) {
             return false;
         }
+        if (!Objects.equals(this.user_videoTest, other.user_videoTest)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "VideoTest{" + "id_videoTest=" + id_videoTest + ", nom_videoTest=" + nom_videoTest + ", url_videoTest=" + url_videoTest + ", description_videoTest=" + description_videoTest + ", date_videoTest=" + date_videoTest + ", genre_videoTest=" + genre_videoTest + ", console_videoTest=" + console_videoTest + '}';
+        return "VideoTest{" + "id_videoTest=" + id_videoTest + ", nom_videoTest=" + nom_videoTest + ", url_videoTest=" + url_videoTest + ", description_videoTest=" + description_videoTest + ", date_videoTest=" + date_videoTest + ", genre_videoTest=" + genre_videoTest + ", console_videoTest=" + console_videoTest + ", user_videoTest=" + user_videoTest + '}';
     }
+
+   
 
 
 

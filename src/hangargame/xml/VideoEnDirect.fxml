@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.VideoEnDirectController">
+   <children>
+      <ImageView fitHeight="617.0" fitWidth="1082.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-16.0" AnchorPane.topAnchor="-1.0">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="485.0" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #daa520;" text="retour">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Text layoutX="40.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vidéo en direct">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="0.9047619047619048">
+               <stops>
+                  <Stop color="#47eb35" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <WebView fx:id="web" layoutX="491.0" layoutY="103.0" prefHeight="352.0" prefWidth="407.0" />
+      <MediaView fx:id="med" fitHeight="200.0" fitWidth="200.0" layoutX="120.0" layoutY="127.0" />
+      <JFXButton fx:id="btnweb" buttonType="RAISED" layoutX="326.0" layoutY="485.0" onAction="#openWeb" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #daa520;" text="web">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

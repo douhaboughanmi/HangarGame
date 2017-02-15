@@ -78,14 +78,16 @@ public class VideoEnDirectCrud implements ICrudVideoEnDirect {
     public void modifier(VideoEnDirect v) {
 
         try {
-            String req3 = "UPDATE video_direct SET nom=?"
-                    + "url=?"
-                    + "description=?";
+            String req3 = "UPDATE video_direct SET nom=? ,url=?, description=? where id=? ";
+            
+           // VideoEnDirect v = new VideoEnDirect();
 
             prepste = connect.prepareStatement(req3);
+              
             prepste.setString(1, v.getNom_videoEnDirect());
             prepste.setString(2, v.getUrl_videoEnDirect());
             prepste.setString(3, v.getDescription_videoEnDirect());
+            prepste.setInt(4, v.getId_videoEnDirect());
 
             prepste.executeUpdate();
         } catch (SQLException ex) {

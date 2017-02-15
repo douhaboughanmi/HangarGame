@@ -6,6 +6,7 @@
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Evenement;
 import hangargame.entites.VideoTest;
@@ -17,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,6 +64,9 @@ public class VideoTestBackController implements Initializable {
 
     @FXML
     private JFXButton btnsupprimer;
+    
+        @FXML
+    private JFXTextField rechVideo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,6 +75,14 @@ public class VideoTestBackController implements Initializable {
         Statement ste;
         PreparedStatement prepste;
         LoadData();
+        
+          rechVideo.textProperty().addListener(new ChangeListener() {
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                filterEvenementList((String) oldValue, (String) newValue);
+                
+
+            }
+        });
 
     }
 
@@ -92,9 +106,30 @@ public class VideoTestBackController implements Initializable {
         dateVideo.setCellValueFactory(new PropertyValueFactory<>("date_videoTest"));
         genreVideo.setCellValueFactory(new PropertyValueFactory<>("genre_videoTest"));
         consoleVideo.setCellValueFactory(new PropertyValueFactory<>("console_videoTest"));
+        user.setCellValueFactory(new PropertyValueFactory<>("user_videoTest"));
         listeVideo.setItems(null);
         listeVideo.setItems(crud.afficherVideoTest());
     
+    }
+     
+     
+       public void filterEvenementList(String oldValue, String newValue) {
+        ObservableList<VideoTest> filteredList = FXCollections.observableArrayList();
+        if (rechVideo == null || (newValue.length() < oldValue.length()) || newValue == null) {
+
+            listeVideo.setItems(data);
+            LoadData();
+        } else {
+            newValue = newValue.toUpperCase();
+            for (VideoTest v: listeVideo.getItems()) {
+                String filterNom = v.getNom_videoTest();
+                
+                if (filterNom.toUpperCase().contains(newValue) ) {
+                    filteredList.add(v);
+                }
+            }
+            listeVideo.setItems(filteredList);
+        }
     }
 
 }

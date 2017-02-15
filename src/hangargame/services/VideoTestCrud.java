@@ -40,7 +40,7 @@ public class VideoTestCrud implements ICrudVideoTest{
 
     @Override
     public void ajouter(VideoTest v) {
-        String req1= " insert into video_test ( nom,url,description,date,genre,console)values( ?,?,?,?,?,?)";
+        String req1= " insert into video_test ( nom,url,description,date,genre,console,user)values( ?,?,?,?,?,?,?)";
          try {
                
              	
@@ -53,6 +53,8 @@ public class VideoTestCrud implements ICrudVideoTest{
     
              prepste.setString(5, v.getGenre_videoTest());
               prepste.setString(6, v.getConsole_videoTest());
+              prepste.setString(7, v.getUser_videoTest());
+              
              
              
              prepste.executeUpdate();
@@ -60,6 +62,7 @@ public class VideoTestCrud implements ICrudVideoTest{
            
          } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println("leeeeeeee");
             
              
          }
@@ -148,7 +151,7 @@ public class VideoTestCrud implements ICrudVideoTest{
             data = FXCollections.observableArrayList();
             ResultSet rs = connect.createStatement().executeQuery("select * from video_test");
             while (rs.next()) {
-                data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7)));
+                data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7),rs.getString(8)));
             }
         } catch (SQLException ex) {
             System.err.println("Erreur" + ex);

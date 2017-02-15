@@ -74,9 +74,12 @@ public class AjoutVideoTestController implements Initializable {
     private Label labeldesc;
 
     VideoTestCrud crud = new VideoTestCrud();
-
+    String loginStat=LoginController.LoginStatic;
     @FXML
     void ajoutVideo(ActionEvent event) {
+        
+          loginStat="jjjj";
+      
 
         String nomVideo = nomVideoTest.getText();
         String genrevideo = genreVideoTest.getText();
@@ -113,7 +116,7 @@ public class AjoutVideoTestController implements Initializable {
                 && genrevideo.isEmpty() == false
                 && descVideo.isEmpty() == false
                 && path.isEmpty() == false) {
-            VideoTest v = new VideoTest(nomVideo, path, descVideo, null, genrevideo, combo);
+            VideoTest v = new VideoTest(nomVideo, path, descVideo, null, genrevideo, combo,loginStat);
             crud.ajouter(v);
 
         }
