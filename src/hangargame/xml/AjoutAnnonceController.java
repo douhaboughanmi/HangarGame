@@ -83,9 +83,9 @@ InputStream inputStream;
     
 
     @FXML
-    void login(ActionEvent event) {
+    void login(ActionEvent event) throws FileNotFoundException {
         
-        String choixConsole = a.getSelectedToggle().toString().substring(66);
+     //  String choixConsole = a.getSelectedToggle().toString().substring(66);
         
         
         
@@ -97,7 +97,14 @@ InputStream inputStream;
         
         int prix = 0;
         if ((ab.isEmpty()) == false) {
-            prix = Integer.parseInt(ab);
+            try{
+           prix = Integer.parseInt(ab);}
+            catch(NumberFormatException ex){
+              //  System.out.println("dddddd");
+            
+            labelPrix.setText("Champ obligatoire");
+            }
+           
         }
 
         if (nomA.isEmpty()==false
@@ -107,7 +114,8 @@ InputStream inputStream;
                  {
 
             System.out.println("");
-            Annonces annonces = new Annonces(nomA, typeA, choixConsole, desc, prix, inputStream );
+            inputStream = new FileInputStream(path);
+            Annonces annonces = new Annonces(nomA, typeA, "choixConsole", desc, prix, inputStream );
             CrudAnnonces crud = new CrudAnnonces();
             crud.ajouterAnnonces(annonces);
             
@@ -175,6 +183,10 @@ InputStream inputStream;
             path = selectedFile.getAbsolutePath();
             try {
                  inputStream = new FileInputStream(path);
+                 ImageView imageView= new ImageView (new Image(inputStream));
+                 imageView.setFitHeight(100);
+                 imageView.setFitWidth(100);
+                 labelImage.setGraphic(imageView);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(AjoutAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
             }

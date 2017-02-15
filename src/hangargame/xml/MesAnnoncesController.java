@@ -8,12 +8,14 @@ package hangargame.xml;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.entites.Annonces;
 import hangargame.entites.Evenement;
 import hangargame.services.CrudAnnonces;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -84,6 +86,8 @@ public class MesAnnoncesController implements Initializable {
     InputStream inputStream ;
     int ID ;
     
+    HangarGame hangar = new HangarGame();
+    
           @FXML
     void selectImage(ActionEvent event) {
 
@@ -140,10 +144,12 @@ public class MesAnnoncesController implements Initializable {
       String desc=  descMesAnnonces.getText();
        String typeA= typeMesAnnonces.getValue().getText();
      InputStream  inputStrea;
+     
             try {
-                inputStrea = new FileInputStream(path);
+             
+               inputStream = new FileInputStream(path);
                 System.out.println(path);
-                 Annonces annonces = new Annonces(ID,nomA, typeA, "", desc,Integer.parseInt(prixA), inputStrea );
+                 Annonces annonces = new Annonces(ID,nomA, typeA, "", desc,Integer.parseInt(prixA), inputStream );
          
        CrudAnnonces crud = new CrudAnnonces();
        crud.modifierAnnonces(annonces);
@@ -162,9 +168,11 @@ public class MesAnnoncesController implements Initializable {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(MesAnnoncesController.class.getName()).log(Level.SEVERE, null, ex);
            }
-        
-
     }
+
+    
+     
+    
 
     @FXML
     void supprimerMesAnnonces(ActionEvent event) {

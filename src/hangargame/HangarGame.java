@@ -15,10 +15,13 @@ import com.restfb.FacebookClient;
 import com.restfb.types.User;
 import hangargame.entites.Evenement;
 import hangargame.services.EvenementCrud;
+import java.io.IOException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -28,19 +31,45 @@ import javafx.stage.Stage;
 public class HangarGame extends Application {
     
      public static Boolean isSplashLoaded = false;
+             public static AnchorPane anchorPane ;
+             public Stage primaryStage ;
+
+    // stage.show();
+    public HangarGame() {
+    }
+             
+
     @Override
-    public void start(Stage stage) throws Exception {
-
-        Parent root = FXMLLoader.load(getClass().getResource("xml/AjoutSujet.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+  this.primaryStage = primaryStage ;
+        this.primaryStage.setTitle("Hangar Game");
+        showMainView();
+      //  Parent root = FXMLLoader.load(getClass().getResource("xml/MesAnnonces.fxml"));
 
         
-        Scene scene = new Scene(root);
+       // Scene scene = new Scene(root);
         
-        stage.setScene(scene);
-        stage.setTitle("Hangar Game");
-        stage.show();
+        //stage.setScene(scene);
+       // stage.setTitle("Hangar Game");
+       // stage.show();
        
        
+    }
+    private void showMainView() throws IOException {
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/Login.fxml"));
+       anchorPane = loader.load();
+       Scene scene = new Scene(anchorPane);
+       primaryStage.setScene(scene);
+       primaryStage.show();
+    }
+    
+    
+    public static void depalcerVersAjoutAnnonce() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AjoutAnnonce.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
     }
 
     /**

@@ -20,6 +20,15 @@ public class Annonces {
     private String descriptionAnnonces;
     private int prix;
     private InputStream inputStream;
+    private String gamer ;
+
+    public String getGamer() {
+        return gamer;
+    }
+
+    public void setGamer(String gamer) {
+        this.gamer = gamer;
+    }
 
     @Override
     public String toString() {
@@ -35,6 +44,19 @@ public class Annonces {
         this.prix = prix;
         this.inputStream = inputStream;
     }
+
+    public Annonces(int idAnnonces, String nomAnnonces, String typeAnnonces, String consoleAnnonces, String descriptionAnnonces, int prix, InputStream inputStream, String gamer) {
+        this.idAnnonces = idAnnonces;
+        this.nomAnnonces = nomAnnonces;
+        this.typeAnnonces = typeAnnonces;
+        this.consoleAnnonces = consoleAnnonces;
+        this.descriptionAnnonces = descriptionAnnonces;
+        this.prix = prix;
+        this.inputStream = inputStream;
+        this.gamer = gamer;
+    }
+    
+    
 
     public int getIdAnnonces() {
         return idAnnonces;
