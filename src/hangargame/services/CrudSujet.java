@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -145,6 +146,59 @@ return data ;
         }
         return sujet;
 
+    }
+    
+    
+    @Override
+    public ArrayList<Sujet> afficherHistoriquePersonnel(String s) {
+        ArrayList<Sujet> ls = new ArrayList<>();
+        String req = "select `nomsujet`,`datepub` from sujet_forum where `gamer`=?";
+
+        try {
+
+            prpste = connect.prepareStatement(req);
+            prpste.setString(1, s);
+            ResultSet rs = prpste.executeQuery();
+            while (rs.next()) {
+                String nomsujet = rs.getString("nomsujet");
+                Timestamp datepub = rs.getTimestamp("datepub");
+                Sujet st = new Sujet(nomsujet, datepub);
+                ls.add(st);
+                System.out.println(nomsujet);
+                System.out.println(nomsujet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ls;
+
+    }
+
+    @Override
+    public int tolalJaime(String s) {
+        String req = "SELECT SUM(`note`) as somme from evaluation_sujet where gamer=?";
+        int sommenotes = 0;
+        try {
+
+            prpste = connect.prepareStatement(req);
+            prpste.setString(1, s);
+            ResultSet rs = prpste.executeQuery();
+            while (rs.next()) {
+                sommenotes = rs.getInt("somme");
+
+                System.out.println(sommenotes);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sommenotes;
+
+    }
+
+    @Override
+    public int totalSignal(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

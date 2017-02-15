@@ -43,6 +43,11 @@ public class Sujet {
     public Sujet() {
 
     }
+    
+     public Sujet(String s,Timestamp t){
+        this.datePub = t;
+        this.nomSjt = s;
+    }
 
     public int getidSjt() {
         return this.idSjt;

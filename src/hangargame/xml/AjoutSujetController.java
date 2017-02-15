@@ -2,46 +2,40 @@ package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import hangargame.entites.Gamer;
 import hangargame.entites.Sujet;
 import hangargame.services.CrudSujet;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.text.Font;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 public class AjoutSujetController {
 
-        public void initialize() {
-        
+    public void initialize() {
+comboCatgr.setValue(new Label("Jeux Mobiles"));
         comboCatgr.getItems().add(new Label("Jeux Mobiles"));
         comboCatgr.getItems().add(new Label("Jeux Consoles"));
         comboCatgr.getItems().add(new Label("Jeux PC"));
         comboCatgr.getItems().add(new Label("BlaBLaBlaBla"));
-}
+        affficherHistorique(s);
+        afficherTotalJaime(s);
 
-        
-        
-        
-        LoginController xx = new LoginController();
-        CrudSujet crs = new CrudSujet();
-   
-         @FXML
+    }
+
+    LoginController xx = new LoginController();
+    CrudSujet crs = new CrudSujet();
+    public String s = "zut@zut.tn";
+
+    @FXML
     private AnchorPane anacrosujet;
     @FXML
     private ImageView btnaddsjt;
@@ -57,39 +51,61 @@ public class AjoutSujetController {
 
     @FXML
     private JFXComboBox<Label> comboCatgr;
+    @FXML
+    private JFXListView<Label> listehistorique;
 
+    @FXML
+    private Label Totaljaime;
 
+    @FXML
+    private Label totalsignale;
 
     @FXML
     void Addsbjct(ActionEvent event) {
+        JInternalFrame frame = null;
+        
         String txt = sujetArea.getText();
         String titre = titresujet.getText();
         String catgre = (String) comboCatgr.getValue().getText();
-     
         
-        Sujet sjt = new Sujet(titre,txt,catgre);
         
-      crs.ajoutersujet(sjt);
-    }
-    
-    @FXML
-    void homeSujet(MouseEvent event) throws IOException {
-          
-           
-          
-                    
+
+        if (catgre.isEmpty()) {
+            
+            JOptionPane.showMessageDialog(frame,
+                    "le contenue de message est vide  ");
+        } else {
+            Sujet sjt = new Sujet(titre, txt, catgre);
+            crs.ajoutersujet(sjt);
+            JOptionPane.showMessageDialog(frame,
+                    "votre sujet :" + titre + " a été ajouté  ");
+            affficherHistorique(s);
+        }
 
     }
-    @FXML
-    void move(MouseEvent event) throws IOException {
-// try {
-//            
-//             AnchorPane pane = FXMLLoader.load(getClass().getResource("AjoutJeuVideo.fxml")); 
-//                    anacrosujet.getChildren().addAll(pane);
-//        } catch (IOException ex) {
-//            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//                    
-//    }
 
-}}
+    public void affficherHistorique(String s) {
+
+        ArrayList<Sujet> L = crs.afficherHistoriquePersonnel(s);
+
+        for (int i = 0; i < L.size(); i++) {
+
+            Label l = new Label("Titre de Sujet  :  " + L.get(i).getNomSujet() + "\n" + "Date de publication  :  " + L.get(i).getdateSjt());
+
+            listehistorique.
+                    getItems().add(l);
+            listehistorique.setExpanded(true);
+            listehistorique.depthProperty().set(1);
+            l.setContentDisplay(ContentDisplay.CENTER);
+
+        }
+    }
+
+    public void afficherTotalJaime(String s) {
+
+        int x = crs.tolalJaime(s);
+
+        Totaljaime.setText(x + "");
+
+    }
+}
