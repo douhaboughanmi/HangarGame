@@ -5,17 +5,25 @@
  */
 package hangargame.xml;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import hangargame.entites.Console;
 import hangargame.services.CrudConsole;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -36,20 +44,33 @@ public class AffichageAdminConsoleController implements Initializable {
     @FXML
     private TableColumn<?, ?> coldate;
 
-    @FXML
     private TableColumn<?, ?> colimage;
 
     @FXML
-    private Button btnafficher;
-
+    private JFXButton btnSup;
     @FXML
+    private JFXButton btnmodif;
+    @FXML
+    private JFXButton BtnImage;
+    @FXML
+    private Label image;
+    
+    private ObservableList<Console> data ;
+    @FXML
+    private JFXTextField titreConsole;
+    @FXML
+    private TextArea descriptionconsole;
+    @FXML
+    private JFXDatePicker dateConsole;
+    int id ; 
+
     void afficher() {
         
         
          colnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         coldesc.setCellValueFactory(new PropertyValueFactory<>("Description"));
        coldate.setCellValueFactory(new PropertyValueFactory<>("date_sortie"));
-        colimage.setCellValueFactory(new PropertyValueFactory<>("image"));
+     //   colimage.setCellValueFactory(new PropertyValueFactory<>("image"));
         
         
        tableConsole.setItems(null);
@@ -62,5 +83,53 @@ public class AffichageAdminConsoleController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     afficher();
     }    
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+        
+        Console c = new Console();
+        CrudConsole cc = new CrudConsole();
+        cc.supprimerConsole(tableConsole.getSelectionModel().getSelectedItem().getNom());
+        afficher();
+    }
+
+    @FXML
+    private void Modifier(ActionEvent event) {
+      String datej= dateConsole.
+                getValue()
+                .format
+        (DateTimeFormatter.
+                ofPattern("YYYY-MM-DD")); 
+         String tc = titreConsole.getText();
+         String des = descriptionconsole.getText();
+         
+         Console cc = new Console(id, tc, "", des, datej);
+         crud.modifierConsole(cc);
+         afficher();
+    }
+
+    @FXML
+    private void selectImage(ActionEvent event) {
+    }
+
+    @FXML
+    private void showcliked(MouseEvent event) {
+        
+        Console cc = tableConsole.getSelectionModel().getSelectedItem();
+        cc.toString();
+        id=cc.getId();
+         System.out.println(id);
+          System.out.println(cc.getNom());
+        titreConsole.setText(cc.getNom());
+        descriptionconsole.setText(cc.getDescription());
+    //    String datej= dateConsole.
+        //       getValue()
+       //       .format
+     //  (DateTimeFormatter.
+         //      ofPattern("YYYY-MM-DD")); 
+        
+        
+        
+    }
     
 }

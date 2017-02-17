@@ -7,6 +7,7 @@ package hangargame.serviceinterface;
 
 import hangargame.entites.Console;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
@@ -15,7 +16,8 @@ import javafx.collections.ObservableList;
  */
 public interface IConsoleCrud {
     public void ajouterConsole(Console c);
-    public void supprimerConsole(Console c);
+   public void supprimerConsole(String nom );
     public void modifierConsole(Console c);
+    public List<Console> reccuperer();
     public ObservableList<Console>  afficherConsole();
 }

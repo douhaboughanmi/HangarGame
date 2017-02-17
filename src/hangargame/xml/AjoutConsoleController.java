@@ -12,14 +12,21 @@ import com.jfoenix.controls.JFXTextField;
 import hangargame.entites.Console;
 import hangargame.services.CrudConsole;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -31,8 +38,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AjoutConsoleController implements Initializable {
     
     CrudConsole crud = new CrudConsole();
-   @FXML
-    private JFXButton btnConsole;
 
     @FXML
     private JFXTextField titreConsole = new JFXTextField();
@@ -43,8 +48,6 @@ public class AjoutConsoleController implements Initializable {
     @FXML
     private Label labeldesc = new Label();
 
-    @FXML
-    private Label labelTitre = new Label();
 
     @FXML
     private JFXDatePicker dateConsole  = new JFXDatePicker();
@@ -56,6 +59,9 @@ public class AjoutConsoleController implements Initializable {
     private Label labelimage = new Label();
   
     private String path = "";
+    @FXML
+    private JFXButton btnAct;
+    InputStream input;
 
     @FXML
     void ajout(ActionEvent event) {
@@ -91,6 +97,11 @@ public class AjoutConsoleController implements Initializable {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
+             try {
+               input = new FileInputStream(path);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AjoutJeuVideoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
           
           
             System.out.println("image");
@@ -99,6 +110,12 @@ public class AjoutConsoleController implements Initializable {
 
             System.out.println("No Data");
         }
+        
+        ImageView imageView = new ImageView(new Image(input));
+            imageView.setFitHeight(112);
+            imageView.setFitWidth(178);
+
+            labelimage.setGraphic(imageView);
 
     }
     @Override

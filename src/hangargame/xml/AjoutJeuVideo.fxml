@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
@@ -75,13 +75,9 @@
             <Label fx:id="labelgenre" layoutX="37.0" layoutY="133.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
          </children>
       </Pane>
-      <Pane id="a" layoutX="459.0" layoutY="176.0" prefHeight="189.0" prefWidth="158.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="a" layoutX="436.0" layoutY="121.0" prefHeight="376.0" prefWidth="198.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <JFXCheckBox layoutX="20.0" layoutY="14.0" text="ps4" />
-            <JFXCheckBox layoutX="20.0" layoutY="46.0" text="ps3" />
-            <JFXCheckBox layoutX="21.0" layoutY="78.0" text="Xbox" />
-            <JFXCheckBox layoutX="20.0" layoutY="111.0" text="wii" />
-            <JFXCheckBox layoutX="19.0" layoutY="145.0" text="Xbox one" />
+            <ListView fx:id="listNomConsole" layoutX="-1.0" layoutY="49.0"  prefHeight="200.0" prefWidth="200.0" />
          </children>
       </Pane>
       <Label layoutX="442.0" layoutY="58.0" prefHeight="30.0" prefWidth="214.0" text="Console Supportée">
@@ -107,6 +103,7 @@
       <Pane id="a" layoutX="695.0" layoutY="138.0" prefHeight="332.0" prefWidth="311.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
             <Label fx:id="labelimage" layoutX="78.0" layoutY="91.0" />
+            <Label fx:id="image" layoutX="77.0" layoutY="82.0" prefHeight="169.0" prefWidth="158.0" />
          </children>
       </Pane>
       <Separator layoutX="649.0" layoutY="125.0" orientation="VERTICAL" prefHeight="376.0" prefWidth="7.0" />

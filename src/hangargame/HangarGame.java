@@ -52,7 +52,7 @@ public class HangarGame extends Application {
     }
     private void showMainView() throws IOException {
     FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/Login.fxml"));
+       loader.setLocation(HangarGame.class.getResource("xml/AffichageAdminActualite.fxml"));
        anchorPane = loader.load();
        Scene scene = new Scene(anchorPane);
        primaryStage.setScene(scene);

@@ -69,7 +69,7 @@
       <ImageView fitHeight="347.0" fitWidth="290.0" layoutX="744.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
       <Pane id="a" layoutX="671.0" layoutY="126.0" prefHeight="385.0" prefWidth="339.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <Label fx:id="labelimage" layoutX="51.0" layoutY="151.0" prefHeight="21.0" prefWidth="238.0" />
+            <Label fx:id="labelimage" layoutX="23.0" layoutY="24.0" prefHeight="321.0" prefWidth="290.0" />
          </children>
       </Pane>
       <Separator layoutX="630.0" layoutY="125.0" orientation="VERTICAL" prefHeight="376.0" prefWidth="7.0" />

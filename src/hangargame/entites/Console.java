@@ -22,6 +22,22 @@ public class Console {
 
     
     private String date_sortie ;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Console(int id, String nom, String image, String description, String date_sortie) {
+        this.id = id;
+        this.nom = nom;
+        this.image = image;
+        this.description = description;
+        this.date_sortie = date_sortie;
+    }
     
     
     public Console()

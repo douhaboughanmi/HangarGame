@@ -10,6 +10,9 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import hangargame.services.CrudJeuxVideo;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -17,11 +20,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -33,6 +40,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AjoutJeuVideoController implements Initializable {
 
      CrudJeuxVideo crud = new CrudJeuxVideo();
+     
+    @FXML
+    private Label image;
+     
     @FXML
     private JFXButton btnJeu = new JFXButton();
 
@@ -57,6 +68,8 @@ public class AjoutJeuVideoController implements Initializable {
     private Label labelgenre = new Label();
     @FXML
     private Label labelimage = new Label();
+    InputStream input;
+  
 
 
 
@@ -109,7 +122,7 @@ public class AjoutJeuVideoController implements Initializable {
 
         }
         else 
-        { crud.ajouterJeuxVideo(titrej, genrej, datej, descj, path, "", "");
+        { crud.ajouterJeuxVideo(titrej, genrej, datej, descj, path, "");
         System.out.println("oui");
         }
        
@@ -128,7 +141,11 @@ public class AjoutJeuVideoController implements Initializable {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-          
+            try {
+               input = new FileInputStream(path);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AjoutJeuVideoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
           
             System.out.println("image");
           //  labelImage.setIcon(imageIcon);
@@ -136,6 +153,14 @@ public class AjoutJeuVideoController implements Initializable {
 
             System.out.println("No Data");
         }
+        
+        ImageView imageView = new ImageView(new Image(input));
+            imageView.setFitHeight(112);
+            imageView.setFitWidth(178);
+
+            image.setGraphic(imageView);
+        
+        
     }
 
 

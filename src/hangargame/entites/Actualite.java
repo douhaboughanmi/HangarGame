@@ -17,8 +17,27 @@ public class Actualite {
     private int id ; 
     private String titre ; 
     private String text ; 
+     private String image ; 
+
+    public int getId() {
+        return id;
+    }
+
+    public Actualite() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Actualite(int id, String titre, String text, String image) {
+        this.id = id;
+        this.titre = titre;
+        this.text = text;
+        this.image = image;
+    }
    
-    private String image ; 
+   
 
     @Override
     public String toString() {

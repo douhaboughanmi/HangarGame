@@ -15,9 +15,10 @@ import javafx.collections.ObservableList;
  * @author mishka
  */
 public interface IJeuxVideoCrud {
-    public void ajouterJeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console, String video_ba);
+    
+    public void ajouterJeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console);
     public void supprimerJeuxVideo(String nom);
-    public void modifierJeuxVideo(JeuxVideo j);
+    public boolean modifierJeuxVideo(JeuxVideo j);
     public ObservableList<JeuxVideo>  afficherJeuxVideo();
     
 }
