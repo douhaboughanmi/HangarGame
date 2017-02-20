@@ -27,12 +27,12 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Evenement" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" onAction="#deplacementEvenementAdmin" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Evenement" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutY="84.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Tournoi" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" layoutY="84.0" onAction="#DeplacementVersTournoi" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Tournoi" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

@@ -7,6 +7,7 @@ package hangargame.entites;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -18,14 +19,14 @@ public class Tournoi {
     private String nom ;
     private String nom_jeu ;
     private int nbr_max ;
-    private String datedebut ;
-    private String datefin ;
+    private LocalDate datedebut ;
+    private LocalDate datefin ;
     private String id_gamer ;
 
     public Tournoi() {
     }
 
-    public Tournoi(int id , String nom, String nom_jeu, int nbr_max, String datedebut, String datefin,String id_gamer) {
+    public Tournoi(int id , String nom, String nom_jeu, int nbr_max, LocalDate datedebut, LocalDate datefin,String id_gamer) {
         this.id=id;
         this.nom = nom;
         this.nom_jeu = nom_jeu;
@@ -51,11 +52,11 @@ public class Tournoi {
         return nbr_max;
     }
 
-    public String getDatedebut() {
+    public LocalDate getDatedebut() {
         return datedebut;
     }
 
-    public String getDatefin() {
+    public LocalDate getDatefin() {
         return datefin;
     }
 
@@ -79,11 +80,11 @@ public class Tournoi {
         this.nbr_max = nbr_max;
     }
 
-    public void setDatedebut(String datedebut) {
+    public void setDatedebut(LocalDate datedebut) {
         this.datedebut = datedebut;
     }
 
-    public void setDatefin(String datefin) {
+    public void setDatefin(LocalDate datefin) {
         this.datefin = datefin;
     }
 

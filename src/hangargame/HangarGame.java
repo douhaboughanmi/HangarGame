@@ -10,11 +10,16 @@
 
 package hangargame;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.types.User;
+import hangargame.entites.Evenement;
 import hangargame.services.EvenementCrud;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -39,7 +44,7 @@ public class HangarGame extends Application {
   this.primaryStage = primaryStage ;
         this.primaryStage.setTitle("Hangar Game");
         showMainView();
-      //  Parent root = FXMLLoader.load(getClass().getResource("xml/MesAnnonces.fxml"));
+       //Parent root = FXMLLoader.load(getClass().getResource("xml/TournoiListe.fxml"));
 
         
        // Scene scene = new Scene(root);
@@ -52,21 +57,36 @@ public class HangarGame extends Application {
     }
     private void showMainView() throws IOException {
     FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/Login.fxml"));
+       loader.setLocation(HangarGame.class.getResource("xml/TournoiListe.fxml"));
        anchorPane = loader.load();
        Scene scene = new Scene(anchorPane);
        primaryStage.setScene(scene);
        primaryStage.show();
     }
     
-    
-    public static void depalcerVersAjoutAnnonce() throws IOException{
+     public static void depalcerVersEvenementGamer() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/AjoutAnnonce.fxml"));
+       loader.setLocation(HangarGame.class.getResource("xml/ListeEvenementGamer.fxml"));
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
+      public static void RetourAccueilEvenement() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+       public static void DeplacerVersTournoi() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/TournoiListe.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
 
+    
+    
     /**
      * The main() method is ignored in correctly deployed JavaFX application.
      * main() serves only as fallback in case the application can not be
@@ -78,10 +98,10 @@ public class HangarGame extends Application {
     public static void main(String[] args) {
         launch(args);
      // Evenement e = new Evenement("Louay","lol","Evenement de la semaine","2017-01-02","2018-12-23") ;
-       EvenementCrud EC = new EvenementCrud();
+       //EvenementCrud EC = new EvenementCrud();
        // EC.ajouterEvenement(e);
         //EC.supprimerEvenement(17);
-        EC.afficherEvenement();
+        //EC.afficherEvenement();
        
     }
     

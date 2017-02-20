@@ -51,8 +51,8 @@ public class TournoiCrud implements ITournoiCrud {
             prepste.setString(1, e.getNom());
             prepste.setString(2, e.getNom_jeu());
             prepste.setInt(3, e.getNbr_max());
-            prepste.setString(4, e.getDatedebut());
-            prepste.setString(5, e.getDatefin());
+            prepste.setDate(4, java.sql.Date.valueOf(e.getDatedebut()));
+            prepste.setDate(5,java.sql.Date.valueOf(e.getDatefin()));
             prepste.setString(6, e.getId_gamer());
             prepste.executeUpdate();
             // System.out.println("Louaaayyy");
@@ -101,7 +101,7 @@ public class TournoiCrud implements ITournoiCrud {
             ResultSet rs = connect.createStatement().executeQuery("select * from tournoi");
             while (rs.next()) {
 
-                data.add(new Tournoi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                data.add(new Tournoi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5).toLocalDate(), rs.getDate(6).toLocalDate(), rs.getString(7)));
             }
         } catch (SQLException ex) {
             System.err.println("Erreur" + ex);
@@ -110,24 +110,6 @@ public class TournoiCrud implements ITournoiCrud {
 
     }
 
-    @Override
-    public ObservableList<Tournoi> RechercherTournoi(String nom) {
-
-        try {
-            String req = "Select * From tournoi WHERE nom = "+nom;
-            prepste = connect.prepareStatement(req);
-            data = FXCollections.observableArrayList();
-            Rs = prepste.executeQuery(req);
-
-            while (Rs.next()) {
-                data.add(new Tournoi(Rs.getInt(1), Rs.getString(2), Rs.getString(3), Rs.getInt(4), Rs.getString(5), Rs.getString(6), Rs.getString(7)));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Tournoi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return data;
-
-    }
+  
 
 }

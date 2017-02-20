@@ -5,18 +5,15 @@
  */
 package hangargame.serviceinterface;
 
-import hangargame.entites.Tournoi;
+import hangargame.entites.Participants;
 import javafx.collections.ObservableList;
 
 /**
  *
  * @author Louay
  */
-public interface ITournoiCrud {
-    public  void ajouterTournoi(Tournoi e);
-    public void supprimerTournoi(int id);
-    public void modifierTournoi(Tournoi e);
-    public ObservableList<Tournoi> afficherTournoi();
-    
-
+public interface IParticipantCrud {
+    public  String ajouterParticipants(Participants e);
+    public ObservableList<String> afficherParticipants(int id);
+    public int recupererParticipant(int id);
 }

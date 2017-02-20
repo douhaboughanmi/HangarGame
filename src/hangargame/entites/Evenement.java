@@ -7,6 +7,7 @@ package hangargame.entites;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import java.util.Objects;
 
@@ -19,14 +20,14 @@ public class Evenement {
     private String nom ;
     private String description ;
     private String adresse ;
-    private String datedebut ;
-    private String datefin ;
+    private LocalDate datedebut ;
+    private LocalDate datefin ;
 
     public Evenement() {
     }
     
 
-    public Evenement(int id ,String nom, String description, String adresse, String datedebut, String datefin) {
+    public Evenement(int id ,String nom, String description, String adresse, LocalDate datedebut, LocalDate datefin) {
         this.id = id ;
         this.nom = nom;
         this.description = description;
@@ -51,11 +52,11 @@ public class Evenement {
         return adresse;
     }
 
-    public String getDatedebut() {
+    public LocalDate getDatedebut() {
         return datedebut;
     }
 
-    public String getDatefin() {
+    public LocalDate getDatefin() {
         return datefin;
     }
 
@@ -75,11 +76,11 @@ public class Evenement {
         this.adresse = adresse;
     }
 
-    public void setDatedebut(String datedebut) {
+    public void setDatedebut(LocalDate datedebut) {
         this.datedebut = datedebut;
     }
 
-    public void setDatefin(String datefin) {
+    public void setDatefin(LocalDate datefin) {
         this.datefin = datefin;
     }
 

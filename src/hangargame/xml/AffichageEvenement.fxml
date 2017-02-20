@@ -12,50 +12,75 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AffichageEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AffichageEvenementController">
    <children>
-      <ImageView fitHeight="683.0" fitWidth="1182.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="628.0" fitWidth="1120.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="205.0" layoutY="45.0" prefHeight="433.0" prefWidth="294.0">
+      <Pane layoutX="800.0" layoutY="90.0" prefHeight="433.0" prefWidth="294.0">
          <children>
-            <JFXTextField fx:id="txtNom" focusColor="GOLDENROD" layoutX="2.0" layoutY="42.0" maxWidth="264.0" minWidth="212.0" prefHeight="37.0" prefWidth="264.0" promptText="Nom Evenement" unFocusColor="WHITE" />
-            <JFXTextField fx:id="txtAdresse" layoutX="-1.0" layoutY="90.0" maxWidth="264.0" minWidth="209.0" prefHeight="37.0" prefWidth="264.0" promptText="Adresse" />
-            <JFXDatePicker fx:id="dateDebut" layoutX="1.0" layoutY="141.0" prefHeight="37.0" prefWidth="264.0" promptText="Date Debut" />
-            <JFXDatePicker fx:id="dateFin" layoutX="1.0" layoutY="186.0" prefHeight="37.0" prefWidth="264.0" promptText="Date Fin" />
-            <JFXTextArea fx:id="areaDescription" layoutX="7.0" layoutY="239.0" maxWidth="279.0" minWidth="266.0" prefWidth="279.0" promptText="Description" />
+            <JFXTextField fx:id="txtNom" focusColor="GOLDENROD" layoutX="2.0" layoutY="42.0" maxWidth="264.0" minWidth="212.0" prefHeight="37.0" prefWidth="264.0" promptText="Nom Evenement" style="-fx-text-inner-color: white;" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtAdresse" layoutX="-1.0" layoutY="90.0" maxWidth="264.0" minWidth="209.0" prefHeight="37.0" prefWidth="264.0" promptText="Adresse" style="-fx-text-inner-color: white;" />
+            <JFXDatePicker fx:id="dateDebut" layoutX="1.0" layoutY="141.0" prefHeight="37.0" prefWidth="264.0" promptText="Date Debut" style="-fx-text-inner-color: white;" />
+            <JFXDatePicker fx:id="dateFin" layoutX="1.0" layoutY="186.0" prefHeight="37.0" prefWidth="264.0" promptText="Date Fin" style="-fx-text-inner-color: white;" />
+            <JFXTextArea fx:id="areaDescription" layoutX="7.0" layoutY="239.0" maxWidth="279.0" minWidth="266.0" prefWidth="279.0" promptText="Description" style="-fx-text-inner-color: black;">
+               <effect>
+                  <DropShadow color="WHITE" />
+               </effect></JFXTextArea>
+            <JFXTextField fx:id="txtId" layoutX="14.0" layoutY="14.0" visible="false" />
          </children>
       </Pane>
-      <TableView fx:id="tableEvenement" layoutX="522.0" layoutY="14.0" prefHeight="462.0" prefWidth="646.0">
+      <TableView fx:id="tableEvenement" layoutX="176.0" layoutY="100.0" onMouseClicked="#show" prefHeight="413.0" prefWidth="592.0">
         <columns>
-          <TableColumn fx:id="colNom" minWidth="0.0" prefWidth="131.0" sortable="false" text="Nom Evenement" />
-            <TableColumn fx:id="colDesc" prefWidth="131.0" sortable="false" text="Description" />
-            <TableColumn fx:id="colAdresse" prefWidth="148.0" sortable="false" text="Adresse" />
-            <TableColumn fx:id="colDateDebut" prefWidth="106.0" sortable="false" text="Date debut" />
-            <TableColumn fx:id="colDateFin" minWidth="0.0" prefWidth="131.0" sortable="false" text="Date fin " />
-            <TableColumn prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="colNom" editable="false" minWidth="0.0" prefWidth="170.0" resizable="false" sortable="false" text="Nom Evenement" />
+            <TableColumn fx:id="colId" prefWidth="75.0" text="Id" visible="false" />
+            <TableColumn fx:id="colAdresse" editable="false" prefWidth="140.0" resizable="false" sortable="false" text="Adresse" />
+            <TableColumn fx:id="colDesc" editable="false" prefWidth="124.0" sortable="false" text="Description" visible="false" />
+            <TableColumn fx:id="colDateDebut" editable="false" minWidth="0.0" prefWidth="148.0" resizable="false" sortable="false" text="Date debut" />
+            <TableColumn fx:id="colDateFin" editable="false" minWidth="0.0" prefWidth="133.0" resizable="false" sortable="false" text="Date fin " />
         </columns>
          <effect>
             <DropShadow color="WHITE" />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="941.0" layoutY="501.0" onAction="#SupprimerEvenement" prefHeight="49.0" prefWidth="227.0" style="-fx-background-color: #daa520;" text="Supprimer" textFill="WHITE">
+      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="408.0" layoutY="532.0" onAction="#SupprimerEvenement" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: #daa520;" text="Supprimer" textFill="WHITE">
          <effect>
             <Bloom threshold="0.65" />
          </effect>
       </JFXButton>
-      <JFXButton fx:id="btnValider" buttonType="RAISED" layoutX="522.0" layoutY="501.0" onAction="#ajout" prefHeight="49.0" prefWidth="227.0" style="-fx-background-color: #daa520;" text="Ajouter" textFill="WHITE">
+      <JFXButton fx:id="btnValider" buttonType="RAISED" layoutX="177.0" layoutY="532.0" onAction="#ajout" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: #daa520;" text="Ajouter" textFill="WHITE">
          <effect>
             <Bloom />
          </effect>
       </JFXButton>
-      <JFXTextField fx:id="txtRe" focusColor="GOLDENROD" layoutX="517.0" layoutY="577.0" maxWidth="654.0" minWidth="422.0" prefHeight="37.0" prefWidth="654.0" promptText="Recherche" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtRe" focusColor="GOLDENROD" layoutX="168.0" layoutY="569.0" maxWidth="654.0" minWidth="422.0" prefHeight="37.0" prefWidth="604.0" promptText="Recherche" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
          <effect>
             <DropShadow color="WHITE" />
          </effect>
       </JFXTextField>
+      <JFXButton fx:id="btnModif" buttonType="RAISED" layoutX="639.0" layoutY="532.0" onAction="#Modifier" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: #daa520;" text="Modifier" textFill="WHITE">
+         <effect>
+            <Bloom />
+         </effect></JFXButton>
+      <Text layoutX="177.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Evenements : " underline="true" wrappingWidth="338.0000183026932">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#977628" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -8,13 +8,16 @@ package hangargame.xml;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.entites.Participants;
 import hangargame.entites.Tournoi;
+import hangargame.services.CrudParticipant;
 import hangargame.services.TournoiCrud;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -27,10 +30,12 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,7 +44,10 @@ import javax.swing.JOptionPane;
  * @author Louay
  */
 public class GestionTournoiController implements Initializable {
-    
+
+    Participants P = new Participants();
+    Tournoi T = new Tournoi();
+
     @FXML
     private JFXTextField txtNomTournoi;
     @FXML
@@ -73,13 +81,15 @@ public class GestionTournoiController implements Initializable {
     private JFXTextField txtRe;
     @FXML
     private JFXButton btnSupprimer;
+    int a;
     @FXML
-    private Label attLabel;
+    private JFXButton btnAffichage;
+
+    int c;
 
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LoadData();
@@ -93,10 +103,9 @@ public class GestionTournoiController implements Initializable {
 
             }
         });
-        
-        
+
     }
-    
+
     void LoadData() {
         TournoiCrud EC = new TournoiCrud();
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -106,29 +115,60 @@ public class GestionTournoiController implements Initializable {
         ColdateFin.setCellValueFactory(new PropertyValueFactory<>("datefin"));
         tableTournoi.setItems(null);
         tableTournoi.setItems(EC.afficherTournoi());
-        
+
     }
-    
+
     @FXML
     private void ajout(ActionEvent event) {
-        Tournoi e = new Tournoi();
-        e.setNom(txtNomTournoi.getText());
-        e.setNom_jeu(txtNomJeu.getText());
-        int num = Integer.parseInt(nbrMax.getText());
-        e.setNbr_max(num);
-        e.setDatedebut(dateDebut.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        e.setDatefin(dateFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        TournoiCrud crud = new TournoiCrud();
-        crud.ajouterTournoi(e);
-        LoadData();
-        txtNomTournoi.clear();
-        txtNomJeu.clear();
-        nbrMax.clear();
-        dateDebut.setValue(null);
-        dateFin.setValue(null);
-        
+        try {
+            Tournoi e = new Tournoi();
+            TournoiCrud crud = new TournoiCrud();
+            String a = txtNomTournoi.getText();
+            String b = txtNomJeu.getText();
+            try {
+                c = Integer.parseInt(nbrMax.getText());
+            } catch (NumberFormatException j) {
+
+            }
+            String d = String.valueOf(c);
+            LocalDate dt = dateDebut.getValue();
+            LocalDate ds = dateFin.getValue();
+            if (0 == c || d.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alerte");
+                alert.setHeaderText(null);
+                alert.setContentText("Entrez un nombre de Gamers ");
+                alert.showAndWait();
+            } else if (!a.isEmpty() && !b.isEmpty() && ds.isAfter(dt)) {
+
+                e.setNom(a);
+                e.setNom_jeu(b);
+                e.setNbr_max(c);
+                e.setDatedebut(dt);
+                e.setDatefin(ds);
+                crud.ajouterTournoi(e);
+                LoadData();
+                txtNomTournoi.clear();
+                txtNomJeu.clear();
+                nbrMax.clear();
+                dateDebut.setValue(null);
+                dateFin.setValue(null);
+            } else {
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alerte");
+                alert.setHeaderText(null);
+                alert.setContentText("Entrez vos informations");
+
+                alert.showAndWait();
+            }
+
+        } catch (Exception e) {
+            System.err.println("Erreur");
+        }
+
     }
-    
+
     @FXML
     private void SupprimerTournoi(ActionEvent event) {
         int i;
@@ -136,30 +176,58 @@ public class GestionTournoiController implements Initializable {
         TournoiCrud EC = new TournoiCrud();
         i = tableTournoi.getSelectionModel().getSelectedItem().getId();
         EC.supprimerTournoi(i);
-        LoadData();
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alerte");
+                alert.setHeaderText(null);
+                alert.setContentText("Tournoi Supprimer Avec Succés !!");
+
+                alert.showAndWait();
         
+        LoadData();
+
     }
-    
-    
+
     public void filterTournoiList(String oldValue, String newValue) {
         ObservableList<Tournoi> filteredList = FXCollections.observableArrayList();
-        if(txtRe == null || (newValue.length() < oldValue.length()) || newValue == null) {
-            
+        if (txtRe == null || (newValue.length() < oldValue.length()) || newValue == null) {
+
             tableTournoi.setItems(data);
             LoadData();
-        }
-        else {
+        } else {
             newValue = newValue.toUpperCase();
-            for(Tournoi t : tableTournoi.getItems()) {
+            for (Tournoi t : tableTournoi.getItems()) {
                 String filterFirstName = t.getNom();
                 String filterLastName = t.getNom_jeu();
-                if(filterFirstName.toUpperCase().contains(newValue) || filterLastName.toUpperCase().contains(newValue)) {
+                if (filterFirstName.toUpperCase().contains(newValue) || filterLastName.toUpperCase().contains(newValue)) {
                     filteredList.add(t);
                 }
             }
             tableTournoi.setItems(filteredList);
         }
     }
-     
-    
+
+    @FXML
+    private void afficherParticpant(ActionEvent event) {
+        try {
+
+            CrudParticipant CP = new CrudParticipant();
+            Tournoi T = tableTournoi.getSelectionModel().getSelectedItem();
+            a = T.getId();
+            ObservableList<String> C = CP.afficherParticipants(a);
+            String A = C.toString();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Liste Participants");
+            alert.setHeaderText(null);
+            alert.setContentText(A);
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alerte");
+            alert.setHeaderText(null);
+            alert.setContentText("Vous devez sélectionner un Tournoi");
+            alert.showAndWait();
+        }
+    }
+
 }

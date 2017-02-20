@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -27,6 +28,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -71,6 +73,13 @@ public class AffichageEvenementController implements Initializable {
     private JFXButton btnValider;
     @FXML
     private JFXTextField txtRe;
+    @FXML
+    private JFXButton btnModif;
+    @FXML
+    private JFXTextField txtId;
+    @FXML
+    private TableColumn<?, ?> colId;
+    
 
     /**
      * Initializes the controller class.
@@ -83,6 +92,7 @@ public class AffichageEvenementController implements Initializable {
         PreparedStatement prepste;
         LoadData();
         txtRe.textProperty().addListener(new ChangeListener() {
+            @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 filterEvenementList((String) oldValue, (String) newValue);
 
@@ -117,34 +127,86 @@ public class AffichageEvenementController implements Initializable {
 
     @FXML
     private void ajout(ActionEvent event) {
+        areaDescription.setWrapText(true);
         Evenement e = new Evenement();
-        e.setNom(txtNom.getText());
-        e.setAdresse(areaDescription.getText());
-        e.setDescription(txtAdresse.getText());
-        e.setDatedebut(dateDebut.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        e.setDatefin(dateFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        String a = txtNom.getText();
+        String b = areaDescription.getText();
+        String c = txtAdresse.getText();
+        LocalDate dt = dateDebut.getValue();
+        LocalDate de = dateFin.getValue();
+        e.setNom(a);
+        e.setAdresse(b);
+        e.setDescription(c);
+        e.setDatedebut(dt);
+        e.setDatefin(de);
         EvenementCrud crud = new EvenementCrud();
-        crud.ajouterEvenement(e);
+        
+        
+        if(dt.isBefore(de) && !a.isEmpty() && !b.isEmpty())
+        {
+         crud.ajouterEvenement(e);
         LoadData();
+        txtNom.clear();
+        areaDescription.clear();
+        txtAdresse.clear();
+        dateDebut.setValue(null);
+        dateFin.setValue(null);
+        }
+        else
+        {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("Vérifier vos informations");
+        alert.showAndWait(); 
+        }
+       
     }
-     public void filterEvenementList(String oldValue, String newValue) {
+
+    public void filterEvenementList(String oldValue, String newValue) {
         ObservableList<Evenement> filteredList = FXCollections.observableArrayList();
-        if(txtRe == null || (newValue.length() < oldValue.length()) || newValue == null) {
-            
+        if (txtRe == null || (newValue.length() < oldValue.length()) || newValue == null) {
+
             tableEvenement.setItems(data);
             LoadData();
-        }
-        else {
+        } else {
             newValue = newValue.toUpperCase();
-            for(Evenement t : tableEvenement.getItems()) {
-                String filterFirstName = t.getNom();
-                String filterLastName = t.getAdresse();
-                if(filterFirstName.toUpperCase().contains(newValue) || filterLastName.toUpperCase().contains(newValue)) {
+            for (Evenement t : tableEvenement.getItems()) {
+                String filterNom = t.getNom();
+                String filterAdresse = t.getAdresse();
+                if (filterNom.toUpperCase().contains(newValue) || filterAdresse.toUpperCase().contains(newValue)) {
                     filteredList.add(t);
                 }
             }
             tableEvenement.setItems(filteredList);
         }
     }
-      
+
+    @FXML
+    private void show(MouseEvent event) {
+        Evenement e = tableEvenement.getSelectionModel().getSelectedItem();
+
+        txtId.setText(Integer.toString(e.getId()));
+        txtNom.setText(e.getNom());
+        txtAdresse.setText(e.getAdresse());
+        areaDescription.setText(e.getDescription());
+        areaDescription.setWrapText(true);
+        dateDebut.setValue(e.getDatedebut());
+        dateFin.setValue(e.getDatefin());
+
+    }
+
+    @FXML
+    private void Modifier(ActionEvent event) {
+        Evenement e = new Evenement();
+        e.setId(Integer.parseInt(txtId.getText()));
+        e.setNom(txtNom.getText());
+        e.setAdresse(areaDescription.getText());
+        e.setDescription(txtAdresse.getText());
+        e.setDatedebut(dateDebut.getValue());
+        e.setDatefin(dateFin.getValue());
+        EvenementCrud crud = new EvenementCrud();
+        crud.modifierEvenement(e);
+        LoadData();
+    }
+
 }

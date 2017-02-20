@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Bloom?>
@@ -19,16 +21,16 @@
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="336.0" layoutY="51.0" prefHeight="393.0" prefWidth="264.0">
+      <Pane layoutX="791.0" layoutY="60.0" prefHeight="337.0" prefWidth="264.0">
          <children>
-            <JFXTextField fx:id="txtNomTournoi" focusColor="GOLDENROD" layoutX="35.0" layoutY="48.0" promptText="Nom Tournoi" unFocusColor="WHITE" />
-            <JFXTextField fx:id="txtNomJeu" layoutX="35.0" layoutY="107.0" promptText="Nom Jeu" />
-            <JFXTextField fx:id="nbrMax" layoutX="35.0" layoutY="160.0" promptText="Nombre Gamers" />
-            <JFXDatePicker fx:id="dateDebut" layoutX="35.0" layoutY="220.0" promptText="Date Debut" />
-            <JFXDatePicker fx:id="dateFin" layoutX="35.0" layoutY="274.0" promptText="Date Fin " />
+            <JFXTextField fx:id="txtNomTournoi" focusColor="GOLDENROD" layoutX="35.0" layoutY="48.0" promptText="Nom Tournoi" style="-fx-text-inner-color: white;" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtNomJeu" layoutX="35.0" layoutY="107.0" promptText="Nom Jeu" style="-fx-text-inner-color: white;" />
+            <JFXTextField fx:id="nbrMax" layoutX="35.0" layoutY="160.0" promptText="Nombre Gamers" style="-fx-text-inner-color: white;" />
+            <JFXDatePicker fx:id="dateDebut" layoutX="35.0" layoutY="220.0" promptText="Date Debut" style="-fx-text-inner-color: white;" />
+            <JFXDatePicker fx:id="dateFin" layoutX="35.0" layoutY="274.0" promptText="Date Fin " style="-fx-text-inner-color: white;" />
          </children>
       </Pane>
-      <TableView fx:id="tableTournoi" layoutX="622.0" layoutY="86.0" prefHeight="322.0" prefWidth="536.0">
+      <TableView fx:id="tableTournoi" layoutX="214.0" layoutY="98.0" prefHeight="322.0" prefWidth="536.0" style="-fx-border-color: white;">
         <columns>
           <TableColumn fx:id="colId" prefWidth="75.0" text="Id" visible="false" />
           <TableColumn fx:id="colNom" prefWidth="109.0" sortable="false" text="Nom Tournoi" />
@@ -41,15 +43,37 @@
             <DropShadow color="WHITE" />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnValider" buttonType="RAISED" layoutX="624.0" layoutY="455.0" onAction="#ajout" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Valider" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton fx:id="btnValider" buttonType="RAISED" layoutX="214.0" layoutY="455.0" onAction="#ajout" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Valider" textAlignment="CENTER" textFill="WHITE">
+         <effect>
+            <Bloom threshold="0.65" />
+         </effect>
+      </JFXButton>
+      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="550.0" layoutY="455.0" onAction="#SupprimerTournoi" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Supprimer" textAlignment="CENTER" textFill="WHITE">
          <effect>
             <Bloom />
          </effect>
-      </JFXButton>
-      <JFXButton fx:id="btnSupprimer" buttonType="RAISED" layoutX="869.0" layoutY="455.0" onAction="#SupprimerTournoi" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #daa520;" text="Supprimer" textAlignment="CENTER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXTextField fx:id="txtRe" layoutX="214.0" layoutY="516.0" maxWidth="536.0" minWidth="446.0" prefHeight="37.0" prefWidth="536.0" promptText="Recherche" style="-fx-text-inner-color: white;" />
+      <JFXButton fx:id="btnAffichage" layoutX="214.0" layoutY="570.0" onAction="#afficherParticpant" prefHeight="37.0" prefWidth="536.0" style="-fx-background-color: #daa520;" text="Afficher Participant" textFill="WHITE">
+         <effect>
+            <Bloom threshold="0.61" />
+         </effect></JFXButton>
+      <Separator layoutX="772.0" layoutY="94.0" orientation="VERTICAL" prefHeight="524.0" prefWidth="22.0">
          <effect>
             <Bloom />
-         </effect></JFXButton>
-      <JFXTextField fx:id="txtRe" layoutX="623.0" layoutY="521.0" maxWidth="446.0" minWidth="446.0" prefHeight="37.0" prefWidth="446.0" promptText="Recherche" />
+         </effect>
+      </Separator>
+      <Separator layoutX="783.0" layoutY="384.0" prefHeight="15.0" prefWidth="388.0">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+      </Separator>
+      <ImageView fitHeight="242.0" fitWidth="234.0" layoutX="865.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/visuel_1.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
