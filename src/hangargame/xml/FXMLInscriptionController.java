@@ -33,7 +33,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.controlsfx.control.Notifications;
+
 
 /**
  * FXML Controller class
@@ -278,14 +278,7 @@ public class FXMLInscriptionController implements Initializable {
          
           //  Image img = new Image("images/TickConfirmation.png");
              hangargame.xml.LoginController.LoginStatic = TF_IoginIns.getText();
-            Notifications notificationBuilder = Notifications.create()
-                     .title("Inscription réussite "+TF_IoginIns.getText())
-                     .text("Vous allez recevoir un code de validation sur votre E-mail")
-                     .graphic(null)
-                    .hideAfter(Duration.seconds(5))
-                    .position(Pos.TOP_RIGHT);
-            notificationBuilder.darkStyle();
-            notificationBuilder.show();
+            
       
             
         }

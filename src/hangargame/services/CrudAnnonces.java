@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.utils.SendMail;
+import hangargame.xml.AccueilAnnonceController;
 import hangargame.xml.LoginController;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +23,10 @@ import java.sql.Blob;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -52,8 +57,8 @@ public class CrudAnnonces {
     public void ajouterAnnonces(Annonces a
     ) {
 
-        String req1 = " insert into annonces (nomAnnonces, typeAnnonces, consoleAnnonces, descriptionAnnonces, prixAnnonces,imageAnnonces,emailGamer)"
-                + " values (?, ?, ?, ?, ?,?,?)";
+        String req1 = " insert into annonces (nomAnnonces, typeAnnonces, consoleAnnonces, descriptionAnnonces, prixAnnonces,imageAnnonces,emailGamer,pathImage)"
+                + " values (?, ?, ?, ?, ?,?,?,?)";
 
         try {
 
@@ -65,9 +70,17 @@ public class CrudAnnonces {
             prepste.setInt(5, a.getPrix());
             prepste.setBlob(6, a.getInputStream());
             prepste.setString(7, "LoginController.LoginStatic");
+            prepste.setString(8, a.getPathImage());
             prepste.executeUpdate();
             System.out.println("c'est fait");
 
+            tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Consulter votre boite mail");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.POPUP);
+            tr.showAndDismiss(Duration.seconds(4));
+            
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,7 +92,7 @@ public class CrudAnnonces {
     public void modifierAnnonces(Annonces a) {
 
         String req1 = "UPDATE annonces SET nomAnnonces = ?, typeAnnonces = ?,prixAnnonces=?"
-                + ",descriptionAnnonces=?,imageAnnonces=?"
+                + ",descriptionAnnonces=?,imageAnnonces=? ,pathImage=?"
                 + " WHERE idAnnonces = ?";
 
         try {
@@ -91,9 +104,10 @@ public class CrudAnnonces {
             prepste.setString(4, a.getDescriptionAnnonces());
 
             prepste.setBlob(5, a.getInputStream());
-            prepste.setInt(6, a.getIdAnnonces());
+            prepste.setString(6, a.getPathImage());
+            prepste.setInt(7, a.getIdAnnonces());
             prepste.executeUpdate();
-            System.out.println("c'est fait");
+            System.out.println("hig");
 
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,11 +148,12 @@ public class CrudAnnonces {
                 String nomA = rs.getString("nomAnnonces");
                 String typeAnnonces = rs.getString("typeAnnonces");
                 int prixAnnonces = rs.getInt("prixAnnonces");
+                int id = rs.getInt("idAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
 
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -163,12 +178,13 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 String console = rs.getString("consoleAnnonces");
                 String desc = rs.getString("descriptionAnnonces");
-
+                String path = rs.getString("pathImage");
+                String gamer = rs.getString("emailGamer");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
 
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(idAnnonces, nomA, typeAnnonces, console, desc, prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(idAnnonces, nomA, typeAnnonces, console, desc, prixAnnonces, inputStream,gamer,path);
                 list.add(annonces);
 
             }
@@ -194,9 +210,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -222,9 +238,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -250,9 +266,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -278,9 +294,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -306,9 +322,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -334,9 +350,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -362,9 +378,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -390,9 +406,9 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
-
+int id = rs.getInt("idAnnonces");
                 InputStream inputStream = image.getBinaryStream();
-                Annonces annonces = new Annonces(nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
+                Annonces annonces = new Annonces(id,nomA, typeAnnonces, "", "", prixAnnonces, inputStream);
                 list.add(annonces);
 
             }
@@ -410,7 +426,7 @@ public class CrudAnnonces {
         try {
 
             prepste = connect.prepareStatement(query);
-            prepste.setInt(1, 17);
+            prepste.setInt(1,Integer.parseInt(AccueilAnnonceController.indexAnnonce));
             ResultSet rs = prepste.executeQuery();
 
             while (rs.next()) {
@@ -420,13 +436,14 @@ public class CrudAnnonces {
                 int prixAnnonces = rs.getInt("prixAnnonces");
                 String console = rs.getString("consoleAnnonces");
                 String desc = rs.getString("descriptionAnnonces");
-                String amer = rs.getString("emailGamer");
+                String gamer = rs.getString("emailGamer");
+                
 
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
                 Blob image = rs.getBlob("imageAnnonces");
 
                 InputStream inputStream = image.getBinaryStream();
-                annoncees = new Annonces(idAnnonces, nomA, typeAnnonces, console, desc, prixAnnonces, inputStream, amer);
+                annoncees = new Annonces(idAnnonces, nomA, typeAnnonces, console, desc, prixAnnonces,inputStream, gamer);
 
             }
         } catch (SQLException ex) {
@@ -437,104 +454,50 @@ public class CrudAnnonces {
 
     }
 
-    public void ajouterAnnoncesFavoris() {
+    public Annonces reccupererAnnonce2() {
 
-        String req1 = " insert into favoris (login,idAnnonce)"
-                + " values (?, ?)";
+        String query = "Select * from annonces where idAnnonces=?";
 
         try {
 
-            prepste = connect.prepareStatement(req1);
-            prepste.setString(1, "LoginController.LoginStatic");
-            prepste.setInt(2, 5);
-            prepste.executeUpdate();
-            System.out.println("c'est fait");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //SendMail sendMail = new SendMail();
-        //  sendMail.send();
-    }
-
-    public void signalerAnnonce() {
-
-        String req0 = "Select idSignalisation,nbrSignalisation from Signalisation where idObjet=? AND typeSignalisation= ? ";
-        try {
-            prepste = connect.prepareStatement(req0);
-            prepste.setInt(1, 1);
-            prepste.setString(2, "Echange");
+            prepste = connect.prepareStatement(query);
+            prepste.setInt(1,Integer.parseInt(AccueilAnnonceController.indexAnnonce));
             ResultSet rs = prepste.executeQuery();
+
             while (rs.next()) {
-                nbrSignalisation = rs.getInt("nbrSignalisation");
-                idSignalisation = rs.getInt("idSignalisation");
-                System.out.println("test" + nbrSignalisation + idSignalisation);
+                int idAnnonces = rs.getInt("idAnnonces");
+                String nomA = rs.getString("nomAnnonces");
+                String typeAnnonces = rs.getString("typeAnnonces");
+                int prixAnnonces = rs.getInt("prixAnnonces");
+                String console = rs.getString("consoleAnnonces");
+                String desc = rs.getString("descriptionAnnonces");
+                String gamer = rs.getString("emailGamer");
+                String pathImage = rs.getString("pathImage");
+
+                //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
+                Blob image = rs.getBlob("imageAnnonces");
+
+                InputStream inputStream = image.getBinaryStream();
+                annoncees = new Annonces(idAnnonces, nomA, typeAnnonces, console, desc, prixAnnonces,inputStream, gamer,pathImage);
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("wwwwwwwwww" + annoncees);
+        return annoncees;
 
-        if (nbrSignalisation == 4) {
-
-            String req1 = "Delete  from Signalisation where idSignalisation = ?";
-
-            try {
-
-                prepste = connect.prepareStatement(req1);
-                prepste.setInt(1, idSignalisation);
-
-                prepste.executeUpdate();
-                System.out.println("c'est fait");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else if (nbrSignalisation == 0) {
-            String req1 = "INSERT INTO Signalisation(idObjet,typeSignalisation,gamerSignale,nbrSignalisation) "
-                    + "VALUES (?,?,?,?)";
-
-            try {
-                prepste = connect.prepareStatement(req1);
-                prepste.setInt(1, 1);
-                prepste.setString(2, "Echange");
-                prepste.setString(3, "mayssa");
-                prepste.setInt(4, nbrSignalisation + 1);
-                prepste.executeUpdate();
-                System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-            } catch (SQLException ex) {
-                Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-
-            String req1
-                    = //" INSERT INTO Signalisation(idObjet,typeSignalisation,gamerSignale,nbrSignalisation) "
-                    //+ "VALUES (?,?,?,?)";
-                    "UPDATE Signalisation SET idObjet = ?, typeSignalisation = ?,gamerSignale=?"
-                    + ",nbrSignalisation=?"
-                    + " WHERE idObjet = ?";
-
-            try {
-
-                prepste = connect.prepareStatement(req1);
-                prepste.setInt(1, 1);
-                prepste.setString(2, "Echange");
-                prepste.setString(3, "mayssa");
-                prepste.setInt(4, nbrSignalisation + 1);
-                prepste.setInt(5, 1);
-                prepste.executeUpdate();
-                System.out.println("c'est fait");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        //SendMail sendMail = new SendMail();
-        //  sendMail.send();
     }
+    
+    
+    
+    
+    
+    
+    
+    
+   
+
+    
 
 }

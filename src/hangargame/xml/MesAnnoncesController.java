@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -42,16 +41,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author mayss
  */
-public class MesAnnoncesController implements Initializable {
+public class MesAnnoncesController implements Initializable  {
 
     /**
      * Initializes the controller class.
      */
-        @FXML
+    @FXML
     private TableView<Annonces> tableAnnonce;
 
     @FXML
-    private TableColumn<Annonces,String> colNomAnnonce;
+    private TableColumn<Annonces, String> colNomAnnonce;
 
     @FXML
     private TableColumn<Annonces, String> colTypeAnnonce;
@@ -64,10 +63,10 @@ public class MesAnnoncesController implements Initializable {
 
     @FXML
     private TableColumn<Annonces, String> colDescriptionAnnonce;
-    
+
     private ObservableList<Annonces> data;
-    
-     @FXML
+
+    @FXML
     private JFXTextField nomMesAnnonces;
 
     @FXML
@@ -81,14 +80,29 @@ public class MesAnnoncesController implements Initializable {
 
     @FXML
     private Label imageMesAnnonces;
-    String path="" ;
-    
-    InputStream inputStream ;
-    int ID ;
-    
+    String path = "";
+
+    InputStream inputStream;
+    int ID;
+
     HangarGame hangar = new HangarGame();
+    Annonces annonces = new Annonces();
     
-          @FXML
+      @FXML
+    private Label lblTitre;
+
+    @FXML
+    private Label lblPrix;
+
+    @FXML
+    private Label lblDesc;
+
+     int prix =0;
+     
+     
+     
+     
+    @FXML
     void selectImage(ActionEvent event) {
 
         JFileChooser fileChooser = new JFileChooser();
@@ -100,117 +114,156 @@ public class MesAnnoncesController implements Initializable {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
             try {
-                 inputStream = new FileInputStream(path);
-                 ImageView imageView = new ImageView(new Image(inputStream));
-                 imageView.setFitHeight(122);
-                 imageView.setFitWidth(178);
-                 
-                 imageMesAnnonces.setGraphic(imageView);
+                inputStream = new FileInputStream(path);
+                ImageView imageView = new ImageView(new Image(inputStream));
+                imageView.setFitHeight(122);
+                imageView.setFitWidth(178);
+
+                imageMesAnnonces.setGraphic(imageView);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(AjoutAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
+
             System.out.println("image");
-          //  labelImage.setIcon(imageIcon);
+            //  labelImage.setIcon(imageIcon);
         } else if (result == JFileChooser.CANCEL_OPTION) {
 
             System.out.println("No Data");
         }
-        
+
     }
 
-        @FXML
-      void showOnclick(MouseEvent event) {
-        Annonces annonces = tableAnnonce.getSelectionModel().getSelectedItem();
-        annonces.toString();
-        ID=annonces.getIdAnnonces();
+    @FXML
+    void showOnclick(MouseEvent event) throws FileNotFoundException {
+        PrixMesAnnonces.setText("");
+
+        annonces = tableAnnonce.getSelectionModel().getSelectedItem();
+       
+        ID = annonces.getIdAnnonces();
+        System.out.println(ID);
         nomMesAnnonces.setText(annonces.getNomAnnonces());
-        PrixMesAnnonces.setText(""+annonces.getPrix());
+        PrixMesAnnonces.setText("" + annonces.getPrix());
         descMesAnnonces.setText(annonces.getDescriptionAnnonces());
         typeMesAnnonces.setValue(new Label(annonces.getTypeAnnonces()));
-        inputStream=annonces.getInputStream();
-        ImageView imageView = new ImageView(new Image(annonces.getInputStream()));
-            imageView.setFitHeight(112);
-            imageView.setFitWidth(178);
+         path = annonces.getPathImage();
+        
+        InputStream inputStream2 = new FileInputStream(path);
+        ImageView imageView = new ImageView(new Image(inputStream2));
+        imageView.setFitHeight(107);
+        imageView.setFitWidth(148);
 
-            imageMesAnnonces.setGraphic(imageView);
+        imageMesAnnonces.setGraphic(imageView);
     }
-    
+
     @FXML
     void modifierMesAnnonces(ActionEvent event) {
+
+        String nomA = nomMesAnnonces.getText();
+        String prixA = PrixMesAnnonces.getText();
+        String desc = descMesAnnonces.getText();
+        String typeA = typeMesAnnonces.getValue().getText();
         
-     String nomA=   nomMesAnnonces.getText();
-       String prixA= PrixMesAnnonces.getText();
-      String desc=  descMesAnnonces.getText();
-       String typeA= typeMesAnnonces.getValue().getText();
-     InputStream  inputStrea;
-     
+        
+       if(nomA.isEmpty()){
+        lblTitre.setText("Champ manquant");}
+         if(prixA.isEmpty()){
+         lblPrix.setText("champ manquant");
+        }if(prixA.isEmpty()==false){
             try {
-             
-               inputStream = new FileInputStream(path);
-                System.out.println(path);
-                 Annonces annonces = new Annonces(ID,nomA, typeA, "", desc,Integer.parseInt(prixA), inputStream );
+            prix =Integer.parseInt(prixA);
+        } catch (Exception e) {
+                System.out.println("numeric");
+                lblPrix.setText("only numeric number supported");
+        }
+         }
+         if(desc.isEmpty()){
+         lblDesc.setText("Champ manquant");}
          
-       CrudAnnonces crud = new CrudAnnonces();
-       crud.modifierAnnonces(annonces);
-       
-        data=FXCollections.observableArrayList();
+         if(!nomA.isEmpty()){
+        lblTitre.setText("");}
+         if(!prixA.isEmpty()){
+         lblPrix.setText("");
         
-      data.addAll(crud.reccupererSimple2());
-      
-      colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces" ));
-      colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces" ));
-      colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
-      colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
-      colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
-       tableAnnonce.setItems(null);
-        tableAnnonce.setItems(data);
+         }
+         if(!desc.isEmpty()){
+         lblDesc.setText("");}  
+         
+         
+        if ((prix!=0) && (nomA.isEmpty()==false) && (desc.isEmpty()==false)) {
+            try {
+                System.out.println("wwwwiwww");
+                inputStream = new FileInputStream(path);
+                System.out.println(path);
+                Annonces annonces = new Annonces(ID, nomA, typeA, ""
+                        , desc, prix, inputStream,"",path);
+
+                CrudAnnonces crud = new CrudAnnonces();
+                crud.modifierAnnonces(annonces);
+
+              data = FXCollections.observableArrayList();
+
+                data.addAll(crud.reccupererSimple2());
+
+                colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces"));
+                colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces"));
+                colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
+                colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
+                colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
+                tableAnnonce.setItems(null);
+                tableAnnonce.setItems(data);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(MesAnnoncesController.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            }
+        } 
+
     }
 
-    
-     
-    
+    @FXML
+    void retourAcceuil(ActionEvent event) throws IOException {
+        HangarGame hangarGame = new HangarGame();
+        hangarGame.depalcerVersAcceuil();
+    }
 
     @FXML
     void supprimerMesAnnonces(ActionEvent event) {
- 
-         Annonces annonces = new Annonces(ID,"", "", "", "",0, null );
-         CrudAnnonces crud = new CrudAnnonces();
-         crud.supprimerAnnonces(annonces);
-         
-          data=FXCollections.observableArrayList();
-        
-      data.addAll(crud.reccupererSimple2());
-      
-      colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces" ));
-      colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces" ));
-      colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
-      colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
-      colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
-       tableAnnonce.setItems(null);
+
+        Annonces annonces = new Annonces(ID, "", "", "", "", 0, null);
+        CrudAnnonces crud = new CrudAnnonces();
+        crud.supprimerAnnonces(annonces);
+
+        data = FXCollections.observableArrayList();
+
+        data.addAll(crud.reccupererSimple2());
+
+        colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces"));
+        colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces"));
+        colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
+        colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
+        tableAnnonce.setItems(null);
         tableAnnonce.setItems(data);
-         
+
     }
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        data=FXCollections.observableArrayList();
+        
+        
+        
+        
+        data = FXCollections.observableArrayList();
         CrudAnnonces crud = new CrudAnnonces();
-      data.addAll(crud.reccupererSimple2());
-      
-      colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces" ));
-      colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces" ));
-      colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
-      colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
-      colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
-       tableAnnonce.setItems(null);
+        data.addAll(crud.reccupererSimple2());
+        typeMesAnnonces.getItems().add(new Label("Echange"));
+        typeMesAnnonces.getItems().add(new Label("Vente"));
+        colNomAnnonce.setCellValueFactory(new PropertyValueFactory<>("nomAnnonces"));
+        colTypeAnnonce.setCellValueFactory(new PropertyValueFactory<>("typeAnnonces"));
+        colConsoleAnnonce.setCellValueFactory(new PropertyValueFactory<>("consoleAnnonces"));
+        colPrixAnnonce.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        colDescriptionAnnonce.setCellValueFactory(new PropertyValueFactory<>("descriptionAnnonces"));
+        tableAnnonce.setItems(null);
         tableAnnonce.setItems(data);
-    }    
-    
+    }
+
 }

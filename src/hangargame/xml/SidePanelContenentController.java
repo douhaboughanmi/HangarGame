@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -23,11 +22,7 @@ import javafx.scene.layout.VBox;
  * @author lenovo
  */
 public class SidePanelContenentController implements Initializable {
-    HangarGame hg = new HangarGame();
-
-    @FXML
-    private VBox drawer;
-
+HangarGame hangar = new HangarGame();
     /**
      * Initializes the controller class.
      */
@@ -35,15 +30,16 @@ public class SidePanelContenentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void deplacementEvenementAdmin(ActionEvent event) throws IOException {
-        hg.depalcerVersEvenementGamer();  }
-
-    @FXML
-    private void DeplacementVersTournoi(ActionEvent event) throws IOException {
-        hg.DeplacerVersTournoi();
-    }
  
-   
+       @FXML
+    void deplacerMesAnnonces(ActionEvent event) throws IOException {
+hangar.depalcerVersAMesAnnonce();
+    }
+    
+     @FXML
+    void depalcerVersMesFavoris(ActionEvent event) throws IOException {
+hangar.depalcerVersAMesFavoris();
+    }
+    
+    
 }

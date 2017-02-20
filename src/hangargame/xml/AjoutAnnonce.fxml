@@ -60,7 +60,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="81.0" prefHeight="29.0" prefWidth="88.0" text="PS3" textFill="WHITE">
+            <JFXRadioButton fx:id="radioPS3" layoutX="521.0" layoutY="81.0" prefHeight="29.0" prefWidth="88.0" text="PS3" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -68,7 +68,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="112.0" text="PS4" textFill="WHITE">
+            <JFXRadioButton fx:id="radioPS4" layoutX="521.0" layoutY="112.0" text="PS4" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -76,7 +76,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="138.0" text="Xbox 360" textFill="WHITE">
+            <JFXRadioButton fx:id="radioXbox360" layoutX="521.0" layoutY="138.0" text="Xbox 360" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -84,7 +84,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="162.0" text="Xbox One" textFill="WHITE">
+            <JFXRadioButton fx:id="radioXboxOne" layoutX="521.0" layoutY="162.0" text="Xbox One" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -92,7 +92,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="185.0" text="Wi U" textFill="WHITE">
+            <JFXRadioButton fx:id="radioWiU" layoutX="521.0" layoutY="185.0" text="Wi U" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -100,7 +100,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="b" layoutX="521.0" layoutY="206.0" text="PS Vita" textFill="WHITE">
+            <JFXRadioButton fx:id="radioPsVita" layoutX="521.0" layoutY="206.0" text="PS Vita" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
@@ -173,9 +173,14 @@
                   <Bloom threshold="0.77" />
                </effect>
             </JFXButton>
+            <Label fx:id="labelChoix" layoutX="528.0" layoutY="239.0" textFill="#d00808">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Hyperlink layoutX="51.0" layoutY="26.0" prefHeight="29.0" prefWidth="107.0" text="Les annonces" textFill="#4fb978">
+      <Hyperlink layoutX="51.0" layoutY="26.0" onAction="#deplacerVersAcceuilAnnonce" prefHeight="29.0" prefWidth="107.0" text="Les annonces" textFill="#4fb978">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

@@ -35,7 +35,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="decriptionAnnonce" layoutX="27.0" layoutY="271.0" prefHeight="146.0" prefWidth="287.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" textFill="WHITE">
+            <Label fx:id="decriptionAnnonce" layoutX="27.0" layoutY="271.0" prefHeight="146.0" prefWidth="251.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" textFill="WHITE">
                <font>
                   <Font name="Century" size="15.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Image url="@../images/shareFB.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="ShareFB" layoutX="365.0" layoutY="337.0" onAction="#signalisation" prefHeight="45.0" prefWidth="41.0" text=" " />
+            <JFXButton fx:id="ShareFB" layoutX="365.0" layoutY="337.0" onAction="#partagez" prefHeight="45.0" prefWidth="41.0" text=" " />
             <Text fill="WHITE" layoutX="413.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partager sur facebook" wrappingWidth="98.61327346414328">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -131,9 +131,15 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
+            <ImageView fitHeight="56.0" fitWidth="82.0" layoutX="739.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pdf.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="732.0" layoutY="13.0" onAction="#extrairPDF" prefHeight="56.0" prefWidth="61.0" text="   " />
          </children>
       </Pane>
-      <Hyperlink layoutX="49.0" layoutY="20.0" prefHeight="29.0" prefWidth="107.0" text="Les annonces" textFill="#4fb978">
+      <Hyperlink layoutX="49.0" layoutY="20.0" onAction="#retourVersAccueilAnnonce" prefHeight="29.0" prefWidth="107.0" text="Les annonces" textFill="#4fb978">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

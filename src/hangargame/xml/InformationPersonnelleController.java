@@ -34,7 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.controlsfx.control.Notifications;
+
 
 /**
  * FXML Controller class
@@ -168,14 +168,7 @@ public class InformationPersonnelleController implements Initializable {
       LCon.setText("Vos information ont été modifié ");
              //Image img = new Image("C:/Users/lenovo/Documents/NetBeansProjects/HangarGame/src/hangargame/imagesTickConfirmation.png");
 
-            Notifications notificationBuilder = Notifications.create()
-                     .title("Modification réussite")
-                     .text("Bienvenue sur Hangar Game "+loginStat)
-                     .graphic(null)
-                    .hideAfter(Duration.seconds(5))
-                    .position(Pos.TOP_RIGHT);
-            notificationBuilder.darkStyle();
-            notificationBuilder.show();
+           
                     
                }
        } catch (FileNotFoundException ex) {

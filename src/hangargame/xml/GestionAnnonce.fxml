@@ -4,9 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -17,14 +15,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.MesAnnoncesController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.GestionAnnonceController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane id="pane2" fx:id="pane2" layoutX="555.0" layoutY="97.0" prefHeight="451.0" prefWidth="478.0" stylesheets="@../css/AcceuilAnnonce.css">
+      <TableView fx:id="tableAnnonce" layoutX="14.0" layoutY="66.0" onMouseClicked="#show" prefHeight="290.0" prefWidth="542.0" stylesheets="@../css/tableView.css">
+         <columns>
+            <TableColumn fx:id="colNomAnnonce" prefWidth="121.0" text="Nom Annonce" />
+            <TableColumn fx:id="colTypeAnnonce" prefWidth="137.0" text="Type de l'annonce" />
+            <TableColumn fx:id="colPrix" minWidth="0.0" prefWidth="82.0" text="Prix" />
+            <TableColumn fx:id="colConsole" prefWidth="101.0" text="Console" />
+            <TableColumn fx:id="colDescription" prefWidth="100.0" text="Description" />
+         </columns>
+      </TableView>
+      <Pane id="pane2" fx:id="pane2" layoutX="575.0" layoutY="66.0" prefHeight="451.0" prefWidth="478.0" stylesheets="@../css/AcceuilAnnonce.css">
          <children>
             <JFXTextField fx:id="nomMesAnnonces" focusColor="#4fb978" layoutX="249.0" layoutY="34.0" maxWidth="212.0" minWidth="212.0" prefHeight="31.0" prefWidth="212.0" text="aaaaaaaaaa" unFocusColor="WHITE" />
             <JFXTextField fx:id="PrixMesAnnonces" focusColor="#4fb978" layoutX="253.0" layoutY="74.0" maxWidth="200.0" minWidth="149.0" prefHeight="31.0" prefWidth="200.0" unFocusColor="WHITE" />
@@ -33,27 +40,33 @@
             <JFXRadioButton layoutX="259.0" layoutY="181.0" text="PC" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <JFXRadioButton layoutX="259.0" layoutY="208.0" text="PS4" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <JFXRadioButton layoutX="259.0" layoutY="235.0" text="PS3" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <JFXRadioButton layoutX="355.0" layoutY="179.0" text="PS Vita" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <JFXRadioButton layoutX="356.0" layoutY="207.0" text="Xbox One" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <JFXRadioButton layoutX="356.0" layoutY="234.0" text="Xbox 360" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></JFXRadioButton>
+               </font>
+            </JFXRadioButton>
             <Text fill="#4fb978" layoutX="172.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :" wrappingWidth="53.150386057794094">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -80,68 +93,53 @@
                   <Image url="@../images/addImageAnnonce.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="10.0" layoutY="127.0" onAction="#selectImage" prefHeight="46.0" prefWidth="53.0" text=" " />
+            <JFXButton layoutX="10.0" layoutY="127.0" prefHeight="46.0" prefWidth="53.0" text=" " />
             <Text fill="WHITE" layoutX="54.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier" wrappingWidth="81.91406607627869">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <Separator layoutX="4.0" layoutY="2.0" prefHeight="0.0" prefWidth="470.0" />
-            <Separator layoutX="4.0" layoutY="450.0" prefHeight="0.0" prefWidth="470.0" />
-            <JFXButton layoutX="87.0" layoutY="434.0" onAction="#supprimerMesAnnonces" prefHeight="29.0" prefWidth="103.0" style="-fx-background-color: daa520;" text="Supprimer" textFill="WHITE">
+            <JFXButton layoutX="188.0" layoutY="436.0" onAction="#supprimerMesAnnonces" prefHeight="29.0" prefWidth="103.0" style="-fx-background-color: daa520;" text="Supprimer" textFill="WHITE">
                <font>
                   <Font name="Century" size="15.0" />
                </font>
             </JFXButton>
-            <Separator layoutX="475.0" layoutY="2.0" orientation="VERTICAL" prefHeight="451.0" prefWidth="5.0" />
             <Label fx:id="lblTitre" layoutX="258.0" layoutY="56.0" text=" " textFill="#ff0b0b">
                <font>
                   <Font name="System Bold" size="15.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label fx:id="lblPrix" layoutX="258.0" layoutY="112.0" textFill="RED">
                <font>
                   <Font name="System Bold" size="15.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label fx:id="lblDesc" layoutX="260.0" layoutY="371.0" text=" " textFill="RED">
                <font>
                   <Font size="15.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Hyperlink layoutX="31.0" layoutY="30.0" onAction="#retourAcceuil" prefHeight="29.0" prefWidth="103.0" text="Mon compte" textFill="#4fb978">
+      <Text fill="WHITE" layoutX="64.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier" wrappingWidth="81.91406607627869">
          <font>
             <Font name="System Bold" size="15.0" />
-         </font>
-      </Hyperlink>
-      <Text fill="#f2fff1" layoutX="135.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
-         <font>
-            <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="155.0" layoutY="31.0" prefHeight="29.0" prefWidth="124.0" text="Mes annonces" textFill="#4fb978">
+      <Label fx:id="lblTitre" layoutX="268.0" layoutY="66.0" text=" " textFill="#ff0b0b">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
-      </Hyperlink>
-      <TableView fx:id="tableAnnonce" layoutX="31.0" layoutY="95.0" onMouseClicked="#showOnclick" prefHeight="227.0" prefWidth="484.0" stylesheets="@../css/tableView.css">
-         <columns>
-            <TableColumn fx:id="colNomAnnonce" prefWidth="131.0" text="Nom des annonces" />
-            <TableColumn fx:id="colTypeAnnonce" prefWidth="145.0" text="Type de l'annonce" />
-            <TableColumn fx:id="colConsoleAnnonce" minWidth="0.0" prefWidth="84.0" text="Console " />
-            <TableColumn fx:id="colPrixAnnonce" prefWidth="123.0" text="Prix de l'annonce" />
-            <TableColumn fx:id="colDescriptionAnnonce" prefWidth="91.0" text="Description" />
-         </columns>
-      </TableView>
-      <JFXButton layoutX="843.0" layoutY="533.0" onAction="#modifierMesAnnonces" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: daa520;" text="Modifier" textFill="WHITE">
+      </Label>
+      <Label fx:id="lblPrix" layoutX="268.0" layoutY="122.0" textFill="RED">
          <font>
-            <Font name="Century" size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
-      </JFXButton>
-      <Separator layoutX="556.0" layoutY="98.0" orientation="VERTICAL" prefHeight="451.0" prefWidth="5.0" />
-      <ImageView fitHeight="192.0" fitWidth="284.0" layoutX="100.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wejh.png" />
-         </image>
-      </ImageView>
+      </Label>
+      <Label fx:id="lblDesc" layoutX="270.0" layoutY="381.0" text=" " textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

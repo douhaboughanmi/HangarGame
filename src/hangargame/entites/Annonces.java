@@ -21,6 +21,27 @@ public class Annonces {
     private int prix;
     private InputStream inputStream;
     private String gamer ;
+    private String pathImage;
+
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
+    public Annonces(int idAnnonces, String nomAnnonces, String typeAnnonces, String consoleAnnonces, String descriptionAnnonces, int prix, InputStream inputStream, String gamer, String pathImage) {
+        this.idAnnonces = idAnnonces;
+        this.nomAnnonces = nomAnnonces;
+        this.typeAnnonces = typeAnnonces;
+        this.consoleAnnonces = consoleAnnonces;
+        this.descriptionAnnonces = descriptionAnnonces;
+        this.prix = prix;
+        this.inputStream = inputStream;
+        this.gamer = gamer;
+        this.pathImage = pathImage;
+    }
 
     public String getGamer() {
         return gamer;
@@ -63,7 +84,7 @@ public class Annonces {
     }
     
 
-    public Annonces(String nomAnnonces,String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix ,InputStream inputStream) {
+    public Annonces(String nomAnnonces,String typeAnnonces,String consoleAnnonces,String descriptionAnnonces, int prix ,InputStream inputStream ,String path) {
        
         this.nomAnnonces = nomAnnonces;
         this.typeAnnonces = typeAnnonces;
@@ -71,6 +92,7 @@ public class Annonces {
         this.descriptionAnnonces=descriptionAnnonces;
         this.prix = prix;
         this.inputStream=inputStream;
+        this.pathImage=path;
     }
 
     public InputStream getInputStream() {
