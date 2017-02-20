@@ -7,10 +7,12 @@ package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Evenement;
 import hangargame.entites.VideoTest;
 import hangargame.services.VideoTestCrud;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,6 +70,11 @@ public class VideoTestBackController implements Initializable {
     
         @FXML
     private JFXTextField rechVideo;
+         @FXML
+    private JFXButton btnback;
+         
+    @FXML
+    private Hyperlink listcom;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,7 +86,7 @@ public class VideoTestBackController implements Initializable {
         
           rechVideo.textProperty().addListener(new ChangeListener() {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                filterEvenementList((String) oldValue, (String) newValue);
+                filtertList((String) oldValue, (String) newValue);
                 
 
             }
@@ -113,7 +121,7 @@ public class VideoTestBackController implements Initializable {
     }
      
      
-       public void filterEvenementList(String oldValue, String newValue) {
+       public void filtertList(String oldValue, String newValue) {
         ObservableList<VideoTest> filteredList = FXCollections.observableArrayList();
         if (rechVideo == null || (newValue.length() < oldValue.length()) || newValue == null) {
 
@@ -130,6 +138,17 @@ public class VideoTestBackController implements Initializable {
             }
             listeVideo.setItems(filteredList);
         }
+    }
+       
+           @FXML
+    void consulterCommentaire(ActionEvent event) throws IOException {
+         HangarGame h = new HangarGame();
+        h.depalcerVersCommentaireBack();
+
+    }
+           @FXML
+    void back(ActionEvent event) {
+
     }
 
 }

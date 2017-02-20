@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -65,15 +66,34 @@
             </LinearGradient>
          </fill>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="893.0" layoutY="496.0" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #daa520;" text="retour">
+      <JFXButton buttonType="RAISED" layoutX="851.0" layoutY="413.0" onAction="#ajoutVideo" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #daa520;" text="ajouter">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="707.0" layoutY="444.0" onAction="#ajoutVideo" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #daa520;" text="ajouter">
+      <ImageView fitHeight="77.0" fitWidth="87.0" layoutX="876.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnback" layoutX="889.0" layoutY="495.0" onAction="#back" prefHeight="52.0" prefWidth="52.0" text="Button" textFill="#00000007" />
+      <Text fill="WHITE" layoutX="366.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
-      </JFXButton>
+      </Text>
+      <Hyperlink fx:id="listvid" layoutX="386.0" layoutY="23.0" onAction="#deplacerverslistevid" text="Liste des vidéo tests">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#86f80d" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Hyperlink>
    </children>
 </AnchorPane>

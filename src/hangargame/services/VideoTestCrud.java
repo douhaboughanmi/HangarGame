@@ -3,13 +3,16 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.VideoTest;
 import hangargame.serviceinterface.ICrudVideoTest;
+import hangargame.xml.LoginController;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -26,6 +29,8 @@ public class VideoTestCrud implements ICrudVideoTest{
      Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+    List<VideoTest> list = new ArrayList<>();
+    String loginStat=LoginController.LoginStatic;
     
     public VideoTestCrud (){
         
@@ -96,18 +101,17 @@ public class VideoTestCrud implements ICrudVideoTest{
         
          try {
            
+             String req3 = "UPDATE video_test SET nom=? , description=? ,genre=?,console=? where id=? ";
              
-             String req3="UPDATE video_test SET id=?"
-                     + "nom=?"
-                     + "url=?"
-                     + "description=?"
-                     + "date=?" ;
              
              prepste = connect.prepareStatement(req3);
              prepste.setString(1,v.getNom_videoTest());
-             prepste.setString(2,v.getUrl_videoTest());
-             prepste.setString(3, v.getDescription_videoTest());
-             prepste.setTimestamp(4, v.getDate_videoTest());
+            // prepste.setString(2,v.getUrl_videoTest());
+             prepste.setString(2, v.getDescription_videoTest());
+             //prepste.setTimestamp(4, v.getDate_videoTest());
+             prepste.setString(3, v.getGenre_videoTest());
+             prepste.setString(4, v.getConsole_videoTest());
+              prepste.setInt(5, v.getId_videoTest());
              
              
              prepste.executeUpdate();
@@ -120,8 +124,8 @@ public class VideoTestCrud implements ICrudVideoTest{
     }
 
     @Override
-    public void afficher() {
-        
+    public List<VideoTest> afficher() {
+        list.clear();
         
            String req4= "select * from video_test";
           
@@ -130,17 +134,28 @@ public class VideoTestCrud implements ICrudVideoTest{
              
              ResultSet res  =ste.executeQuery(req4);
              while (res.next()) {
-                 System.out.println(
-                         ": "+ res.getString("nom")+" "+
-                           "url: "+ res.getString("url")+" "+
-                           "description: "+ res.getString("description")+" "+
-                         "date :" +res.getDate("date"));
+                 
+                 
+             int i = res.getInt("id");
+                         String a = res.getString("nom");
+                         String b = res.getString("url");
+                         String c = res.getString("description");
+                         Timestamp d = res.getTimestamp("date");
+                         String e = res.getString("genre");
+                         String f = res.getString("console");
+                         String g = res.getString("user");
+                         
+                         
+                         VideoTest v = new VideoTest(i,a, b, c,d ,e, f,g);
+                         list.add(v);
                  
                  
                  
              }    } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
-         }}
+         }
+    return list;
+    }
          
          public ObservableList<VideoTest>  afficherVideoTest(){
          
@@ -160,6 +175,27 @@ public class VideoTestCrud implements ICrudVideoTest{
          
          
          }
+         
+         public ObservableList<VideoTest>  afficherVideoTestUser(String loginStat){
+         
+         
+          try {
+            Connection connect;
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            ResultSet rs = connect.createStatement().executeQuery("select id , nom , url , description , date , genre , console from video_test where user ='marwen' ");
+            while (rs.next()) {
+                data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur" + ex);
+        }
+        return data;
+         
+         
+         }
+         
+         
     
 
     

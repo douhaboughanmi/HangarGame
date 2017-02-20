@@ -8,11 +8,13 @@ package hangargame.xml;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Evenement;
 import hangargame.entites.VideoEnDirect;
 import hangargame.entites.VideoTest;
 import hangargame.services.VideoEnDirectCrud;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,6 +89,9 @@ public class VideoDirectBackController implements Initializable {
     
     @FXML
     private Label labelid;
+    
+    @FXML
+    private JFXButton btnback;
     
     private int ID;
 
@@ -228,6 +233,12 @@ public class VideoDirectBackController implements Initializable {
             LoadData();
         
   }
+    }
+    
+    
+    @FXML
+    void back(ActionEvent event) throws IOException {
+       
     }
 
 }

@@ -57,13 +57,13 @@ public class HangarGame extends Application {
     }
     private void showMainView() throws IOException {
     FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/TournoiListe.fxml"));
+       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
        anchorPane = loader.load();
        Scene scene = new Scene(anchorPane);
        primaryStage.setScene(scene);
        primaryStage.show();
     }
-    
+ //louay//   
      public static void depalcerVersEvenementGamer() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
        loader.setLocation(HangarGame.class.getResource("xml/ListeEvenementGamer.fxml"));
@@ -84,6 +84,109 @@ public class HangarGame extends Application {
     }
     
     
+    
+    
+    //marwen//
+      public static void depalcerVersAccueil() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    public static void depalcerlistedesvideoTest() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AjoutVideoTest.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    public static void depalcerVideotest() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/listedesvideoDirect.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    public static void depalcerUserVideoTest() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/UserVideoTest.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    public static void depalcerVersLive() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/VideoEnDirect.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+     public static void depalcerVersVideoTest() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/listedesvideoDirect.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+     public static void depalcerVersCommentaireBack() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/CommentaireVideoTestBack.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+      public static void depalcerVerslisteVideoBack() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/VideoTestBack.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+      //halim//
+      
+      public static void depalcerVersAjoutAnnonce() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AjoutAnnonce.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+
+    
+    public static void depalcerVersAccueilAnnonce() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AccueilAnnonce.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    public static void depalcerVersAnnonceDetail() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AnnonceDetail.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    public static void depalcerVersAMesAnnonce() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/MesAnnonces.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    public static void depalcerVersAMesFavoris() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/MesFavoris.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    
+    public static void depalcerVersAcceuil() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
 
     
     

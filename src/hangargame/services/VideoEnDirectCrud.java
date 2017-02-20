@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -26,6 +28,7 @@ public class VideoEnDirectCrud implements ICrudVideoEnDirect {
     Statement ste;
     PreparedStatement prepste;
       private ObservableList<VideoEnDirect> data;
+      List<VideoEnDirect> list = new ArrayList<>();
 
     public VideoEnDirectCrud() {
 
@@ -96,22 +99,28 @@ public class VideoEnDirectCrud implements ICrudVideoEnDirect {
     }
 
     @Override
-    public void afficher() {
+    public List<VideoEnDirect> afficher() {
 
         try {
             String req4 = "select * from video_direct";
 
-            ResultSet res = ste.executeQuery(req4);
-            while (res.next()) {
-                System.out.println(
-                        "nom: " + res.getString("nom") + " "
-                        + "url: " + res.getString("url") + " "
-                        + "description: " + res.getString("description"));
+           
+             ResultSet res  =ste.executeQuery(req4);
+             while (res.next()) {
+             
+                         String a = res.getString("nom");
+                         String b = res.getString("url");
+                         String c = res.getString("description");
+                       
+                         
+                         VideoEnDirect v = new VideoEnDirect(a, b, c);
+                         list.add(v);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VideoEnDirectCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return list;
+       
     }
      public ObservableList<VideoEnDirect>  afficherVideoEnDirect(){
           try {

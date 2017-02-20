@@ -9,14 +9,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.entites.VideoTest;
 import hangargame.services.VideoTestCrud;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -72,6 +75,9 @@ public class AjoutVideoTestController implements Initializable {
     private Label labelgenre;
     @FXML
     private Label labeldesc;
+    @FXML
+    private Hyperlink listvid;
+  
 
     VideoTestCrud crud = new VideoTestCrud();
     String loginStat=LoginController.LoginStatic;
@@ -174,14 +180,14 @@ public class AjoutVideoTestController implements Initializable {
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("mp3", "mp4");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("mp4", "mp4");
         fileChooser.addChoosableFileFilter(filter);
         int result = fileChooser.showSaveDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
 
-            System.out.println("image");
+            System.out.println("video");
             //  labelImage.setIcon(imageIcon);
         } else if (result == JFileChooser.CANCEL_OPTION) {
 
@@ -193,6 +199,22 @@ public class AjoutVideoTestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+      @FXML
+    void deplacerverslistevid(ActionEvent event) throws IOException {
+        HangarGame h = new HangarGame();
+        h.depalcerVideotest();
+
+    }
+
+    
+     @FXML
+    void back(ActionEvent event) throws IOException {
+        HangarGame h = new HangarGame();
+        h.depalcerVersAccueil();
+         
+
     }
 
 }

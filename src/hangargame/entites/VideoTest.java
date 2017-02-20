@@ -19,6 +19,39 @@ public class VideoTest {
     public VideoTest() {
     }
 
+    public VideoTest(int id_videoTest, String nom_videoTest, String description_videoTest, String genre_videoTest, String console_videoTest) {
+        this.id_videoTest = id_videoTest;
+        this.nom_videoTest = nom_videoTest;
+        this.description_videoTest = description_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
+    }
+
+    
+    
+    
+
+    public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest) {
+        this.id_videoTest = id_videoTest;
+        this.nom_videoTest = nom_videoTest;
+        this.url_videoTest = url_videoTest;
+        this.description_videoTest = description_videoTest;
+        this.date_videoTest = date_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
+    }
+    
+    
+
+    public VideoTest(String nom_videoTest, String url_videoTest, String description_videoTest, String genre_videoTest, String console_videoTest, String user_videoTest) {
+        this.nom_videoTest = nom_videoTest;
+        this.url_videoTest = url_videoTest;
+        this.description_videoTest = description_videoTest;
+        this.genre_videoTest = genre_videoTest;
+        this.console_videoTest = console_videoTest;
+        this.user_videoTest = user_videoTest;
+    }
+
     public VideoTest(int id_videoTest, String nom_videoTest, String url_videoTest, String description_videoTest, Timestamp date_videoTest, String genre_videoTest, String console_videoTest, String user_videoTest) {
         this.id_videoTest = id_videoTest;
         this.nom_videoTest = nom_videoTest;

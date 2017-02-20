@@ -35,10 +35,25 @@ HangarGame hangar = new HangarGame();
     void deplacerMesAnnonces(ActionEvent event) throws IOException {
 hangar.depalcerVersAMesAnnonce();
     }
-    
-     @FXML
-    void depalcerVersMesFavoris(ActionEvent event) throws IOException {
+//    
+    @FXML
+   void depalcerVersMesFavoris(ActionEvent event) throws IOException {
 hangar.depalcerVersAMesFavoris();
+    }
+    
+    
+       @FXML
+    void deplacerVersVideoTest(ActionEvent event) throws IOException {
+        HangarGame h = new HangarGame();
+        h.depalcerVersVideoTest();
+
+    }
+
+    @FXML
+    void deplacerVerslive(ActionEvent event) throws IOException {
+          HangarGame h = new HangarGame();
+        h.depalcerVersLive();
+
     }
     
     

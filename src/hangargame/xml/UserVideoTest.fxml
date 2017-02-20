@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.UserVideoTestController">
+   <children>
+      <ImageView fitHeight="667.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="62.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes vidéos tests">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6bfc0a" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="249.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="toutVideo" layoutX="276.0" layoutY="24.0" onAction="#afficherVideo" text="Liste des vidéos tests">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#61f506" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Hyperlink>
+      <Pane id="ba" layoutX="520.0" layoutY="134.0" prefHeight="337.0" prefWidth="492.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <TableView fx:id="listevideo" layoutX="41.0" layoutY="37.0" onMouseClicked="#selectionner" prefHeight="268.0" prefWidth="414.0">
+              <columns>
+                <TableColumn fx:id="nomvid" prefWidth="75.0" text="titre vidéo" />
+                  <TableColumn fx:id="descvid" minWidth="0.0" prefWidth="120.0" text="description" />
+                  <TableColumn fx:id="genrevid" minWidth="0.0" prefWidth="108.0" text="genre" />
+                  <TableColumn fx:id="consolevid" prefWidth="109.0" text="console" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <JFXButton fx:id="btnmodif" buttonType="RAISED" layoutX="190.0" layoutY="494.0" onAction="#modifier" prefHeight="45.0" prefWidth="94.0" style="-fx-background-color: #daa520;" text="modifier">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="btnsup" buttonType="RAISED" layoutX="719.0" layoutY="494.0" onAction="#supprimer" prefHeight="45.0" prefWidth="94.0" style="-fx-background-color: #daa520;" text="supprimer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Separator layoutX="470.0" layoutY="124.0" orientation="VERTICAL" prefHeight="352.0" prefWidth="10.0" />
+      <Pane id="ba" layoutX="78.0" layoutY="131.0" prefHeight="337.0" prefWidth="343.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <JFXTextField fx:id="nom" layoutX="21.0" layoutY="24.0" maxWidth="301.0" minWidth="301.0" prefHeight="32.0" prefWidth="301.0" promptText="titre vidéo" />
+            <Label fx:id="labelnom" layoutX="28.0" layoutY="66.0" prefHeight="17.0" prefWidth="301.0" />
+            <JFXTextField fx:id="desc" layoutX="26.0" layoutY="94.0" maxWidth="301.0" minWidth="175.0" prefHeight="31.0" prefWidth="301.0" promptText="description" />
+            <Label fx:id="labeldesc" layoutX="31.0" layoutY="134.0" prefHeight="17.0" prefWidth="301.0" />
+            <JFXTextField fx:id="genre" layoutX="28.0" layoutY="176.0" maxWidth="327.0" minWidth="301.0" prefHeight="31.0" prefWidth="301.0" promptText="genre" />
+            <Label fx:id="labelgenre" layoutX="31.0" layoutY="226.0" prefHeight="17.0" prefWidth="301.0" />
+            <JFXTextField fx:id="console" layoutX="26.0" layoutY="253.0" maxWidth="301.0" minWidth="301.0" prefHeight="31.0" prefWidth="301.0" promptText="console" />
+            <Label fx:id="labelconsole" layoutX="28.0" layoutY="290.0" prefHeight="17.0" prefWidth="301.0" />
+         </children></Pane>
+      <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="964.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnback" layoutX="967.0" layoutY="513.0" onAction="#back" prefHeight="45.0" prefWidth="52.0" textFill="#00000006" />
+      <JFXTextField fx:id="rech" layoutX="617.0" layoutY="100.0" maxWidth="236.0" minWidth="236.0" prefHeight="31.0" prefWidth="236.0" promptText="rechercher" />
+      <ImageView fitHeight="24.0" fitWidth="27.0" layoutX="841.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/recherche.png" />
+         </image></ImageView>
+      <Label fx:id="labid" layoutX="429.0" layoutY="116.0" />
+   </children>
+</AnchorPane>

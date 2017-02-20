@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.ListedesvideoDirectController">
+   <children>
+      <ImageView fitHeight="616.0" fitWidth="1096.0" layoutX="-2.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Pane id="ba" layoutX="58.0" layoutY="70.0" prefHeight="468.0" prefWidth="476.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <JFXListView fx:id="listvideo" layoutX="87.0" layoutY="70.0" onMouseClicked="#load" prefHeight="369.0" prefWidth="316.0" />
+            <Text layoutX="160.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des vidéos Tests">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#84eb77" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+         </children>
+      </Pane>
+      <Pane id="ba" layoutX="552.0" layoutY="70.0" prefHeight="468.0" prefWidth="476.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <MediaView fx:id="mv" fitHeight="200.0" fitWidth="200.0" layoutX="131.0" layoutY="29.0" scaleX="2.0" />
+            <JFXListView fx:id="listecom" layoutX="31.0" layoutY="229.0" prefHeight="148.0" prefWidth="400.0" />
+            <TextArea fx:id="textcom" layoutX="31.0" layoutY="377.0" prefHeight="59.0" prefWidth="400.0" promptText="commentaire" />
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="62.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pause.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="120.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/fast.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="181.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/slow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="49.0" layoutX="243.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reload.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="287.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/start.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="350.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/last.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="62.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/play.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="413.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/social-icons.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnplay" cache="true" layoutY="171.0" onAction="#play" prefHeight="44.0" prefWidth="62.0" text="play" textFill="#00000006" />
+            <JFXButton fx:id="btnfpause" layoutX="58.0" layoutY="171.0" onAction="#pause" prefHeight="44.0" prefWidth="62.0" text="pause" textFill="#00000003" />
+            <JFXButton fx:id="btnlast" layoutX="350.0" layoutY="173.0" onAction="#last" prefHeight="38.0" prefWidth="61.0" text="last" textFill="#00000004" />
+            <JFXButton fx:id="btnstart" layoutX="287.0" layoutY="170.0" onAction="#start" prefHeight="44.0" prefWidth="62.0" text="start" textFill="#00000002" />
+            <JFXButton fx:id="btnreload" layoutX="243.0" layoutY="173.0" onAction="#reload" prefHeight="44.0" prefWidth="44.0" text="reload" textFill="#00000004" />
+            <JFXButton fx:id="btnslow" layoutX="184.0" layoutY="171.0" onAction="#slow" prefHeight="44.0" prefWidth="61.0" text="slow" textFill="#00000001" />
+            <JFXButton fx:id="btnfast" layoutX="123.0" layoutY="173.0" onAction="#fast" prefHeight="38.0" prefWidth="61.0" text="fast" textFill="#00000004" />
+            <JFXButton fx:id="btnpartage" layoutX="414.0" layoutY="173.0" onAction="#partage" prefHeight="38.0" prefWidth="61.0" text="fast" textFill="#00000004" />
+            <JFXButton fx:id="btnajoutcom" layoutX="377.0" layoutY="436.0" onAction="#ajouter" style="-fx-background-color: #daa520;" text="ajouter" />
+         </children>
+      </Pane>
+      <Separator layoutX="534.0" layoutY="65.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="18.0" />
+      <Text layoutX="81.0" layoutY="46.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Nos Vidéos Tests " wrappingWidth="143.13671875">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#62f531" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="966.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnback" layoutX="968.0" layoutY="553.0" onAction="#back" prefHeight="31.0" prefWidth="44.0" textFill="#00000004" />
+      <Text layoutX="225.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;" />
+      <Text fill="WHITE" layoutX="220.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="ajoutVid" layoutX="240.0" layoutY="21.0" onAction="#ajoutVideo" text="Ajouter un vidéo Test">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4aee03" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="mesVid" layoutX="58.0" layoutY="542.0" onAction="#consulterVIdeo" text="Mes vidéos Tests">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4ff203" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>

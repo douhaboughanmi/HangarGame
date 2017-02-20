@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -13,17 +15,27 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.VideoEnDirectController">
    <children>
-      <ImageView fitHeight="617.0" fitWidth="1082.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-16.0" AnchorPane.topAnchor="-1.0">
+      <ImageView fitHeight="674.0" fitWidth="1333.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="485.0" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #daa520;" text="retour">
+      <ImageView fitHeight="69.0" fitWidth="67.0" layoutX="1040.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="67.0" fitWidth="55.0" layoutX="961.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/live.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnback" buttonType="RAISED" layoutX="1046.0" layoutY="581.0" onAction="#back" prefHeight="67.0" prefWidth="55.0" style="-fx-background-colo: ;" text="retour" textFill="#00000004">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <Text layoutX="40.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vidéo en direct">
+      <Text layoutX="44.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vidéo en direct">
          <font>
             <Font size="24.0" />
          </font>
@@ -36,12 +48,30 @@
             </LinearGradient>
          </fill>
       </Text>
-      <WebView fx:id="web" layoutX="491.0" layoutY="103.0" prefHeight="352.0" prefWidth="407.0" />
-      <MediaView fx:id="med" fitHeight="200.0" fitWidth="200.0" layoutX="120.0" layoutY="127.0" />
-      <JFXButton fx:id="btnweb" buttonType="RAISED" layoutX="326.0" layoutY="485.0" onAction="#openWeb" prefHeight="43.0" prefWidth="114.0" style="-fx-background-color: #daa520;" text="web">
+      <JFXButton fx:id="btnweb" buttonType="RAISED" layoutX="961.0" layoutY="605.0" onAction="#openWeb" prefHeight="43.0" prefWidth="55.0" text="web" textFill="TRANSPARENT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
+      <Pane id="ba" layoutX="390.0" layoutY="121.0" prefHeight="460.0" prefWidth="772.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <WebView fx:id="web" layoutX="35.0" layoutY="22.0" prefHeight="409.0" prefWidth="694.0" />
+         </children>
+      </Pane>
+      <Separator layoutX="355.0" layoutY="121.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="0.0" />
+      <JFXListView fx:id="listvideo" layoutX="81.0" layoutY="182.0" onMouseClicked="#load" prefHeight="316.0" prefWidth="248.0" />
+      <Text layoutX="101.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des video en direct">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6ff204" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package hangargame.serviceinterface;
 
 import hangargame.entites.VideoEnDirect;
+import hangargame.entites.VideoTest;
+import java.util.List;
 
 
 
@@ -22,7 +19,7 @@ public interface ICrudVideoEnDirect {
 
     public void modifier(VideoEnDirect v);
 
-    public void afficher();
+    public List<VideoEnDirect> afficher();
 
     
 }
