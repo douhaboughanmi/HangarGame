@@ -187,7 +187,13 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
-
+//  HAMZA
+    public static void depalcerVersAffichageSujetsl() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AffichageSujets.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
     
     
     /**

@@ -18,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="anacrosujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
    <children>
-      <ImageView fx:id="btnaddsjt" fitHeight="600.0" fitWidth="1067.0">
+      <ImageView fx:id="btnaddsjt" fitHeight="600.0" fitWidth="1038.0" layoutY="-1.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
@@ -57,19 +57,7 @@
       <Pane layoutX="516.0" layoutY="180.0" opacity="0.28" prefHeight="237.0" prefWidth="505.0" style="-fx-background-color: #D3CCFF;" />
       <JFXListView fx:id="listehistorique" layoutX="534.0" layoutY="202.0" prefHeight="187.0" prefWidth="468.0" />
       <Separator layoutX="492.0" layoutY="104.0" orientation="VERTICAL" prefHeight="480.0" prefWidth="15.0" />
-      <JFXButton layoutX="520.0" layoutY="477.0" prefHeight="35.0" prefWidth="91.0" textFill="TRANSPARENT">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="91.0">
-               <image>
-                  <Image url="@../images/chart.png" />
-               </image>
-            </ImageView>
-         </graphic></JFXButton>
-      <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="763.0" layoutY="476.0">
-         <image>
-            <Image url="@../images/rating.png" />
-         </image>
-      </ImageView>
+      <JFXButton fx:id="statis" layoutX="520.0" layoutY="477.0" onAction="#affichStat" prefHeight="67.0" prefWidth="142.0" textFill="TRANSPARENT" />
       <ImageView fitHeight="45.0" fitWidth="54.0" layoutX="948.0" layoutY="476.0">
          <image>
             <Image url="@../images/AlertSignalisationGamer.png" />
@@ -143,5 +131,15 @@
       </Label>
       <Separator layoutX="516.0" layoutY="455.0" prefHeight="12.0" prefWidth="505.0" />
       <Separator layoutX="516.0" layoutY="582.0" prefHeight="2.0" prefWidth="505.0" />
+      <ImageView fitHeight="45.0" fitWidth="54.0" layoutX="753.0" layoutY="476.0">
+         <image>
+            <Image url="@../../../../Copie%20PIDEV/ver%2015020237/HangarGame/src/hangargame/images/rating.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stat" fitHeight="45.0" fitWidth="122.0" layoutX="519.0" layoutY="476.0">
+         <image>
+            <Image url="@../../../../Copie%20PIDEV/ver%2015020237/HangarGame/src/hangargame/images/chart.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

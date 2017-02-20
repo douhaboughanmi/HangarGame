@@ -6,26 +6,27 @@
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import hangargame.entites.Sujet;
 import hangargame.services.CrudSujet;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -41,34 +42,38 @@ public class AffichageSujetsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         LoadData();
+        notif();
+        
+       
+        
+
     }
     CrudSujet crs = new CrudSujet();
     MouseEvent evnt;
-    Stage s ;
 
+    CrudSujet cs = new CrudSujet();
+    ArrayList<String> LS = new ArrayList<>();
+    
+    String nom;
+    Font arial ;
     @FXML
     private AnchorPane recherche;
+    
 
     @FXML
-    private TableView<Sujet> table;
+    private Label titre;
+
+     @FXML
+    private JFXTextArea contenue;
 
     @FXML
-    private TableColumn<Sujet, String> A;
+    private Label auteur;
 
     @FXML
-    private TableColumn<Sujet, String> B;
+    private Label date;
 
     @FXML
-    private TableColumn<Sujet, Timestamp> C;
-
-    @FXML
-    private TableColumn<Sujet, String> D;
-
-    @FXML
-    private TableColumn<Sujet, String> E;
-
-    @FXML
-    private TableColumn<Sujet, Integer> F;
+    private Label categorie;
 
     @FXML
     private JFXButton search;
@@ -79,61 +84,100 @@ public class AffichageSujetsController implements Initializable {
     private JFXTextField champsRech;
 
     @FXML
-    String choisirSujet(MouseEvent event) {
-
-        Sujet s = table.getSelectionModel().getSelectedItem();
-        return s.getNomSujet();
-
-    }
+    private JFXListView<Label> listSujet;
+    
+    @FXML
+    private Label note;
 
     @FXML
-    void choisirSujetBtn(ActionEvent event) throws IOException, Exception {
-        String k = choisirSujet(evnt);
-        System.out.println(k);
-//        AnchorPane consulterSujet = FXMLLoader.load(getClass().getResource("ConsulterSujet.fxml"));
-//        recherche.
-//                getChildren().
-//                setAll(consulterSujet);
-//        start(s) ;
-    }
-    
-         public void start(Stage stage) throws Exception {
-        Parent consulterSujet = FXMLLoader.load(getClass().getResource("ConsulterSujet.fxml"));
-        
-        Scene s= new Scene(consulterSujet);
-        
-        stage.setScene(s);
-        stage.setTitle("Hangar Game");
-        stage.show();
-       
-       
+    private Label nbrComm;
+
+    @FXML
+    void clear(MouseEvent event) {
+        listSujet.getItems().clear();
     }
 
     @FXML
     void rechercher(ActionEvent event) {
 
-        String nomSujet = champsRech.getText();
-        A.setCellValueFactory(new PropertyValueFactory<>("nomSjt"));
-        B.setCellValueFactory(new PropertyValueFactory<>("datePub"));
-        C.setCellValueFactory(new PropertyValueFactory<>("txtSjt"));
-        D.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-        E.setCellValueFactory(new PropertyValueFactory<>("gamer"));
-        F.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        table.setItems(null);
-        table.setItems(crs.rechercherSujet(nomSujet));
+        ArrayList<Sujet> LR = cs.rechercherSujet(nom);
+        nom = champsRech.getText();
+        for (int i = 0; i < LR.size(); i++) {
 
+            Label lb = new Label(LR.get(i).getNomSujet() + "\n" + LR.get(i).getdateSjt() + "\n" + LR.get(i).getNote());
+            LS.add(LR.get(i).getNomSujet());
+            listSujet.getItems().add(lb);
+            listSujet.setExpanded(true);
+            listSujet.depthProperty().set(4);
+
+        }
     }
 
     void LoadData() {
 
-        A.setCellValueFactory(new PropertyValueFactory<>("nomSjt"));
-        B.setCellValueFactory(new PropertyValueFactory<>("datePub"));
-        C.setCellValueFactory(new PropertyValueFactory<>("txtSjt"));
-        D.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-        E.setCellValueFactory(new PropertyValueFactory<>("gamer"));
-        F.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        table.setItems(null);
-        table.setItems(crs.AffichageSuhetSujetCategorie());
+        LS.clear();
 
+        ArrayList<Sujet> L = cs.AffichageSuhetSujetCategorie();
+
+        for (int i = 0; i < L.size(); i++) {
+
+            Label lb = new Label("Titre de Sujet :" + L.get(i).getNomSujet() + "\n" + "Date de Publication Sujet   :"
+                    +"  "+ L.get(i).getdateSjt() + "\n" + "Note Obtenue   :" + L.get(i).getNote());
+            LS.add(L.get(i).getNomSujet());
+            listSujet.getItems().add(lb);
+            listSujet.setExpanded(true);
+            listSujet.depthProperty().set(4);
+            lb.setMinHeight(50);
+            lb.setMinWidth(150);
+           
+
+        }
+
+    }
+
+    @FXML
+    String recuperernomsujet(MouseEvent event) {
+
+        int x = listSujet.
+                getSelectionModel().
+                getSelectedIndex();
+        String y = LS.get(x);
+
+        System.out.println(y);
+        
+        return y;
+        
+
+    }
+    
+    @FXML
+    void affichagesujet(MouseEvent event) {
+afficherSujet();
+    }
+    
+    public void afficherSujet(){
+        String noms = recuperernomsujet(evnt);
+        Sujet s =cs.consulterSujet(noms);
+        titre.setText(s.getNomSujet());
+        contenue.setDisable(true);
+        contenue.setText(s.gettextSujet());
+        contenue.setWrapText(true);
+        date.setText(s.getdateSjt()+"");
+        auteur.setText(s.getGamer());
+        nbrComm.setText(s.getetat()+"");
+        note.setText(s.getNote()+"");
+        categorie.setText(s.getCategorie());
+        
+        
+    }
+    
+    public void notif(){
+        int x = cs.totalSujet();
+        TrayNotification tr = new TrayNotification();
+                tr.setTitle("Nobre des sujets récupérer ");
+                tr.setMessage(x+"");
+                tr.setNotificationType(NotificationType.INFORMATION);
+                tr.setAnimationType(AnimationType.POPUP);
+                tr.showAndDismiss(Duration.seconds(3));
     }
 }

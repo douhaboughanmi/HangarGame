@@ -3,55 +3,60 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="consulterSujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.ConsulterSujetController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="1067.0">
+      <ImageView fitHeight="585.0" fitWidth="1067.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="24.0" layoutY="288.0" prefHeight="148.0" prefWidth="586.0">
-         <children>
-            <JFXButton layoutX="14.0" layoutY="2.0" text="partage facebook " />
-            <JFXButton layoutX="248.0" layoutY="2.0" text="j'aime" />
-            <JFXButton fx:id="signalerSujet" layoutX="520.0" layoutY="2.0" onAction="#signal" text="Signaler" />
-         </children>
-      </Pane>
-      <JFXListView fx:id="commentaires" depthProperty="8" layoutX="42.0" layoutY="340.0" onMouseClicked="#signaler" prefHeight="79.0" prefWidth="543.0" showTooltip="true" />
-      <Text fx:id="titreSujet" layoutX="48.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="222.13671875">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.004761904761904762">
-               <stops>
-                  <Stop color="#30ad2f" />
-                  <Stop color="#30ad2f" offset="0.09961685823754789" />
-                  <Stop color="WHITE" offset="0.7088122605363985" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </fill>
+      <JFXTextArea fx:id="sujetContenue" layoutX="48.0" layoutY="109.0" maxWidth="565.0" minWidth="543.0" prefHeight="142.0" prefWidth="565.0" />
+      <JFXListView fx:id="champscomm" layoutX="44.0" layoutY="412.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="142.0" prefWidth="565.0" />
+      <JFXButton fx:id="signalersjt" layoutX="44.0" layoutY="280.0" onAction="#executeSignal" prefHeight="42.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Signaler" />
+      <JFXButton fx:id="afficherlescomm" layoutX="48.0" layoutY="351.0" onAction="#afficherAjout" prefHeight="19.0" prefWidth="177.0" style="-fx-background-color: #FFFFFF;" text="Afficher les commentaire " />
+      <Text fx:id="titredeSujet" fill="#cdaa1d" fontSmoothingType="LCD" layoutX="48.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="177.13671875">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fx:id="datesujet" layoutX="465.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="105.13671875" />
-      <Text fx:id="note" layoutX="48.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="127.13671875" />
-      <Label fx:id="sujet" contentDisplay="TOP" layoutX="38.0" layoutY="109.0" prefHeight="142.0" prefWidth="543.0" style="-fx-background-color: #FFFFFF;" text="aaaaaaaaa" textFill="#a39f27" textOverrun="LEADING_ELLIPSIS">
+      <Text fx:id="Datepublication" fill="#cdaa1d" fontSmoothingType="LCD" layoutX="435.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="177.13671875">
          <font>
-            <Font name="Rockwell" size="30.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
-      </Label>
-      <JFXButton fx:id="ajoutCmntBtn" layoutX="555.0" layoutY="561.0" onAction="#ajoutCmnt" text="ajouter" />
-      <JFXTextArea fx:id="textAreaAjout" layoutX="33.0" layoutY="461.0" maxWidth="554.0" minWidth="530.0" prefHeight="68.0" prefWidth="554.0" />
-      <JFXButton fx:id="afficherCmnt" layoutX="601.0" layoutY="432.0" onAction="#afficher" text="Ajouter un commentaire" />
+      </Text>
+      <Pane fx:id="paneajout" layoutX="719.0" layoutY="112.0" opacity="0.26" prefHeight="361.0" prefWidth="334.0" style="-fx-background-color: #8e8e8e;" />
+      <TextArea fx:id="ajoutcomm" layoutX="723.0" layoutY="128.0" prefHeight="259.0" prefWidth="327.0" />
+      <JFXButton fx:id="ajoutcomnt" layoutX="723.0" layoutY="405.0" onAction="#ajoutcomntfn" prefHeight="42.0" prefWidth="93.0" style="-fx-background-color: #FFFFFF;" textFill="#8e8e8ede" />
+      <Separator layoutX="48.0" layoutY="264.0" prefHeight="8.0" prefWidth="565.0" />
+      <Separator layoutX="44.0" layoutY="331.0" prefHeight="8.0" prefWidth="565.0" />
+      <ImageView fitHeight="42.0" fitWidth="49.0" layoutX="551.0" layoutY="280.0">
+         <image>
+            <Image url="@../images/like.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="49.0" layoutX="499.0" layoutY="280.0">
+         <image>
+            <Image url="@../images/unlike.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="63.0" layoutX="299.0" layoutY="277.0">
+         <image>
+            <Image url="@../images/favoris.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="jaime" layoutX="551.0" layoutY="272.0" onAction="#jaimefn" prefHeight="59.0" prefWidth="52.0" text="JAIME" textFill="#00000003" />
+      <JFXButton fx:id="jaimePas" layoutX="498.0" layoutY="280.0" onAction="#jaimePasfn" prefHeight="42.0" prefWidth="52.0" textFill="#00000006" />
+      <JFXButton fx:id="favoris" layoutX="305.0" layoutY="272.0" onAction="#addFavorite" prefHeight="59.0" prefWidth="52.0" text="FAVoris" textFill="#00000007" />
+      <Separator layoutX="613.0" layoutY="98.0" orientation="VERTICAL" prefHeight="457.0" prefWidth="13.0" />
+      <Separator layoutX="706.0" layoutY="98.0" orientation="VERTICAL" prefHeight="457.0" prefWidth="13.0" />
    </children>
 </AnchorPane>

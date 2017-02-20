@@ -22,12 +22,20 @@ public class Sujet {
     private String txtSjt;
     private String categorie;
     private int etat;
+    private int note;
 
     public Sujet(String s, String st, String cat) {
 
         this.txtSjt = st;
         this.nomSjt = s;
         this.categorie = cat;
+
+    }
+     public Sujet(String s,Timestamp t, int i) {
+
+        this.nomSjt = s;
+        this.datePub = t;
+        this.note = i;
 
     }
 
@@ -38,6 +46,16 @@ public class Sujet {
         this.nomSjt = n;
         this.categorie = cat;
         this.etat = i = 0;
+    }
+    
+       public Sujet(String n,String txt, String cat, Timestamp t, int i,  String g,int note) {
+        this.gamer = g;
+        this.datePub = t;
+        this.txtSjt = txt;
+        this.nomSjt = n;
+        this.categorie = cat;
+        this.etat = i = 0;
+        this.note = note ;
     }
 
     public Sujet() {
@@ -71,6 +89,10 @@ public class Sujet {
 
     public int getetat() {
         return this.etat;
+    }
+    
+     public int getNote() {
+        return this.note;
     }
 
     public void setIdSjt(int id) {

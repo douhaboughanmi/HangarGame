@@ -13,6 +13,8 @@ import hangargame.entites.EvaluationSujet;
  * @author Hamza
  */
 public interface IEvaluSujetCrud {
-    public void ajouterEvaluation(EvaluationSujet e);
+    public void ajouterEvaluation(String gamer,String sujet,int note);
     public void afficherSelonEvaluation();
+    public int verifierGamer(String gamer);
+    public void UpdateEvaluation(String gamer);
 }

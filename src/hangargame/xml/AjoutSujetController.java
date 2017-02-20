@@ -8,20 +8,36 @@ import com.jfoenix.controls.JFXTextField;
 import hangargame.entites.Sujet;
 import hangargame.services.CrudSujet;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class AjoutSujetController {
 
+    public String s = "hamza";
+    CrudSujet crs = new CrudSujet();
+
+    private static final ObservableList<PieChart.Data> details = FXCollections.observableArrayList();
+
     public void initialize() {
-comboCatgr.setValue(new Label("Jeux Mobiles"));
+        comboCatgr.setValue(new Label("Jeux Mobiles"));
         comboCatgr.getItems().add(new Label("Jeux Mobiles"));
         comboCatgr.getItems().add(new Label("Jeux Consoles"));
         comboCatgr.getItems().add(new Label("Jeux PC"));
@@ -30,10 +46,6 @@ comboCatgr.setValue(new Label("Jeux Mobiles"));
         afficherTotalJaime(s);
 
     }
-
-    LoginController xx = new LoginController();
-    CrudSujet crs = new CrudSujet();
-    public String s = "zut@zut.tn";
 
     @FXML
     private AnchorPane anacrosujet;
@@ -63,15 +75,13 @@ comboCatgr.setValue(new Label("Jeux Mobiles"));
     @FXML
     void Addsbjct(ActionEvent event) {
         JInternalFrame frame = null;
-        
+
         String txt = sujetArea.getText();
         String titre = titresujet.getText();
         String catgre = (String) comboCatgr.getValue().getText();
-        
-        
 
         if (catgre.isEmpty()) {
-            
+
             JOptionPane.showMessageDialog(frame,
                     "le contenue de message est vide  ");
         } else {
@@ -82,6 +92,11 @@ comboCatgr.setValue(new Label("Jeux Mobiles"));
             affficherHistorique(s);
         }
 
+    }
+
+    @FXML
+    void affichStat(ActionEvent event) {
+        afficherStat();
     }
 
     public void affficherHistorique(String s) {
@@ -108,4 +123,29 @@ comboCatgr.setValue(new Label("Jeux Mobiles"));
         Totaljaime.setText(x + "");
 
     }
+
+    public void afficherStat() {
+        int a = crs.tolalJaime(s);
+        int x = crs.tolalSignale(s);
+        BorderPane root;
+        PieChart pieChart;
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Mes Statistiques ");
+        details.addAll(new PieChart.Data("Total des j'aime", a),
+                new PieChart.Data("Total des signales", x)
+        );
+        root = new BorderPane();
+        Scene scene = new Scene(root, 600, 500);
+        pieChart = new PieChart();
+        pieChart.setData(details);
+        pieChart.setTitle("Le rapport entre \n siganles et notes obtenues");
+        pieChart.setLegendSide(Side.BOTTOM);
+        pieChart.setLabelsVisible(true);
+        pieChart.setClockwise(true);
+        pieChart.setStartAngle(50);
+        root.setCenter(pieChart);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
 }

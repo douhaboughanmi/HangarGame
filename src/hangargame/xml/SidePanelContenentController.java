@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -54,6 +55,13 @@ hangar.depalcerVersAMesFavoris();
           HangarGame h = new HangarGame();
         h.depalcerVersLive();
 
+    }
+    
+    
+     @FXML
+    void depalcerVersAffichageSujet(MouseEvent event) throws IOException {
+HangarGame h = new HangarGame();
+h.depalcerVersAffichageSujetsl();
     }
     
     

@@ -10,7 +10,6 @@ import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.CommentaireSujet;
 import hangargame.serviceinterface.ICommentaireCrud;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,7 +71,7 @@ try {
     @Override
     public ArrayList<CommentaireSujet> afficherCommentaire(String s) {
         ArrayList<CommentaireSujet> ls = new ArrayList<>();
-        String req = "SELECT `textcomm`,`datecomm` from commentaire_forum where `sujet`=?";
+        String req = "SELECT `textcomm`,`datecomm` from commentaire_forum where `sujet`=? ORDER by `datecomm`  DESC";
 
         try {
 
@@ -113,4 +112,6 @@ try {
     public void afficherCommentaire() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }
