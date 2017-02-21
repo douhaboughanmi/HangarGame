@@ -64,5 +64,30 @@ HangarGame h = new HangarGame();
 h.depalcerVersAffichageSujetsl();
     }
     
+     
+    @FXML
+    private void AffichageJEUCLIENt(MouseEvent event) throws IOException {
+        
+          HangarGame hang = new HangarGame();
+                     hang.depalcerVersAffichageJeusidePanel();
+
+       
+    }
+
+    @FXML
+    private void AffichageConsoleClient(MouseEvent event) throws IOException {
+        
+          HangarGame hang = new HangarGame();
+        hang.depalcerVersAffichageConsolesidePanel();
+    }
+
+    @FXML
+    private void AffichageActualiteClient(ActionEvent event) throws IOException {
+          HangarGame hang = new HangarGame();
+          hang.depalcerVersAffichageActsidePanel();
+        
+    }
+ 
+    
     
 }

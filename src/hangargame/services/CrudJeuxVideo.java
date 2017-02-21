@@ -8,6 +8,7 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.JeuxVideo;
 import hangargame.serviceinterface.IJeuxVideoCrud;
+import hangargame.xml.AffichageClientJeuController;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -35,6 +36,7 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
     PreparedStatement prepste;
     private ObservableList<JeuxVideo> data;
     List<JeuxVideo> list = new ArrayList<>();
+      JeuxVideo jeux= new JeuxVideo(0, "", "", "", "", "","");
 
     public CrudJeuxVideo() {
 
@@ -59,7 +61,7 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
             prepste.setString(3, j.getDate_sortie());
             prepste.setString(4, j.getDescription());
             prepste.setString(5, j.getImage());
-            prepste.setString(6, "testNomConsole");
+            prepste.setString(6, j.getNom_console());
          
 
             prepste.executeUpdate();
@@ -68,6 +70,7 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
             Logger.getLogger(CrudJeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @Override
     public void supprimerJeuxVideo(String nom) {
@@ -91,9 +94,10 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
                
                 + "genre= ?,"
                 + "date_sortie= ?,"
-                + "description= ?"
+                + "description= ?,"
+                + "image=?"
                 +"where id=?"
-              //  + "image=?"
+               
                 //+ "nom_console=?"
                 //+ "video_ba=?"
                 ;
@@ -104,9 +108,9 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
             prepste.setString(2, j.getGenre());
             prepste.setString(3, j.getDate_sortie());
             prepste.setString(4, j.getDescription());
-            prepste.setInt(5, j.getId());
+            prepste.setInt(6, j.getId());
             //System.out.println(j.getImage());
-         //  prepste.setString(5, j.getImage());
+          prepste.setString(5, j.getImage());
             //     prepste.setInt(6,j.getId());
             prepste.executeUpdate();
             System.out.println("c'est fait");
@@ -184,6 +188,41 @@ public class CrudJeuxVideo implements IJeuxVideoCrud {
 return data ;
 }
       
-      
+     public JeuxVideo reccupererJeu() {
+
+        String query = "Select * from jeux_video where id=?";
+
+        try {
+           
+            prepste = connect.prepareStatement(query);
+            prepste.setInt(1,Integer.parseInt(AffichageClientJeuController.indexjeu));
+            ResultSet rs = prepste.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nomJ = rs.getString("nom");
+                String genreJ = rs.getString("genre");
+                
+                String datej = rs.getString("date_sortie");
+                String desc = rs.getString("description");
+                
+
+                //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
+               String image = rs.getString("image");
+               
+
+                //InputStream inputStream = image.getBinaryStream();
+                 jeux = new JeuxVideo(id, nomJ, genreJ, datej, desc, image, "");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudJeuxVideo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("wwwwwwwwww" + jeux);
+        return jeux;
+
+    }  
+
+    
 
 }

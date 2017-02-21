@@ -9,11 +9,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Actualite;
 import hangargame.entites.JeuxVideo;
 import hangargame.services.CrudJeuxVideo;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
@@ -23,11 +27,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,6 +71,8 @@ public class AffichageAdminJeuController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> descj;
+      @FXML
+    private TableColumn<?, ?> nomConsole;
     
    
 
@@ -89,14 +98,21 @@ public class AffichageAdminJeuController implements Initializable {
     private JFXDatePicker dateJEu;
     
     
-    
+    @FXML
+    private Label image;
+    String path="";
     
     private ObservableList<JeuxVideo> data ;
     @FXML
     private JFXTextField rech;
     @FXML
     private JFXButton btnCher;
-   
+   InputStream inputStream;
+    @FXML
+    private Label imageImage;
+    @FXML
+    private Hyperlink linkAjout;
+  
 
     void afficher() {
         
@@ -106,7 +122,7 @@ public class AffichageAdminJeuController implements Initializable {
         genrejeu.setCellValueFactory(new PropertyValueFactory<>("genre"));
         descj .setCellValueFactory(new PropertyValueFactory<>("description"));
         datejeu.setCellValueFactory(new PropertyValueFactory<>("date_sortie"));
-     //  image.setCellValueFactory(new PropertyValueFactory<>("image"));
+     // nomConsole.setCellValueFactory(new PropertyValueFactory<>("nom_console"));
         
         
         tablejeu.setItems(null);
@@ -145,7 +161,7 @@ public class AffichageAdminJeuController implements Initializable {
     }
 
     @FXML
-    private void showcliked(MouseEvent event) {
+    private void showcliked(MouseEvent event) throws FileNotFoundException {
        
         
         JeuxVideo jeu = tablejeu.getSelectionModel().getSelectedItem();
@@ -157,11 +173,14 @@ public class AffichageAdminJeuController implements Initializable {
         titreJeu.setText(jeu.getNom());
        GenreJeu.setText(jeu.getGenre());
         descriptionjeu.setText(jeu.getDescription());
-          String datej= dateJEu.
-                getValue()
-                .format
-        (DateTimeFormatter.
-                ofPattern("YYYY-MM-DD"));    
+        //affichage image d'apres un url
+        path=jeu.getImage();
+        inputStream = new FileInputStream(jeu.getImage());
+          ImageView imageView = new ImageView(new Image(inputStream));
+                 imageView.setFitWidth(150);
+                 imageView.setFitHeight(100);
+                 image.setGraphic(imageView);
+          
           
         
       //  image.setText(jeu.getImage());
@@ -181,7 +200,30 @@ public class AffichageAdminJeuController implements Initializable {
     @FXML
     private void selectImage(ActionEvent event) {
         
-        
+          JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            try {
+                 inputStream = new FileInputStream(path);
+                 ImageView imageView= new ImageView (new Image(inputStream));
+                 imageView.setFitHeight(100);
+                 imageView.setFitWidth(100);
+                 image.setGraphic(imageView);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AffichageAdminJeuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+            System.out.println("image");
+          //  labelImage.setIcon(imageIcon);
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+
+            System.out.println("No Data");
+        }
         
     }
 
@@ -193,12 +235,14 @@ public class AffichageAdminJeuController implements Initializable {
                 getValue()
                 .format
         (DateTimeFormatter.
-                ofPattern("YYYY-MM-DD")); 
+                ofPattern("YYYY-MM-dd")); 
+        
       
     String tj = titreJeu.getText();
     String genrej =GenreJeu.getText();
     String desj = descriptionjeu.getText();
-    JeuxVideo jeu=new JeuxVideo(id, tj, genrej,datej , desj,"", "");
+    
+    JeuxVideo jeu=new JeuxVideo(id, tj, genrej,datej , desj,path, "");
     
     crud.modifierJeuxVideo(jeu);
     afficher();
@@ -237,6 +281,17 @@ public class AffichageAdminJeuController implements Initializable {
        
         
         
+    }
+
+    @FXML
+    private void rechercher(InputMethodEvent event) {
+    }
+
+    @FXML
+    private void NaviguerAjout(ActionEvent event) throws IOException {
+        
+         HangarGame hang = new HangarGame();
+        hang.depalcerVersAjoutJeu();
     }
 
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.DetailJeuController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" layoutX="-14.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <Pane id="pane2" layoutX="118.0" layoutY="85.0" prefHeight="438.0" prefWidth="818.0" stylesheets="@../css/AcceuilAnnonce.css">
+         <children>
+            <Label fx:id="GenreJeu" layoutX="547.0" layoutY="125.0" prefHeight="38.0" prefWidth="180.0" text="Genre jeu" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="decriptionJeu" layoutX="27.0" layoutY="271.0" prefHeight="146.0" prefWidth="287.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" textFill="WHITE">
+               <font>
+                  <Font name="Century" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="378.0" layoutY="131.0" text="Genre jeu" textFill="#0c0743">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="Datejeu" layoutX="560.0" layoutY="185.0" prefHeight="29.0" prefWidth="99.0" text="Date" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="imageJeu" layoutX="36.0" layoutY="41.0" prefHeight="174.0" prefWidth="287.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView disable="true" fitHeight="56.0" fitWidth="82.0" layoutX="625.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Etoile-icon.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="noter" buttonType="RAISED" layoutX="630.0" layoutY="343.0" onAction="#Noter" opacity="0.0" prefHeight="45.0" prefWidth="46.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="titrejeu" layoutX="441.0" layoutY="75.0" text="Nom Jeu" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="375.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/manette.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="244.0" text="Description :" textFill="#0c0743">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="373.0" layoutY="163.0" prefHeight="73.0" prefWidth="152.0" text="Date De Sortie :" textFill="#0c0743">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="45.0" fitWidth="61.0" layoutX="396.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/shareFB.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="ShareFB" layoutX="398.0" layoutY="350.0" onAction="#PartgerFB" prefHeight="45.0" prefWidth="41.0" text=" " />
+            <Text fill="WHITE" layoutX="449.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partager sur facebook" wrappingWidth="98.61327346414328">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="696.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Noter jeu" wrappingWidth="81.99443137645721">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelImage" layoutX="27.0" layoutY="20.0" prefHeight="216.0" prefWidth="278.0" />
+         </children>
+      </Pane>
+      <Hyperlink fx:id="hyperlistejeu" layoutX="37.0" layoutY="32.0" onAction="#retouralaliste" prefHeight="29.0" prefWidth="180.0" text="Retour a la liste des jeux " />
+   </children>
+</AnchorPane>

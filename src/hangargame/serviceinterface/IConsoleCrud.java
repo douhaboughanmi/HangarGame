@@ -20,4 +20,5 @@ public interface IConsoleCrud {
     public void modifierConsole(Console c);
     public List<Console> reccuperer();
     public ObservableList<Console>  afficherConsole();
+     public List<Console> reccuperer2();
 }

@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -24,13 +26,14 @@ public class CrudEvaluation implements IEvaluationCrud {
      Connection connect;
     Statement ste ;
     PreparedStatement prepste;
+    private ObservableList<Evaluation> data;
     public CrudEvaluation() {
         try {
            connect=  ConnexionSingleton.getInstance();
 
             ste = connect.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrudEvaluation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -39,14 +42,19 @@ public class CrudEvaluation implements IEvaluationCrud {
     @Override
     public void ajouterEvaluation(Evaluation e) {
         try {
-            String req1="insert into evaluation (nom,email_client,nom_jeu,note)values"
-                    + "("+e.getnom()+",'"+e.getEmail_client()+",' "+e.getNom_client()+","+e.getNote()+"')";
+            String req1="insert into evaluation_jeu (nom,email_client,nom_jeu,note)values"
+                    + "(?,?,?,?)";
             
-           
-             ste.executeUpdate(req1);
+           prepste = connect.prepareStatement(req1);
+           prepste.setString(1, e.getnom());
+            prepste.setString(2, e.getEmail_client());
+
+            prepste.setString(3, e.getNom_jeu());
+            prepste.setInt(4, e.getNote());
+             prepste.executeUpdate();
             
         } catch (SQLException ex) {
-            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrudEvaluation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,9 +74,26 @@ public class CrudEvaluation implements IEvaluationCrud {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrudEvaluation.class.getName()).log(Level.SEVERE, null, ex);
         }
     
 }
+    
+    @Override
+    public ObservableList<Evaluation> getTopEvaluation() {
+
+        try {
+            Connection connect;
+            connect = ConnexionSingleton.getInstance();
+            data = FXCollections.observableArrayList();
+            ResultSet rs = connect.createStatement().executeQuery("select * from evaluation_jeu ORDER BY note DESC limit 10 ");
+            while (rs.next()) {
+                data.add(new Evaluation(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur" + ex);
+        }
+        return data;
+    }
 }
 

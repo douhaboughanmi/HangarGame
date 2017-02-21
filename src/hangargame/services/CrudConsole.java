@@ -155,7 +155,28 @@ public class CrudConsole implements IConsoleCrud{
         return list;
 
     }
+    @Override
+    public List<Console> reccuperer2() {
+        
+        String query = "Select nom from console";
+        try {
+            prepste = connect.prepareStatement(query);
+            ResultSet rs = prepste.executeQuery();
+            while (rs.next()) {
+                
+                String nomc = rs.getString("nom");
+                  Console con = new Console(nomc);
+              //  JeuxVideo jj = new JeuxVideo(nomj, genrej, "",desc, "","", "");
+                
+                list.add(con);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     
-    
+   
     }
 
+}

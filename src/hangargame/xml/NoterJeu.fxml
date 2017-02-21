@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.NoterJeuController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="587.0" fitWidth="376.0" layoutX="686.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ahri.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="301.0" fitWidth="286.0" layoutX="52.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/love.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="433.0" layoutY="401.0" onAction="#Valider" prefHeight="93.0" prefWidth="210.0" style="-fx-background-color: #DC9CD3;" text="Noter ">
+         <font>
+            <Font name="System Bold Italic" size="38.0" />
+         </font></JFXButton>
+      <ImageView fx:id="etoilevide1" fitHeight="158.0" fitWidth="171.0" layoutX="195.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/star-shape-md.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="etoilevide2" fitHeight="152.0" fitWidth="166.0" layoutX="376.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/star-shape-md.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="etoilevide3" fitHeight="169.0" fitWidth="168.0" layoutX="556.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/star-shape-md.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Er1" fitHeight="158.0" fitWidth="171.0" layoutX="195.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/star-shape-md2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Er2" fitHeight="152.0" fitWidth="166.0" layoutX="376.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/star-shape-md2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Er3" fitHeight="169.0" fitWidth="168.0" layoutX="558.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/star-shape-md2.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="hyperListe" layoutX="33.0" layoutY="24.0" onAction="#retourAlaliste" prefHeight="34.0" prefWidth="201.0" text="Retour a la liste des jeux  &gt;" />
+      <Hyperlink fx:id="detail" layoutX="234.0" layoutY="27.0" onAction="#retouretail" text="Retour au detail du jeu  " />
+   </children>
+</AnchorPane>

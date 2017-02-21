@@ -6,6 +6,7 @@
 package hangargame.serviceinterface;
 
 import hangargame.entites.Evaluation;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,4 +16,5 @@ public interface IEvaluationCrud {
     public void ajouterEvaluation(Evaluation e);
    
     public void afficherEvaluation();
+      public ObservableList<Evaluation> getTopEvaluation();
 }

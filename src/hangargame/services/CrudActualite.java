@@ -87,9 +87,9 @@ public class CrudActualite implements IActualiteCrud{
         
             String req3="update  actualite set titre=?,"
                    
-                    +"text= ?"
+                    +"text= ?,"
                    
-                  //  +"image=?"
+                    +"image=?"
                     + "where id=?"
                     ;
            
@@ -97,7 +97,8 @@ public class CrudActualite implements IActualiteCrud{
                prepste = connect.prepareStatement(req3);
             prepste.setString(1, a.getTitre());
             prepste.setString(2, a.getText());
-             prepste.setInt(3, a.getId());
+            prepste.setString(3, a.getImage());
+             prepste.setInt(4, a.getId());
              prepste.executeUpdate();
             
         } catch (SQLException ex) {

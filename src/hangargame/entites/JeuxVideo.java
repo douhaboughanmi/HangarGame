@@ -21,12 +21,8 @@ public class JeuxVideo {
     private String description ;
     private String image ; 
     private String nom_console ; 
-  
-   
-   
     
 
-   
 
     public int getId() {
         return id;

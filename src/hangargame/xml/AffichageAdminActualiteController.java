@@ -7,20 +7,33 @@ package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.entites.Actualite;
 import hangargame.services.CrudActualite;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -51,6 +64,10 @@ public class AffichageAdminActualiteController implements Initializable {
     @FXML
     private JFXButton btnmodif;
     int id ;
+    String path="";
+      InputStream inputStream;
+    @FXML
+    private Hyperlink hypAjou;
 
 
     void afficher() {
@@ -81,6 +98,33 @@ public class AffichageAdminActualiteController implements Initializable {
 
     @FXML
     private void selectImage(ActionEvent event) {
+        
+        
+          JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            try {
+                 inputStream = new FileInputStream(path);
+                 ImageView imageView= new ImageView (new Image(inputStream));
+                 imageView.setFitHeight(100);
+                 imageView.setFitWidth(100);
+                 image.setGraphic(imageView);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AjoutAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+            System.out.println("image");
+          //  labelImage.setIcon(imageIcon);
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+
+            System.out.println("No Data");
+        }
+        
     }
 
     @FXML
@@ -104,7 +148,7 @@ public class AffichageAdminActualiteController implements Initializable {
     }
 
     @FXML
-    private void showcliked(MouseEvent event) {
+    private void showcliked(MouseEvent event) throws FileNotFoundException {
         
           Actualite act= tableAct.getSelectionModel().getSelectedItem();
        act.toString();
@@ -114,7 +158,21 @@ public class AffichageAdminActualiteController implements Initializable {
         System.out.println(act.getText());
        titreAct.setText(act.getTitre());
      descriptionact.setText(act.getText());
+     
+       path=act.getImage();
+        inputStream = new FileInputStream(act.getImage());
+          ImageView imageView = new ImageView(new Image(inputStream));
+                 imageView.setFitWidth(150);
+                 imageView.setFitHeight(100);
+                 image.setGraphic(imageView);
         
+    }
+
+    @FXML
+    private void RetourAjoutAct(ActionEvent event) throws IOException {
+        
+         HangarGame hang = new HangarGame();
+         hang.depalcerVersAjoutAct();
     }
     
 }

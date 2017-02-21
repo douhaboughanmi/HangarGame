@@ -15,14 +15,18 @@ public class Evaluation {
     private int id ; 
     private String nom;
     private String email_client ; 
-    private String nom_client ; 
+    private String nom_jeu ; 
     private int note ; 
+    
 
-    public Evaluation(String nom,String email_client, String nom_client, int note) {
+    public Evaluation(String nom,String email_client, String nom_jeu, int note) {
       this.nom=nom;
         this.email_client = email_client;
-        this.nom_client = nom_client;
+        this.nom_jeu = nom_jeu;
         this.note = note;
+    }
+
+    public Evaluation() {
     }
 
     public String getEmail_client() {
@@ -32,8 +36,8 @@ public class Evaluation {
         return nom;
     }
 
-    public String getNom_client() {
-        return nom_client;
+    public String getNom_jeu() {
+        return nom_jeu;
     }
 
     public int getNote() {
@@ -44,8 +48,8 @@ public class Evaluation {
         this.email_client = email_client;
     }
 
-    public void setNom_client(String nom_client) {
-        this.nom_client = nom_client;
+    public void setNom_jeu(String nom_jeu) {
+        this.nom_jeu = nom_jeu;
     }
 
     public void setNote(int note) {
@@ -57,7 +61,7 @@ public class Evaluation {
 
     @Override
     public String toString() {
-        return "Evaluation{"+"nom="+nom + "email_client=" + email_client + ", nom_client=" + nom_client + ", note=" + note + '}';
+        return "Evaluation{"+"nom="+nom + "email_client=" + email_client + ", nom_jeu=" + nom_jeu + ", note=" + note + '}';
     }
 
     @Override
@@ -66,7 +70,7 @@ public class Evaluation {
         hash = 67 * hash + this.id;
          hash = 67 * hash + Objects.hashCode(this.nom);
         hash = 67 * hash + Objects.hashCode(this.email_client);
-        hash = 67 * hash + Objects.hashCode(this.nom_client);
+        hash = 67 * hash + Objects.hashCode(this.nom_jeu);
         hash = 67 * hash + this.note;
         return hash;
     }
@@ -92,7 +96,7 @@ public class Evaluation {
         if (!Objects.equals(this.email_client, other.email_client)) {
             return false;
         }
-        if (!Objects.equals(this.nom_client, other.nom_client)) {
+        if (!Objects.equals(this.nom_jeu, other.nom_jeu)) {
             return false;
         }
         if (!Objects.equals(this.nom, other.nom)) {

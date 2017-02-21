@@ -22,7 +22,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="259.0">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" onAction="#AffichageActualiteClient" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -71,11 +71,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-    <TitledPane animated="false" text="Jeux vidéo">
+    <TitledPane animated="false" onMouseClicked="#AffichageJEUCLIENt" text="Jeux vidéo">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-      <TitledPane animated="false" text="Console">
+      <TitledPane animated="false" onMouseClicked="#AffichageConsoleClient" text="Console">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

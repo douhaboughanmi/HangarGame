@@ -27,6 +27,10 @@ public class Console {
         return id;
     }
 
+    public Console(String nom) {
+        this.nom = nom;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

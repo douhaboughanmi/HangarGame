@@ -8,11 +8,13 @@ package hangargame.xml;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import hangargame.HangarGame;
 import hangargame.entites.Actualite;
 import hangargame.services.CrudActualite;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -59,6 +62,8 @@ public class AjoutActualiteController implements Initializable {
     @FXML
     private Label labelimage = new Label();
     InputStream input;
+    @FXML
+    private Hyperlink hyperListe;
  
 
     
@@ -120,5 +125,12 @@ public class AjoutActualiteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void listedesact(ActionEvent event) throws IOException {
+        
+         HangarGame hang = new HangarGame();
+         hang.depalcerVersListeAct();
+    }
     
 }
