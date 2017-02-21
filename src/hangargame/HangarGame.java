@@ -14,6 +14,8 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.User;
 import hangargame.entites.Evenement;
+import hangargame.serviceinterface.IEvaluationCrud;
+import hangargame.services.CrudEvaluation;
 import hangargame.services.EvenementCrud;
 import java.io.IOException;
 import javafx.application.Application;
@@ -21,6 +23,10 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -194,7 +200,116 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
+    //Yesmine
+    public static void showStat()  {
+         final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    final StackedBarChart<String, Number> sbc
+            = new StackedBarChart<String, Number>(xAxis, yAxis);
+    final XYChart.Series<String, Number> series1
+            = new XYChart.Series<String, Number>();
+    final XYChart.Series<String, Number> series2
+            = new XYChart.Series<String, Number>();
+    final XYChart.Series<String, Number> series3
+            = new XYChart.Series<String, Number>();
+        Stage primaryStage = new Stage();
+        IEvaluationCrud evals = new CrudEvaluation();
+
+        primaryStage.setTitle("Hangar Game");
+        sbc.setTitle("Top 10 Best Games");
+        xAxis.setLabel("Games");
+        yAxis.setLabel("Rate");
+        series1.setName("2017");
+       // series2.setName("2018");
+       // series1.setName("2018");
+        evals.getTopEvaluation().forEach((tab) -> {
+
+            series1.getData().add(new XYChart.Data<String, Number>(tab.getNom_jeu(), tab.getNote())); 
+        });
+
+        Scene scene = new Scene(sbc, 800, 600);
+        sbc.getData().addAll(series1);
+       
+       
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+     public static void depalcerVersDetailJeu() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/DetailJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
     
+    
+    public static void depalcerVersAffichageJeu() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageAdminJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+    
+     public static void depalcerVersAjoutJeu() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AjoutJeuVideo.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+     
+     public static void depalcerVersNoterJeu() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/NoterJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+         
+    }
+    
+      public static void depalcerVerslisteJeu() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageClientJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+      
+       public static void depalcerVersDetail() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/DetailJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+        public static void depalcerVersListeAct() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageAdminActualite.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+        public static void depalcerVersAjoutAct() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AjoutActualite.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+         public static void depalcerVersAffichageActsidePanel() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageClientActualite.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+          public static void depalcerVersAffichageConsolesidePanel() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageClientConsoles.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+          public static void depalcerVersAffichageJeusidePanel() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageClientJeu.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    //fin yesmine
     
     /**
      * The main() method is ignored in correctly deployed JavaFX application.
