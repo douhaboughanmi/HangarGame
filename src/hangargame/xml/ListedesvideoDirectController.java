@@ -6,7 +6,10 @@
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import hangargame.HangarGame;
 import hangargame.entites.VideoTest;
 import hangargame.entites.commentaireVideoTest;
@@ -19,9 +22,12 @@ import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -29,6 +35,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -40,6 +47,11 @@ import javafx.scene.media.MediaView;
  */
 public class ListedesvideoDirectController implements Initializable {
 
+       @FXML
+    private JFXDrawer drawer;
+  @FXML
+    private JFXHamburger hamburger;
+    
     ObservableList<Label> lab;
     @FXML
     private JFXListView<Label> listvideo;
@@ -97,6 +109,31 @@ public class ListedesvideoDirectController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
 
+        
+         try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContenent.fxml"));
+            drawer.setSidePane(box);
+
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+        
+        
+        
+        
         VideoTestCrud crud = new VideoTestCrud();
         l.clear();
         list.clear();

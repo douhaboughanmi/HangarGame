@@ -41,7 +41,7 @@ public class AccueilController implements Initializable {
     
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) { System.out.println("cest bon");
+    public void initialize(URL url, ResourceBundle rb) { 
       
     try {
             VBox box = FXMLLoader.load(getClass().getResource("SidePanelContenent.fxml"));
@@ -90,22 +90,7 @@ public class AccueilController implements Initializable {
                     
                     
             }
-                
-             if ("GoToIUserInformation".equals(node.getAccessibleText())){
-                
-       try {
-            
-             AnchorPane pane = FXMLLoader.load(getClass().getResource("ChangePassword.fxml")); 
-                    anchor.getChildren().addAll(pane);
-                  
-        } catch (IOException ex) {
-            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            }
-              
-              
-              
-              
+             
                 });//apartir
          
             }

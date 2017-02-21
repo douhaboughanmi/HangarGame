@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,22 +18,22 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.VideoEnDirectController">
    <children>
-      <ImageView fitHeight="674.0" fitWidth="1333.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
+      <ImageView fitHeight="614.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="67.0" layoutX="1040.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="69.0" fitWidth="67.0" layoutX="858.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/home.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="67.0" fitWidth="55.0" layoutX="961.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="67.0" fitWidth="55.0" layoutX="950.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/live.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btnback" buttonType="RAISED" layoutX="1046.0" layoutY="581.0" onAction="#back" prefHeight="67.0" prefWidth="55.0" style="-fx-background-colo: ;" text="retour" textFill="#00000004">
+      <JFXButton fx:id="btnback" buttonType="RAISED" layoutX="864.0" layoutY="489.0" onAction="#back" prefHeight="67.0" prefWidth="55.0" style="-fx-background-colo: ;" text="retour" textFill="#00000004">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -48,17 +51,17 @@
             </LinearGradient>
          </fill>
       </Text>
-      <JFXButton fx:id="btnweb" buttonType="RAISED" layoutX="961.0" layoutY="605.0" onAction="#openWeb" prefHeight="43.0" prefWidth="55.0" text="web" textFill="TRANSPARENT">
+      <JFXButton fx:id="btnweb" buttonType="RAISED" layoutX="950.0" layoutY="498.0" onAction="#openWeb" prefHeight="43.0" prefWidth="55.0" text="web" textFill="TRANSPARENT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <Pane id="ba" layoutX="390.0" layoutY="121.0" prefHeight="460.0" prefWidth="772.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="ba" layoutX="399.0" layoutY="61.0" prefHeight="377.0" prefWidth="606.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <WebView fx:id="web" layoutX="35.0" layoutY="22.0" prefHeight="409.0" prefWidth="694.0" />
+            <WebView fx:id="web" layoutX="67.0" layoutY="22.0" prefHeight="328.0" prefWidth="493.0" />
          </children>
       </Pane>
-      <Separator layoutX="355.0" layoutY="121.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="0.0" />
+      <Separator layoutX="355.0" layoutY="96.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="0.0" />
       <JFXListView fx:id="listvideo" layoutX="81.0" layoutY="182.0" onMouseClicked="#load" prefHeight="316.0" prefWidth="248.0" />
       <Text layoutX="101.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des video en direct">
          <fill>
@@ -73,5 +76,11 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <JFXHamburger fx:id="hamburger" layoutX="1003.0" layoutY="14.0" prefHeight="42.0" prefWidth="50.0" stylesheets="@../css/hamburger.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXHamburger>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="600.0" prefWidth="261.0" />
    </children>
 </AnchorPane>

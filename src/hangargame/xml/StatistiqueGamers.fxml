@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.StatistiqueGamersController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroud.jpg" />
+         </image>
+      </ImageView>
+      <BarChart fx:id="statestique" layoutX="185.0" layoutY="93.0" prefHeight="425.0" prefWidth="770.0" style="-fx-background-color: white;" title="Nombre de Gamers par mois">
+        <xAxis>
+          <CategoryAxis label="Mois" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Nb Gamers" prefHeight="384.0" prefWidth="37.0" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="600.0" prefWidth="261.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="1001.0" layoutY="14.0" prefHeight="42.0" prefWidth="50.0" stylesheets="@../css/hamburger.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXHamburger>
+      <ImageView fitHeight="37.0" fitWidth="82.0" layoutX="971.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/exitAnnonce.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="970.0" layoutY="549.0" onAction="#LogOut" opacity="0.0" prefHeight="37.0" prefWidth="82.0" text="Button" />
+      <Pane id="ba" layoutX="334.0" prefHeight="50.0" prefWidth="320.0" stylesheets="@../css/AjoutAnnonce.css">
+         <children>
+            <Hyperlink layoutX="8.0" layoutY="11.0" onAction="#GoAccueil" prefHeight="29.0" prefWidth="176.0" text="Gestion des utilisateurs" textFill="#4fb978">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="201.0" layoutY="11.0" prefHeight="29.0" prefWidth="108.0" text="Statistiques" textFill="#4fb978">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Text fill="#f2fff1" layoutX="182.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <ImageView fitHeight="68.0" fitWidth="171.0" layoutX="863.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/carta.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

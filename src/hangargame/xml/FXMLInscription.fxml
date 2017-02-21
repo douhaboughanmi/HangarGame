@@ -2,9 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Bloom?>
@@ -13,22 +13,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="InterInscription" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.FXMLInscriptionController">
+<AnchorPane id="AnchorPane" fx:id="InterInscription" prefHeight="600.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.FXMLInscriptionController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/login.jpg" />
+            <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Pane id="ba" layoutX="43.0" layoutY="77.0" prefHeight="501.0" prefWidth="765.0" stylesheets="@../css/AjoutAnnonce.css">
+      <JFXButton buttonType="RAISED" layoutX="971.0" layoutY="548.0" onAction="#Inscription_Login" opacity="0.0" prefHeight="37.0" prefWidth="82.0">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </JFXButton>
+      <ImageView disable="true" fitHeight="37.0" fitWidth="82.0" layoutX="971.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/exitAnnonce.png" />
+         </image>
+      </ImageView>
+      <Pane id="ba" layoutX="80.0" layoutY="72.0" prefHeight="501.0" prefWidth="852.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <Label layoutX="14.0" layoutY="26.0" text="Ajouter un compte" textFill="TEAL">
+            <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="320.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/image1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="63.0" layoutY="21.0" text="Ajouter un compte" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <JFXTextField id="Text" fx:id="TF_email" focusColor="#e4a136" layoutX="9.0" layoutY="98.0" maxWidth="311.0" minWidth="290.0" prefHeight="45.0" prefWidth="311.0" promptText="Adresse e-mail" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField id="Text" fx:id="TF_email" focusColor="#4fb978" layoutX="35.0" layoutY="98.0" maxWidth="311.0" minWidth="275.0" prefHeight="45.0" prefWidth="275.0" promptText="Adresse e-mail" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -36,7 +52,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_IoginIns" focusColor="#e4a136" layoutX="9.0" layoutY="194.0" minWidth="311.0" prefWidth="297.0" promptText="Login" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_IoginIns" focusColor="#4fb978" layoutX="35.0" layoutY="194.0" maxWidth="311.0" minWidth="275.0" prefHeight="45.0" prefWidth="275.0" promptText="Login" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -44,7 +60,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXPasswordField fx:id="PF_passwordIns" focusColor="#e4a136" layoutX="9.0" layoutY="297.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" unFocusColor="#641106">
+            <JFXPasswordField fx:id="PF_passwordIns" focusColor="#4fb978" layoutX="28.0" layoutY="302.0" maxWidth="371.0" minWidth="275.0" prefHeight="45.0" prefWidth="275.0" promptText="Mot de passe" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -52,7 +68,7 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <JFXPasswordField fx:id="PF_passwordConfIns" focusColor="#e4a136" layoutX="2.0" layoutY="405.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Retapez votre mot de passe" unFocusColor="#641106">
+            <JFXPasswordField fx:id="PF_passwordConfIns" focusColor="#4fb978" layoutX="28.0" layoutY="418.0" maxWidth="371.0" minWidth="284.0" prefHeight="45.0" prefWidth="284.0" promptText="Retapez votre mot de passe" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -60,13 +76,12 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <Label layoutX="499.0" layoutY="31.0" text="Information personelle" textFill="TEAL">
+            <Label layoutX="570.0" layoutY="27.0" text="Information personelle" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="337.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <JFXTextField fx:id="TF_Nom" focusColor="#e4a136" layoutX="499.0" layoutY="98.0" maxWidth="233.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Nom" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_Nom" focusColor="#4fb978" layoutX="573.0" layoutY="98.0" maxWidth="253.0" minWidth="162.0" prefHeight="45.0" prefWidth="253.0" promptText="Nom" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -74,7 +89,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_prenom" focusColor="#e4a136" layoutX="505.0" layoutY="204.0" maxWidth="223.0" minWidth="162.0" prefHeight="45.0" prefWidth="223.0" promptText="Prénom" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_prenom" focusColor="#4fb978" layoutX="578.0" layoutY="204.0" maxWidth="253.0" minWidth="162.0" prefHeight="45.0" prefWidth="253.0" promptText="Prénom" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="#fffefe">
                <font>
                   <Font size="18.0" />
                </font>
@@ -82,7 +97,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_adresse" focusColor="#e4a136" layoutX="500.0" layoutY="313.0" maxWidth="251.0" minWidth="198.0" prefHeight="45.0" prefWidth="233.0" promptText="Adresse " stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_adresse" focusColor="#4fb978" layoutX="573.0" layoutY="313.0" maxWidth="260.0" minWidth="198.0" prefHeight="45.0" prefWidth="260.0" promptText="Adresse " style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -90,7 +105,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="TF_tel" focusColor="#e4a136" layoutX="503.0" layoutY="422.0" maxWidth="251.0" minWidth="162.0" prefHeight="45.0" prefWidth="233.0" promptText="Téléphone" stylesheets="@../css/Login.css" unFocusColor="#641106">
+            <JFXTextField fx:id="TF_tel" focusColor="#4fb978" layoutX="576.0" layoutY="417.0" maxWidth="253.0" minWidth="162.0" prefHeight="45.0" prefWidth="253.0" promptText="Téléphone" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -98,48 +113,68 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <Label fx:id="L_mail" layoutX="14.0" layoutY="71.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse e-mail" textFill="#e4a136">
+            <Label fx:id="L_mail" layoutX="40.0" layoutY="71.0" prefHeight="21.0" prefWidth="260.0" text="* Adresse e-mail" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Prenom" layoutX="510.0" layoutY="166.0" prefHeight="21.0" prefWidth="115.0" text="* Prénom" textFill="#e4a136">
+            <Label fx:id="L_Prenom" layoutX="579.0" layoutY="166.0" prefHeight="21.0" prefWidth="241.0" text="* Prénom" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Nom" layoutX="510.0" layoutY="71.0" prefHeight="21.0" prefWidth="115.0" text="* Nom" textFill="#e4a136">
+            <Label fx:id="L_Nom" layoutX="577.0" layoutY="71.0" prefHeight="21.0" prefWidth="241.0" text="* Nom" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_PasswordConf" layoutX="5.0" layoutY="378.0" prefHeight="21.0" prefWidth="311.0" text="* Retapez votre mot de passe" textFill="#e4a136">
+            <Label fx:id="L_PasswordConf" layoutX="40.0" layoutY="378.0" prefHeight="21.0" prefWidth="311.0" text="* Retapez votre mot de passe" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_password" layoutX="9.0" layoutY="266.0" prefHeight="21.0" prefWidth="202.0" text="* Mot de passe" textFill="#e4a136">
+            <Label fx:id="L_password" layoutX="40.0" layoutY="266.0" prefHeight="21.0" prefWidth="284.0" text="* Mot de passe" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Login" layoutX="14.0" layoutY="166.0" prefHeight="21.0" prefWidth="115.0" text="* Login" textFill="#e4a136">
+            <Label fx:id="L_Login" layoutX="40.0" layoutY="166.0" prefHeight="21.0" prefWidth="275.0" text="* Login" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_Tel" layoutX="510.0" layoutY="378.0" prefHeight="21.0" prefWidth="115.0" text="* Téléphone" textFill="#e4a136">
+            <Label fx:id="L_Tel" layoutX="581.0" layoutY="384.0" prefHeight="21.0" prefWidth="253.0" text="* Téléphone" textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="L_adresse" layoutX="502.0" layoutY="266.0" prefHeight="21.0" prefWidth="115.0" text="* Adresse " textFill="#e4a136">
+            <Label fx:id="L_adresse" layoutX="575.0" layoutY="278.0" prefHeight="21.0" prefWidth="253.0" text="* Adresse " textFill="#9a1414">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Separator layoutY="490.0" prefHeight="21.0" prefWidth="770.0" />
-            <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="483.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+            <Label layoutX="374.0" layoutY="84.0" prefHeight="30.0" prefWidth="146.0" text="Insérez votre image" textFill="#eeba0f">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="335.0" layoutY="69.0" onAction="#PhotoUser" opacity="0.0" prefHeight="60.0" prefWidth="46.0">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="LImage" layoutX="350.0" layoutY="147.0" prefHeight="147.0" prefWidth="164.0" />
+            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="7.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/manette.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="512.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/manette.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="367.0" layoutY="454.0" onAction="#Inscription" prefHeight="22.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #4fb978;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
                <effect>
                   <Bloom threshold="0.77" />
                </effect>
@@ -147,46 +182,85 @@
                   <Font name="Candara Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXSpinner fx:id="chargement" layoutX="282.0" layoutY="485.0" />
-            <Separator layoutX="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <Separator layoutY="-10.0" prefHeight="21.0" prefWidth="764.0" />
-            <Separator layoutX="764.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="6.0" />
-            <Label layoutX="381.0" layoutY="129.0" text="Image" textFill="TEAL">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <ImageView disable="true" fitHeight="88.0" fitWidth="99.0" layoutX="366.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <Separator layoutY="497.0" prefHeight="7.0" prefWidth="852.0" />
+            <Separator layoutX="849.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="5.0" />
+            <ImageView fitHeight="37.0" fitWidth="36.0" layoutX="366.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/photoUser.png" />
+                  <Image url="@../images/image3.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="366.0" layoutY="47.0" onAction="#PhotoUser" opacity="0.0" prefHeight="79.0" prefWidth="88.0">
-               <cursor>
-                  <Cursor fx:constant="CLOSED_HAND" />
-               </cursor>
-            </JFXButton>
+            <Separator fx:id="v1" layoutX="349.0" layoutY="143.0" prefHeight="7.0" prefWidth="164.0" />
+            <Separator fx:id="v4" layoutX="347.0" layoutY="145.0" orientation="VERTICAL" prefHeight="151.0" prefWidth="6.0" />
+            <Separator fx:id="v3" layoutX="349.0" layoutY="292.0" prefHeight="7.0" prefWidth="164.0" />
+            <Separator fx:id="v2" layoutX="513.0" layoutY="145.0" orientation="VERTICAL" prefHeight="151.0" prefWidth="6.0" />
+            <Label fx:id="LCour1" layoutX="40.0" layoutY="348.0" prefHeight="21.0" prefWidth="284.0" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="L_court2" layoutX="40.0" layoutY="462.0" prefHeight="21.0" prefWidth="284.0" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="6.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="546.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="547.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="547.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="547.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="1.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="5.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="31.0" layoutX="6.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/TickConfirmation.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Label fx:id="L_Inscri" layoutX="19.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Inscrivez-vous sur la plate-forme des Gamers la plus divertissante au monde!" textFill="#fadeff">
+      <Hyperlink layoutX="27.0" layoutY="26.0" onAction="#GoAccueil" prefHeight="29.0" prefWidth="65.0" text="Accueil" textFill="#4fb978">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
-      </Label>
-      <JFXButton buttonType="RAISED" layoutX="1001.0" layoutY="537.0" onAction="#Inscription_Login" opacity="0.0" prefHeight="45.0" prefWidth="52.0">
-         <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
-         </cursor>
-      </JFXButton>
-      <ImageView disable="true" fitHeight="53.0" fitWidth="67.0" layoutX="1000.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/homr.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="L_Inscri1" layoutX="33.0" layoutY="35.0" prefHeight="30.0" prefWidth="729.0" text="Un e-mail contenant le code de validation de votre compte a été envoyer" textFill="#6f0b31">
+      </Hyperlink>
+      <Text fill="#f2fff1" layoutX="97.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
-      </Label>
+      </Text>
+      <Hyperlink layoutX="119.0" layoutY="26.0" prefHeight="29.0" prefWidth="98.0" text="Inscription" textFill="#4fb978">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Hyperlink>
+      <Separator layoutX="79.0" layoutY="69.0" prefHeight="7.0" prefWidth="852.0" />
+      <Separator layoutX="79.0" layoutY="72.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="5.0" />
    </children>
 </AnchorPane>

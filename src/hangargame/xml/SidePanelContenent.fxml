@@ -22,7 +22,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="259.0">
                      <children>
-                        <JFXButton buttonType="RAISED" onAction="#AffichageActualiteClient" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -71,16 +71,16 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-    <TitledPane animated="false" onMouseClicked="#AffichageJEUCLIENt" text="Jeux vidéo">
+    <TitledPane animated="false" text="Jeux vidéo">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-      <TitledPane animated="false" onMouseClicked="#AffichageConsoleClient" text="Console">
+      <TitledPane animated="false" text="Console">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </TitledPane>
-      <TitledPane fx:id="forum" accessibleText="forum" animated="false" onMouseClicked="#depalcerVersAffichageSujet" text="Forum">
+      <TitledPane accessibleText="forum" animated="false" text="Forum">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -89,22 +89,22 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="259.0">
                <children>
-                  <JFXButton accessibleText="GoToIUserInformation" buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Information personnelle" textFill="#0b0753">
+                  <JFXButton accessibleText="GoToIUserInformation" buttonType="RAISED" onAction="#InformationPersonnelle" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Information personnelle" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" onAction="#deplacerMesAnnonces" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes annonces" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes annonces" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutY="84.0" onAction="#depalcerVersMesFavoris" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes favoris" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutY="84.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes favoris" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutY="124.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Changer mot de passe" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutY="124.0" onAction="#ChangePassword" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Changer mot de passe" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

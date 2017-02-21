@@ -51,6 +51,50 @@ public class Gamer {
         this.image = image;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDateInscription(Timestamp dateInscription) {
+        this.dateInscription = dateInscription;
+    }
+
+    public void setCodeValidation(String codeValidation) {
+        this.codeValidation = codeValidation;
+    }
+
+    public void setLastModifMdp(Timestamp LastModifMdp) {
+        this.LastModifMdp = LastModifMdp;
+    }
+
+    public void setValidation(int validation) {
+        this.validation = validation;
+    }
+
     public Gamer(String login, String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription, InputStream image,int etat) {
         this.login = login;
         this.nom = nom;

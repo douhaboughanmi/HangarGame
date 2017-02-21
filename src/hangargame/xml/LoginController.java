@@ -24,17 +24,19 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
-import com.restfb.Version;
 import com.restfb.types.User;
-import com.restfb.types.User.Picture;
 import hangargame.HangarGame;
 import hangargame.entites.Gamer;
 import hangargame.services.ServicesGamer;
-import java.io.File;
+import hangargame.utils.AuthentificationFB;
+import hangargame.utils.SendMessage;
+import java.awt.Desktop;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -47,7 +49,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -55,10 +56,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -66,19 +68,20 @@ import sun.audio.AudioStream;
  */
 public class LoginController implements Initializable {
 
+    HangarGame hangar = new HangarGame();
     ServicesGamer s = new ServicesGamer();
     public static String LoginStatic;
-    public static Picture p;
+   
     @FXML
     private JFXTextField TF_login;
     @FXML
     private Label code;
     @FXML
     private Pane PaneCode;
-
-    public TextField getText() {
-        return this.TF_login;
-    }
+    @FXML
+    private ImageView TFCon;
+    public String path="https://hangargame.com";
+   
     @FXML
     private JFXTextField TF_Code;
     @FXML
@@ -93,30 +96,14 @@ public class LoginController implements Initializable {
     private AnchorPane root; //Accueil
 
     private static AnchorPane rootPane; //Splash
-    //public static String mailFB;
-     @FXML
-    private AnchorPane InterInscription; //Inscri
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!HangarGame.isSplashLoaded) {
             loadSplashScreen();
         }
-        
-       /* InputStream in;
-        try {
-                in= new FileInputStream(new File("C:\\Users\\lenovo\\Music\\Music\\divers\\a.mp3"));
-             
-                 AudioStream audios = new AudioStream((in));
-                 AudioPlayer.player.start(audios);
-           
-           
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        */
-        
-        rootPane = root;
+
+          rootPane = root;
         PaneCode.setVisible(false);
         try {
             RequiredFieldValidator VLogin = new RequiredFieldValidator();
@@ -199,37 +186,42 @@ public class LoginController implements Initializable {
 
     @FXML
     void Connexion(ActionEvent event) throws IOException {
-     //system.out.println(s.Authentification(TF_login.getText(), PF_password.getText()));
-        if (s.Authentification(TF_login.getText(), PF_password.getText())) {
+      
+        if (1==s.Authentification(TF_login.getText(), PF_password.getText())) {
+          
+            LoginStatic=s.RecupererLoginFromEmail(TF_login.getText());
+            
+             
             if (s.ActivationCompte(TF_login.getText())) {
+               
                 LCon.setText("Bienvenue " + TF_login.getText());
                 LCon.setTextFill(Color.web("#dc143c"));
                 Guest.disableProperty();
-                LoginStatic=TF_login.getText();
+                LoginStatic=s.RecupererLoginFromEmail(TF_login.getText());
                 AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
                 root.getChildren().setAll(InterInscription1);
             } else {
                 PaneCode.setVisible(true);
                 LCon.setText("Vous devez activez votre compte");
                 LCon.setTextFill(Color.web("#dc143c"));
+                
             }
-        } else {
-
-            LCon.setText("Coordonnées incorrectes");
-            LCon.setTextFill(Color.web("#dc143c"));
-
-        }
-        if(s.AuthentificationAdmin(TF_login.getText(), PF_password.getText()))
+        } 
+        else if(2==s.Authentification(TF_login.getText(), PF_password.getText()))
+        
         {
-            AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("AfficherListGamerAdmin.fxml"));
+           AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("AccueilAdmin.fxml"));
                 root.getChildren().setAll(InterInscription1);
         }
-        else
-        {
+        else   { 
+        
+            PaneCode.setVisible(false);
             LCon.setText("Coordonnées incorrectes");
             LCon.setTextFill(Color.web("#dc143c"));
+
         }
-        
+       
+      
 
     }
 
@@ -261,28 +253,35 @@ public class LoginController implements Initializable {
 
     @FXML
     void LoginFB(ActionEvent event) throws IOException {
-        String accessToken = "EAACEdEose0cBAMffACGAO0BbiRz3Lq5vPPEZAtRdKCHlWdZBDO0gcq6RNf3Q1aJjpG3arwlzqhCD5ZBBRn21sZCLgDC1iVgPxA7uTzbizty8ZAwbrPuk0hoypfhD4YqhqFkk88RTTve4gXegZBD31amFVLUYRX8rZB5fTHbZBD8VQ0MuXvnrZAyBfr6GOCwYYQAsZD";
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-        User me = fbClient.fetchObject("me", User.class);
-        String mailFB = me.getEmail();
-        String NomFB = me.getLastName();
-        String PrenomFB = me.getFirstName();
-        String passwordFB="hangargame";
-        String adresseFB= me.getHometownName();
-       // String photoFB = me.getPicture().getUrl();
-        InputStream inputStream = new FileInputStream("C:\\Users\\lenovo\\Pictures\\Pictures\\mayss.jpg");
-        
+      AuthentificationFB fb = new AuthentificationFB();
+      Gamer g= fb.AuthentificationFB();
       
-        String loginFB= me.getName();
-        Gamer g = new Gamer(loginFB, NomFB, PrenomFB, adresseFB, mailFB, passwordFB, inputStream);
-        s.InscriptionFB(g);
+      
         
-        
-        
-        
-         
-        
+      if (s.InscriptionFB(g)) {
+            LoginStatic = g.getLogin();
+
+            AnchorPane InterInscription1 = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
+            root.getChildren().setAll(InterInscription1);
+
+            tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Inscription effectuée avec succès ");
+            tr.setMessage("Bienvenue sur Hangar Gamer " + g.getLogin());
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(5));
+
+        }
 
     }
+
+    @FXML
+    private void LoginGooglePlus(ActionEvent event) throws IOException, URISyntaxException {
+        Desktop d = Desktop.getDesktop();
+        d.browse(new URI(path));
+        
+    }
+
+   
 
 }

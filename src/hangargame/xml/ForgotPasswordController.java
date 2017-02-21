@@ -18,6 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -46,15 +50,34 @@ public class ForgotPasswordController implements Initializable {
         if (s.VerifMail(TF_FPEmail.getText())) {
             LPasswordForgot.setText("E-mail inexistant !");
             LPasswordForgot.setTextFill(Color.web("#ea5050"));
+             tray.notification.TrayNotification tr = new TrayNotification();
+                tr.setTitle("E-mail incorrect ! ");
+                tr.setMessage("Veuillez verifier votre E-mail!");
+                tr.setNotificationType(NotificationType.ERROR);
+                tr.setAnimationType(AnimationType.SLIDE);
+                tr.showAndDismiss(Duration.seconds(5));
         }
-        else if(!s.EmailValidation(TF_FPEmail.getText())) {
+         if(!s.EmailValidation(TF_FPEmail.getText())) {
               LPasswordForgot.setText("E-mail invalide !");
              LPasswordForgot.setTextFill(Color.web("#ea5050"));
+              tray.notification.TrayNotification tr = new TrayNotification();
+                tr.setTitle("E-mail invalide! :D");
+                tr.setMessage("Veuillez verifier votre E-mail Exp: x@x.x !");
+                tr.setNotificationType(NotificationType.WARNING);
+                tr.setAnimationType(AnimationType.SLIDE);
+                tr.showAndDismiss(Duration.seconds(5));
         }
-        else if(!s.VerifMail(TF_FPEmail.getText()))
+        if(!s.VerifMail(TF_FPEmail.getText()))
         {  LPasswordForgot.setText("Un mail vous a été envoyé!");
             LPasswordForgot.setTextFill(Color.web("#ea5050"));
             s.RecupererPassword(TF_FPEmail.getText());
+            
+             tray.notification.TrayNotification tr = new TrayNotification();
+                tr.setTitle("E-mail envoyé ! :D");
+                tr.setMessage("Votre mot de passe a été envoyé !");
+                tr.setNotificationType(NotificationType.SUCCESS);
+                tr.setAnimationType(AnimationType.SLIDE);
+                tr.showAndDismiss(Duration.seconds(5));
         }
       
     }

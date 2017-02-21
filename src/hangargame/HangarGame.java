@@ -63,12 +63,40 @@ public class HangarGame extends Application {
     }
     private void showMainView() throws IOException {
     FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
+       loader.setLocation(HangarGame.class.getResource("xml/Login.fxml"));
        anchorPane = loader.load();
        Scene scene = new Scene(anchorPane);
        primaryStage.setScene(scene);
        primaryStage.show();
     }
+    //Mayssa
+      public static void depalcerVersInformationPersonnelle() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/InformationPersonnelle.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    public static void depalcerVersChangePassword() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/ChangePassword.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+     public static void depalcerVersAfficherListGamers() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AfficherListGamerAdmin.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+      public static void depalcerVersStatistique() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/StatistiqueGamers.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    
+    
  //louay//   
      public static void depalcerVersEvenementGamer() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;

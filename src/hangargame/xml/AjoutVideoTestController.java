@@ -7,8 +7,11 @@ package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import hangargame.HangarGame;
 import hangargame.entites.VideoTest;
 import hangargame.services.VideoTestCrud;
@@ -16,11 +19,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -34,6 +42,12 @@ public class AjoutVideoTestController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+      @FXML
+    private JFXHamburger hamburger;
+
+    @FXML
+    private JFXDrawer drawer;
     @FXML
     private JFXButton btnAjoutVideo;
 
@@ -198,7 +212,26 @@ public class AjoutVideoTestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContenent.fxml"));
+            drawer.setSidePane(box);
+
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
     }
     
       @FXML

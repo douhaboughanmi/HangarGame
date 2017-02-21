@@ -88,6 +88,14 @@ h.depalcerVersAffichageSujetsl();
         
     }
  
-    
+    @FXML
+    void ChangePassword(ActionEvent event) throws IOException {
+       hangar.depalcerVersChangePassword();
+    } 
+    @FXML
+
+    void InformationPersonnelle(ActionEvent event) throws IOException {
+        hangar.depalcerVersInformationPersonnelle();
+    }
     
 }

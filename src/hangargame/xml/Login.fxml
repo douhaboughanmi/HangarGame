@@ -44,7 +44,7 @@
       </Text>
       <Pane id="ba" layoutX="32.0" layoutY="131.0" prefHeight="373.0" prefWidth="567.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <JFXTextField fx:id="TF_login" focusColor="WHITE" layoutX="6.0" layoutY="132.0" minWidth="311.0" promptText="Login " stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_login" focusColor="WHITE" layoutX="6.0" layoutY="132.0" minWidth="311.0" promptText="Login ou E-mail" style="-fx-text-inner-color: WHITE;" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
                <font>
                   <Font size="18.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <JFXPasswordField fx:id="PF_password" focusColor="WHITE" layoutX="6.0" layoutY="208.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" unFocusColor="GOLDENROD">
+            <JFXPasswordField fx:id="PF_password" focusColor="WHITE" layoutX="6.0" layoutY="208.0" maxWidth="371.0" minWidth="311.0" prefHeight="60.0" prefWidth="311.0" promptText="Mot de passe" style="-fx-text-inner-color: white;" unFocusColor="GOLDENROD">
                <font>
                   <Font size="18.0" />
                </font>
@@ -162,7 +162,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="TF_Code" focusColor="WHITE" layoutX="8.0" layoutY="62.0" maxWidth="251.0" minWidth="177.0" prefHeight="45.0" prefWidth="177.0" promptText="Code" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
+            <JFXTextField fx:id="TF_Code" focusColor="WHITE" layoutX="8.0" layoutY="62.0" maxWidth="251.0" minWidth="177.0" prefHeight="45.0" prefWidth="177.0" promptText="Code" style="-fx-text-inner-color: white;" stylesheets="@../css/Login.css" unFocusColor="GOLDENROD">
                <font>
                   <Font size="15.0" />
                </font>

@@ -7,19 +7,26 @@ package hangargame.xml;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
-import hangargame.entites.Annonces;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import hangargame.entites.Gamer;
-import hangargame.services.CrudAnnonces;
 import hangargame.services.CrudSignalisation;
 import hangargame.services.ServicesGamer;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +39,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -41,6 +50,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -94,14 +113,37 @@ public class AfficherListGamerAdminController implements Initializable {
     private Label LCompte;
     @FXML
     private Label LSignalisation;
-    @FXML
-    private Label PDF;
 
     CrudSignalisation crud = new CrudSignalisation();
+    @FXML
+    private JFXHamburger hamburger;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private AnchorPane anchor;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+             try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelAdmin.fxml"));
+            drawer.setSidePane(box);
 
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
         LoadData();
 
         TF_Recherch.textProperty().addListener(new ChangeListener() {
@@ -126,7 +168,7 @@ public class AfficherListGamerAdminController implements Initializable {
         String tel = String.valueOf(gamers.getTel());
         LTel.setText(tel);
         crud.signalisationGamer(gamers.getLogin());
-        LSignalisation.setText(crud.signalisationGamer(gamers.getLogin()) + "signalisations");
+        LSignalisation.setText(crud.signalisationGamer(gamers.getLogin()) + " Signalisations");
 
         if (gamers.getEtat() == 0) {
             String compte = "Actif ";
@@ -138,10 +180,11 @@ public class AfficherListGamerAdminController implements Initializable {
 
         inputStream = gamers.getImage();
         ImageView imageView = new ImageView(new Image(inputStream));
-        imageView.setFitHeight(102);
+        imageView.setFitHeight(95);
         imageView.setFitWidth(130);
 
         LImage.setGraphic(imageView);
+        
     }
 
     void LoadData() {
@@ -199,39 +242,50 @@ public class AfficherListGamerAdminController implements Initializable {
         LoadData();
 
     }
-
-    @FXML
-    private void ExtrairePDF(ActionEvent event) {
+@FXML
+        private void PDF(ActionEvent event) {
         Document document = new Document();
         try {
 
-            TextInputDialog dialog = new TextInputDialog("walter");
-            dialog.setTitle("Text Input Dialog");
+            TextInputDialog dialog = new TextInputDialog("HangarGame");
+            dialog.setTitle("Entrez le nom de votre fichier");
             dialog.setHeaderText("PDF");
             dialog.setContentText("Entrer le nom "+"\n"+"de Votre fichier PDF");
 
-// Traditional way to get the response value.
+
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-               // System.out.println("Your name: " + result.get());
+    
                 PdfWriter.getInstance(document, new FileOutputStream(""+result.get()+".pdf"));
             document.open();
-            document.add(new Paragraph("Les information personnel d'un Gamer" + "\n"
-                    + LNom.getText()
-                    + LPrenom.getText()
-                    + LAdresse.getText()
-                    + LEmail.getText()
-                    + LDateInscri.getText()
-                    + LTel.getText()
+            document.add(new Paragraph("Les informations personnelle de " 
+                    +LLogin.getText()+ "\n"
+                   +"Nom: " + LNom.getText()+ "\n"
+                   +"Prenom: " + LPrenom.getText()+ "\n"
+                   +"Adresse: " + LAdresse.getText() +"\n"
+                   +"E-mail: " + LEmail.getText() +"\n"
+                   +"Date d'inscription: " + LDateInscri.getText() +"\n"
+                   +"Téléphone: " + LTel.getText()+LImage.getGraphic()
+                    
+                    
             ));
-            
-           
-        
-        //document.add(new Image(inputStream));
-
-            
-
+     
+             tray.notification.TrayNotification tr = new TrayNotification();
+                tr.setTitle("Extraction faite avec succèes");
+                tr.setMessage("Télechargement sous Document/netbeans/hangargame ");
+                tr.setNotificationType(NotificationType.SUCCESS);
+                tr.setAnimationType(AnimationType.SLIDE);
+                tr.showAndDismiss(Duration.seconds(5));
             document.close();
+            }else 
+            {
+                
+             tray.notification.TrayNotification tr = new TrayNotification();
+                tr.setTitle("Erreur");
+                tr.setMessage("Aucun nom n'a été saisie  ");
+                tr.setNotificationType(NotificationType.ERROR);
+                tr.setAnimationType(AnimationType.SLIDE);
+                tr.showAndDismiss(Duration.seconds(5));
             }
 
             
@@ -241,6 +295,74 @@ public class AfficherListGamerAdminController implements Initializable {
       
     }
 
-   
+    @FXML
+    private void GoAccueil(ActionEvent event) throws IOException {
+         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("AccueilAdmin.fxml"));
+        anchor.getChildren().addAll(anchorPane);
+    }
+
+    @FXML
+    private void LogOut(ActionEvent event) throws IOException {
+         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        anchor.getChildren().addAll(anchorPane);
+    }
+
+  @FXML
+    void ExtraireExcel(ActionEvent event) throws FileNotFoundException, IOException {
+        List<Gamer> l = new ArrayList();
+        l= s.AfficherListeGamer();
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet spreadsheet = workbook
+                .createSheet("Hangar Game");
+        XSSFRow row = spreadsheet.createRow(1);
+        XSSFCell cell;
+        cell = row.createCell(1);
+        cell.setCellValue("Login");
+        cell = row.createCell(2);
+        cell.setCellValue("Nom");
+        cell = row.createCell(3);
+        cell.setCellValue("Prenom");
+        cell = row.createCell(4);
+        cell.setCellValue("E-mail");
+        cell = row.createCell(5);
+        cell.setCellValue("Adresse");
+        cell = row.createCell(6);
+        cell.setCellValue("Téléphone");
+        cell = row.createCell(7);
+        cell.setCellValue("Data d'inscription");
+        cell = row.createCell(8);
+        cell.setCellValue("Etat");
+        for(int i=1;i<l.size()-1;i++)
+        {                row = spreadsheet.createRow(i);
+        cell = row.createCell(1);
+        cell.setCellValue(l.get(i).getLogin());
+        cell = row.createCell(2);
+        cell.setCellValue(l.get(i).getNom());
+        cell = row.createCell(3);
+        cell.setCellValue(l.get(i).getPrenom());
+        cell = row.createCell(4);
+        cell.setCellValue(l.get(i).getEmail());
+        cell = row.createCell(5);
+        cell.setCellValue(l.get(i).getAdresse());
+        cell = row.createCell(6);
+        cell.setCellValue(l.get(i).getTel());
+        cell = row.createCell(7);
+        cell.setCellValue(l.get(i).getDateInscription());
+        cell = row.createCell(8);
+        cell.setCellValue(l.get(i).getEtat());
+        
+        }
+        FileOutputStream out = new FileOutputStream(
+                new File("exceldatabase.xlsx"));
+        workbook.write(out);
+        out.close();
+        System.out.println("exceldatabase.xlsx written successfully");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Excel");
+        alert.setHeaderText(null);
+        alert.setContentText("Fichier Excel généré avec succès !");
+        alert.showAndWait();
+    }
+
 
 }

@@ -6,7 +6,10 @@
 package hangargame.xml;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.sun.deploy.util.NativeLibraryBundle;
 //import com.teamdev.jxbrowser.chromium.Browser;
 //import com.teamdev.jxbrowser.chromium.javafx.BrowserView;
@@ -27,6 +30,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,6 +38,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -50,6 +55,12 @@ import javafx.stage.Stage;
  */
 public class VideoEnDirectController implements Initializable {
 
+    
+        @FXML
+    private JFXHamburger hamburger;
+
+    @FXML
+    private JFXDrawer drawer;
     @FXML
     private WebView web;
     private WebEngine engine;
@@ -72,6 +83,29 @@ public class VideoEnDirectController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+          try {
+            VBox box = FXMLLoader.load(getClass().getResource("SidePanelContenent.fxml"));
+            drawer.setSidePane(box);
+
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isShown()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+        
+        
 
         VideoEnDirectCrud crud = new VideoEnDirectCrud();
         List<VideoEnDirect> list = crud.afficher();
