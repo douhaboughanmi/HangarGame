@@ -7,8 +7,8 @@
 package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
-import hangargame.xml.AccueilAnnonceController;
-import hangargame.xml.LoginController;
+import hangargame.controller.AccueilAnnonceController;
+import hangargame.controller.LoginController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

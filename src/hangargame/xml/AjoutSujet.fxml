@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anacrosujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutSujetController">
+<AnchorPane id="AnchorPane" fx:id="anacrosujet" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.controller.AjoutSujetController">
    <children>
       <ImageView fx:id="btnaddsjt" fitHeight="600.0" fitWidth="1038.0" layoutY="-1.0">
          <image>

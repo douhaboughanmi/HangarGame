@@ -3,7 +3,7 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.VideoTest;
 import hangargame.serviceinterface.ICrudVideoTest;
-import hangargame.xml.LoginController;
+import hangargame.controller.LoginController;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

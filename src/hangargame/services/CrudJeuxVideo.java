@@ -8,7 +8,7 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.JeuxVideo;
 import hangargame.serviceinterface.IJeuxVideoCrud;
-import hangargame.xml.AffichageClientJeuController;
+import hangargame.controller.AffichageClientJeuController;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;

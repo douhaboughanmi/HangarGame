@@ -8,7 +8,7 @@ package hangargame.services;
 
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.Annonces;
-import hangargame.xml.AccueilAnnonceController;
+import hangargame.controller.AccueilAnnonceController;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
