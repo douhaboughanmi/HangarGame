@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -14,9 +15,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AjoutAnnonceController">
    <children>
@@ -25,56 +25,18 @@
             <Image url="@../images/backgroud.jpg" />
          </image>
       </ImageView>
-      <Separator layoutX="433.0" layoutY="159.0" orientation="VERTICAL" prefHeight="200.0" />
-      <Label layoutX="79.0" layoutY="418.0" text="Image de l'annonce">
-         <font>
-            <Font name="Century" size="24.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#267229" />
-                  <Stop color="#b3eea1" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
-      <JFXButton fx:id="btnAnnonce" layoutX="507.0" layoutY="423.0" onAction="#login" prefHeight="47.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: daa520;" text="Valider" textFill="WHITE">
-         <font>
-            <Font name="Century" size="25.0" />
-         </font>
-      </JFXButton>
-      <Label layoutX="79.0" layoutY="103.0" text="Votre annonces">
-         <font>
-            <Font name="Century" size="24.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#267229" />
-                  <Stop color="#b3eea1" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-         <effect>
-            <Bloom />
-         </effect>
-      </Label>
-      <Pane id="a" layoutX="90.0" layoutY="144.0" prefHeight="267.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
+      <Pane id="a" layoutX="81.0" layoutY="135.0" prefHeight="406.0" prefWidth="848.0" stylesheets="@../css/AjoutAnnonce.css">
          <children>
-            <JFXTextField fx:id="titreAnnonce" cacheShape="false" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="24.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Titre de la console" unFocusColor="WHITE">
+            <JFXTextField fx:id="titreAnnonce" cacheShape="false" focusColor="#4fb978" layoutX="187.0" layoutY="100.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Nom de console .." unFocusColor="WHITE">
                <opaqueInsets>
                   <Insets bottom="500.0" left="500.0" right="500.0" top="500.0" />
                </opaqueInsets>
                <font>
                   <Font name="Century" size="15.0" />
                </font>
-               <effect>
-                  <Bloom threshold="0.1" />
-               </effect>
             </JFXTextField>
-            <JFXComboBox fx:id="typeAnnonce" layoutX="29.0" layoutY="61.0" prefHeight="25.0" prefWidth="264.0" />
-            <JFXTextField fx:id="prixAnnonce" focusColor="GOLDENROD" labelFloat="true" layoutX="26.0" layoutY="97.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Prix" unFocusColor="WHITE">
+            <JFXComboBox fx:id="typeAnnonce" layoutX="194.0" layoutY="165.0" prefHeight="25.0" prefWidth="264.0" promptText="Choisissez une catégorie" style="-fx-background-color: #4fb978;" />
+            <JFXTextField fx:id="prixAnnonce" focusColor="#4fb978" layoutX="190.0" layoutY="213.0" maxWidth="277.0" minWidth="277.0" prefHeight="31.0" prefWidth="277.0" promptText="Prix" unFocusColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -82,48 +44,167 @@
                   <Bloom />
                </effect>
             </JFXTextField>
-            <TextArea fx:id="descriptionAnnonce" layoutX="29.0" layoutY="157.0" prefHeight="85.0" prefWidth="264.0" />
-            <Label fx:id="labelAnnonce" layoutX="37.0" layoutY="54.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
-            <Label fx:id="labelPrix" layoutX="37.0" layoutY="129.0" prefHeight="17.0" prefWidth="257.0" textFill="RED" />
-            <Label fx:id="labelDesc" layoutX="33.0" layoutY="245.0" prefHeight="17.0" prefWidth="264.0" textFill="RED" />
-         </children>
-      </Pane>
-      <Pane id="a" layoutX="91.0" layoutY="448.0" prefHeight="128.0" prefWidth="321.0" stylesheets="@../css/AjoutAnnonce.css">
-         <children>
-            <Label fx:id="labelImage" layoutX="32.0" layoutY="56.0" prefHeight="17.0" prefWidth="225.0" textFill="RED" />
-         </children></Pane>
-      <Pane id="a" layoutX="478.0" layoutY="144.0" prefHeight="161.0" prefWidth="139.0" stylesheets="@../css/AjoutAnnonce.css">
-         <children>
-            <JFXRadioButton layoutX="16.0" layoutY="12.0" text="PS3" textFill="WHITE">
+            <TextArea fx:id="descriptionAnnonce" layoutX="187.0" layoutY="286.0" prefHeight="85.0" prefWidth="264.0" style="-fx-background-color: #6197C8;" text="ffffffffff">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></TextArea>
+            <Label fx:id="labelAnnonce" layoutX="192.0" layoutY="140.0" prefHeight="17.0" prefWidth="257.0" textFill="#830e0e">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <Label fx:id="labelPrix" layoutX="197.0" layoutY="257.0" prefHeight="17.0" prefWidth="257.0" textFill="#830e0e">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <Label fx:id="labelDesc" layoutX="187.0" layoutY="380.0" prefHeight="17.0" prefWidth="264.0" textFill="#830e0e">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <JFXRadioButton fx:id="radioPS3" layoutX="521.0" layoutY="81.0" prefHeight="29.0" prefWidth="88.0" text="PS3" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="a" />
                </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="16.0" layoutY="35.0" text="PS4" textFill="WHITE" toggleGroup="$a" />
-            <JFXRadioButton layoutX="16.0" layoutY="57.0" text="Xbox 360" textFill="WHITE" toggleGroup="$a" />
-            <JFXRadioButton layoutX="16.0" layoutY="81.0" text="Xbox One" textFill="WHITE" toggleGroup="$a" />
-            <JFXRadioButton layoutX="16.0" layoutY="102.0" text="Wi U" textFill="WHITE" toggleGroup="$a" />
-            <JFXRadioButton layoutX="16.0" layoutY="122.0" text="PS Vita" textFill="WHITE" toggleGroup="$a" />
+            <JFXRadioButton fx:id="radioPS4" layoutX="521.0" layoutY="112.0" text="PS4" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="radioXbox360" layoutX="521.0" layoutY="138.0" text="Xbox 360" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="radioXboxOne" layoutX="521.0" layoutY="162.0" text="Xbox One" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="radioWiU" layoutX="521.0" layoutY="185.0" text="Wi U" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="radioPsVita" layoutX="521.0" layoutY="206.0" text="PS Vita" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="a" />
+               </toggleGroup>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXRadioButton>
+            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="16.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/manette.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="31.0" layoutY="103.0" text="Nom de console :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="164.0" text="Catégorie :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="220.0" text="Prix (en DT) :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="286.0" text="Description :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="65.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une annonce :" wrappingWidth="202.68065640330315">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelImage" layoutX="596.0" layoutY="285.0" prefHeight="115.0" prefWidth="161.0" textFill="RED" />
+            <Separator layoutX="476.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="390.0" prefWidth="0.0" />
+            <Label layoutX="496.0" layoutY="35.0" text="Console adéquate :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="494.0" layoutY="259.0" text="Choisissez votre image :" textFill="#9a1414">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="59.0" fitWidth="61.0" layoutX="512.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/addImageAnnonce.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="514.0" layoutY="313.0" onAction="#selectImage" prefHeight="59.0" prefWidth="61.0" text=" " />
+            <Separator layoutX="1.0" orientation="VERTICAL" prefHeight="406.0" prefWidth="6.0" />
+            <Separator layoutX="4.0" layoutY="-4.0" prefHeight="8.0" prefWidth="842.0" />
+            <Separator layoutX="4.0" layoutY="402.0" prefHeight="8.0" prefWidth="842.0" />
+            <Separator layoutX="844.0" orientation="VERTICAL" prefHeight="406.0" prefWidth="6.0" />
+            <ImageView fitHeight="170.0" fitWidth="203.0" layoutX="696.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/players.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="423.0" layoutY="385.0" onAction="#login" prefHeight="37.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-background-color: #4fb978;" text="Valider" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
+               <font>
+                  <Font name="Candara Bold" size="16.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.77" />
+               </effect>
+            </JFXButton>
+            <Label fx:id="labelChoix" layoutX="528.0" layoutY="239.0" textFill="#d00808">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Label layoutX="454.0" layoutY="103.0" text="Console Supportée">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="BLACK" />
-                  <Stop color="#69a836" offset="0.007662835249042145" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
+      <Hyperlink layoutX="51.0" layoutY="26.0" onAction="#deplacerVersAcceuilAnnonce" prefHeight="29.0" prefWidth="107.0" text="Les annonces" textFill="#4fb978">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
-      </Label>
-      <JFXButton layoutX="507.0" layoutY="497.0" onAction="#selectImage" prefHeight="50.0" prefWidth="124.0" style="-fx-background-color: daa520;" text="Image" textFill="WHITE">
+      </Hyperlink>
+      <Text fill="#f2fff1" layoutX="163.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;">
          <font>
-            <Font name="Century" size="25.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
-      </JFXButton>
+      </Text>
+      <Hyperlink layoutX="190.0" layoutY="26.0" prefHeight="29.0" prefWidth="166.0" text="Ajouter une annonce" textFill="#4fb978">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Hyperlink>
+      <Text fill="WHITE" layoutX="86.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Hangar vous offre la possibilité de vendre ou d'echanger vos articles Gamer!! Tentez avec nous cette magnifique experience  :D" wrappingWidth="539.42578125">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="37.0" fitWidth="82.0" layoutX="971.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/exitAnnonce.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="ajoutAnnonce_LogOut" layoutX="971.0" layoutY="549.0" opacity="0.0" prefHeight="37.0" prefWidth="82.0" text="Button" />
    </children>
 </AnchorPane>

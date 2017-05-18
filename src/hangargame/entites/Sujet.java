@@ -31,7 +31,8 @@ public class Sujet {
         this.categorie = cat;
 
     }
-     public Sujet(String s,Timestamp t, int i) {
+
+    public Sujet(String s, Timestamp t, int i) {
 
         this.nomSjt = s;
         this.datePub = t;
@@ -47,22 +48,27 @@ public class Sujet {
         this.categorie = cat;
         this.etat = i = 0;
     }
-    
-       public Sujet(String n,String txt, String cat, Timestamp t, int i,  String g,int note) {
+
+    public Sujet(String n, String txt, String cat, Timestamp t, String g, int id) {
         this.gamer = g;
         this.datePub = t;
         this.txtSjt = txt;
         this.nomSjt = n;
         this.categorie = cat;
-        this.etat = i = 0;
-        this.note = note ;
+        
+        this.idSjt = id;
     }
 
     public Sujet() {
 
     }
-    
-     public Sujet(String s,Timestamp t){
+
+    public Sujet(String n, String txt) {
+        this.txtSjt = txt;
+        this.nomSjt = n;
+    }
+
+    public Sujet(String s, Timestamp t) {
         this.datePub = t;
         this.nomSjt = s;
     }
@@ -90,8 +96,8 @@ public class Sujet {
     public int getetat() {
         return this.etat;
     }
-    
-     public int getNote() {
+
+    public int getNote() {
         return this.note;
     }
 
@@ -155,5 +161,5 @@ public class Sujet {
     public String toString() {
         return "Sujet{" + "idSjt=" + idSjt + ", nomSjt=" + nomSjt + ", datePub=" + datePub + ", gamer=" + gamer + ", txtSjt=" + txtSjt + ", categorie=" + categorie + ", etat=" + etat + '}';
     }
-    
+
 }

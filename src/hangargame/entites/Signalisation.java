@@ -8,29 +8,31 @@ package hangargame.entites;
 
 /**
  *
- * @author mayss
+ * @author lenovo
  */
 public class Signalisation {
-  int  idSignalisation ;
-  int idObjet;
-  String typeSignalisation ;
-  String GamerSignale;
-  int nbrSignalisation;
+    
+    int id ;
+    int idObjet ;
+    String type;//Annonce ou Sujet
 
-    public Signalisation(int idSignalisation, int idObjet, String typeSignalisation, String GamerSignale, int nbrSignalisation) {
-        this.idSignalisation = idSignalisation;
+    public Signalisation(int id, int idObjet, String type, String GamerSignale, int nbrSignalisation) {
+        this.id = id;
         this.idObjet = idObjet;
-        this.typeSignalisation = typeSignalisation;
+        this.type = type;
         this.GamerSignale = GamerSignale;
         this.nbrSignalisation = nbrSignalisation;
     }
+    
+    
+    
 
-    public int getIdSignalisation() {
-        return idSignalisation;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSignalisation(int idSignalisation) {
-        this.idSignalisation = idSignalisation;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdObjet() {
@@ -41,12 +43,12 @@ public class Signalisation {
         this.idObjet = idObjet;
     }
 
-    public String getTypeSignalisation() {
-        return typeSignalisation;
+    public String getType() {
+        return type;
     }
 
-    public void setTypeSignalisation(String typeSignalisation) {
-        this.typeSignalisation = typeSignalisation;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getGamerSignale() {
@@ -64,7 +66,7 @@ public class Signalisation {
     public void setNbrSignalisation(int nbrSignalisation) {
         this.nbrSignalisation = nbrSignalisation;
     }
-  
-  
-  
+    String GamerSignale;
+    int nbrSignalisation;
+    
 }

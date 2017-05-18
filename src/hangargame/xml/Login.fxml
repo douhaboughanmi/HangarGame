@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.controller.LoginController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.LoginController">
    <children>
       <ImageView fx:id="TFCon" depthTest="DISABLE" disable="true" fitHeight="600.0" fitWidth="1067.0" mouseTransparent="true" nodeOrientation="INHERIT" preserveRatio="true">
          <image>

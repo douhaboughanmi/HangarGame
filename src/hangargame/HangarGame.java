@@ -10,18 +10,13 @@
 
 package hangargame;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.User;
-import hangargame.entites.Evenement;
 import hangargame.serviceinterface.IEvaluationCrud;
 import hangargame.services.CrudEvaluation;
-import hangargame.services.EvenementCrud;
+import hangargame.utils.SendCodeValidation;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -43,21 +38,14 @@ public class HangarGame extends Application {
     // stage.show();
     public HangarGame() {
     }
-             
 
+       
     @Override
     public void start(Stage primaryStage) throws Exception {
   this.primaryStage = primaryStage ;
         this.primaryStage.setTitle("Hangar Game");
         showMainView();
-       //Parent root = FXMLLoader.load(getClass().getResource("xml/TournoiListe.fxml"));
-
-        
-       // Scene scene = new Scene(root);
-        
-        //stage.setScene(scene);
-       // stage.setTitle("Hangar Game");
-       // stage.show();
+      
        
        
     }
@@ -69,8 +57,11 @@ public class HangarGame extends Application {
        primaryStage.setScene(scene);
        primaryStage.show();
     }
-    //Mayssa
-      public static void depalcerVersInformationPersonnelle() throws IOException{
+    
+    
+  
+   //Maysaa 
+     public static void depalcerVersInformationPersonnelle() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
        loader.setLocation(HangarGame.class.getResource("xml/InformationPersonnelle.fxml"));
        AnchorPane mainItem = loader.load();
@@ -94,33 +85,8 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
-    
-    
-    
- //louay//   
-     public static void depalcerVersEvenementGamer() throws IOException{
-    FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/ListeEvenementGamer.fxml"));
-       AnchorPane mainItem = loader.load();
-       anchorPane.getChildren().addAll(mainItem);
-    }
-      public static void RetourAccueilEvenement() throws IOException{
-    FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
-       AnchorPane mainItem = loader.load();
-       anchorPane.getChildren().addAll(mainItem);
-    }
-       public static void DeplacerVersTournoi() throws IOException{
-    FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/TournoiListe.fxml"));
-       AnchorPane mainItem = loader.load();
-       anchorPane.getChildren().addAll(mainItem);
-    }
-    
-    
-    
-    
-    //marwen//
+      
+      //marwen//
       public static void depalcerVersAccueil() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
        loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
@@ -173,9 +139,44 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
-      //halim//
-      
-      public static void depalcerVersAjoutAnnonce() throws IOException{
+      //HAMZA
+       public static void depalcerVersAffichageSujetsl() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageSujets.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+
+    public static void depalcerVersAjouterUnSujet() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AjoutSujet.fxml"));
+        AnchorPane mainIte = loader.load();
+        anchorPane.getChildren().addAll(mainIte);
+    }
+
+    public static void depalcerVersConsulterSujet() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/ConsulterSujet.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+
+    public static void depalcerVersMesSujetsFavoris() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/MesSujetsFavoris.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+    
+    //halim
+    public static void depalcerVersAccueilAnnonce() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AccueilAnnonce.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+        
+    public static void depalcerVersAjoutAnnonce() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
        loader.setLocation(HangarGame.class.getResource("xml/AjoutAnnonce.fxml"));
        AnchorPane mainItem = loader.load();
@@ -183,13 +184,7 @@ public class HangarGame extends Application {
     }
 
     
-    public static void depalcerVersAccueilAnnonce() throws IOException{
-    FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/AccueilAnnonce.fxml"));
-       AnchorPane mainItem = loader.load();
-       anchorPane.getChildren().addAll(mainItem);
-    }
-    
+   
     public static void depalcerVersAnnonceDetail() throws IOException{
     FXMLLoader loader = new FXMLLoader() ;
        loader.setLocation(HangarGame.class.getResource("xml/AnnonceDetail.fxml"));
@@ -212,6 +207,18 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
+    public static void depalcerVersATournoi() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/TournoiListe.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+    public static void depalcerVersEvenement() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/ListeEvenementGamer.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
     
     
     
@@ -221,13 +228,7 @@ public class HangarGame extends Application {
        AnchorPane mainItem = loader.load();
        anchorPane.getChildren().addAll(mainItem);
     }
-//  HAMZA
-    public static void depalcerVersAffichageSujetsl() throws IOException{
-    FXMLLoader loader = new FXMLLoader() ;
-       loader.setLocation(HangarGame.class.getResource("xml/AffichageSujets.fxml"));
-       AnchorPane mainItem = loader.load();
-       anchorPane.getChildren().addAll(mainItem);
-    }
+    
     //Yesmine
     public static void showStat()  {
          final CategoryAxis xAxis = new CategoryAxis();
@@ -283,6 +284,12 @@ public class HangarGame extends Application {
         AnchorPane mainItem = loader.load();
         anchorPane.getChildren().addAll(mainItem);
     }
+      public static void depalcerVersAjoutConsole() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AjoutConsole.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
      
      public static void depalcerVersNoterJeu() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -317,6 +324,18 @@ public class HangarGame extends Application {
         AnchorPane mainItem = loader.load();
         anchorPane.getChildren().addAll(mainItem);
     }
+        public static void depalcerVersEvenementA() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/AffichageEvenement.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
+        public static void depalcerVersTournoiA() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HangarGame.class.getResource("xml/GestionTournoi.fxml"));
+        AnchorPane mainItem = loader.load();
+        anchorPane.getChildren().addAll(mainItem);
+    }
          public static void depalcerVersAffichageActsidePanel() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(HangarGame.class.getResource("xml/AffichageClientActualite.fxml"));
@@ -335,10 +354,29 @@ public class HangarGame extends Application {
         AnchorPane mainItem = loader.load();
         anchorPane.getChildren().addAll(mainItem);
     }
+           public static void depalcerlAccueil() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/Accueil.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
+            public static void depalcerlAccueilAdmin() throws IOException{
+    FXMLLoader loader = new FXMLLoader() ;
+       loader.setLocation(HangarGame.class.getResource("xml/AccueilAdmin.fxml"));
+       AnchorPane mainItem = loader.load();
+       anchorPane.getChildren().addAll(mainItem);
+    }
     
     
     //fin yesmine
+      
+   
+      
+      
+      
+      
     
+     
     /**
      * The main() method is ignored in correctly deployed JavaFX application.
      * main() serves only as fallback in case the application can not be
@@ -348,12 +386,14 @@ public class HangarGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
+                     
+   SendCodeValidation gmailRunnable = new SendCodeValidation();
+       
+        
         launch(args);
-     // Evenement e = new Evenement("Louay","lol","Evenement de la semaine","2017-01-02","2018-12-23") ;
-       //EvenementCrud EC = new EvenementCrud();
-       // EC.ajouterEvenement(e);
-        //EC.supprimerEvenement(17);
-        //EC.afficherEvenement();
+     
        
     }
     

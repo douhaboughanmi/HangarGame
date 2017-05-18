@@ -2,6 +2,18 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 package hangargame.entites;
@@ -15,7 +27,8 @@ import java.util.Objects;
  * @author lenovo
  */
 public class Gamer {
-    private  String login;
+    private String id;;
+    private  String username;
     private String nom;
     private  String prenom;
     private  String adresse;
@@ -28,7 +41,7 @@ public class Gamer {
     private  Timestamp LastModifMdp;
     private  int validation;
     private InputStream image;
-    private String role;
+    private String roles;
     private int etat;
 
     public int getEtat() {
@@ -47,12 +60,12 @@ public class Gamer {
         this.adresse = adresse;
         this.email = email;
         this.password = password;
-      this.login=login;
+      this.username=login;
         this.image = image;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.username = login;
     }
 
     public void setNom(String nom) {
@@ -96,7 +109,7 @@ public class Gamer {
     }
 
     public Gamer(String login, String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription, InputStream image,int etat) {
-        this.login = login;
+        this.username = login;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -110,7 +123,7 @@ public class Gamer {
     
 
     public Gamer(String login, String nom, String prenom, String adresse,int tel, String email, String password, Timestamp dateInscription, String codeValidation, Timestamp LastModifMdp,int validation, InputStream image) {
-        this.login = login;
+        this.username = login;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -133,11 +146,11 @@ public class Gamer {
     }
 
     public String getRole() {
-        return role;
+        return roles;
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.roles = role;
     }
 
     public Gamer(String nom, String prenom, String adresse, int tel, String email, Timestamp dateInscription,InputStream image) {
@@ -166,7 +179,7 @@ public class Gamer {
     } 
 
     public String getLogin() {
-        return login;
+        return username;
     }
 
     public String getNom() {
@@ -208,7 +221,7 @@ public class Gamer {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.login);
+        hash = 71 * hash + Objects.hashCode(this.username);
         return hash;
     }
 

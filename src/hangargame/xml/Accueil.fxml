@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" minHeight="600.0" minWidth="1067.0" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.controller.AccueilController">
+<AnchorPane fx:id="anchor" minHeight="600.0" minWidth="1067.0" prefHeight="600.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangargame.xml.AccueilController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true">
          <image>

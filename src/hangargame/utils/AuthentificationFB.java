@@ -21,7 +21,7 @@ import java.io.InputStream;
 public class AuthentificationFB {
     public Gamer AuthentificationFB() throws FileNotFoundException
     {
-       String accessToken = "EAACEdEose0cBAHFeJbVISogv3iKxYZBGjjxrKoiVCyE5pDkeXCemjdAqfPeiMz62VDOkycLfJmDljzRWbuiWnvzPHYeZBF6hkw48PXnlwLlDi7sb4j5BQEHeUENCtcilM5JR8s5s6sAVCx1ugsb5KC0MKiM7ipH0Tylaswyoe5LAhSw5eXkt68S6jv55cZD";
+       String accessToken = "EAACEdEose0cBAN27kmHZAGa7Noaf1hNZCHNy8CESaOaOxZATM0z4ZB7b2aqwcrAXuGFxPeFeIjx4NpSlkqfdCsYDl0Oa0FqSPEtjZACvV6H7yWHqLcCJGvpDiIY556Ky1VlsZCxKl636V2L8YHxrpZC23ZB7JSwKQ2xP41HjhvH9MNwY7j4lOpH4ZCur6qZA4ukcwZD";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         
         User me = fbClient.fetchObject("me", User.class);

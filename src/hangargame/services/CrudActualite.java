@@ -19,6 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -55,6 +59,12 @@ public class CrudActualite implements IActualiteCrud{
                prepste.executeUpdate();
              
                System.out.println("c'est fait");
+               tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Actualité a été ajouté avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
                    
             
            
@@ -76,6 +86,12 @@ public class CrudActualite implements IActualiteCrud{
            prepste.setString(1, titre);
            prepste.execute();
             System.out.println("ciiiiiiiii ");
+             tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Actualité a été Supprimé avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
         } catch (SQLException ex) {
             Logger.getLogger(CrudActualite.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -100,6 +116,12 @@ public class CrudActualite implements IActualiteCrud{
             prepste.setString(3, a.getImage());
              prepste.setInt(4, a.getId());
              prepste.executeUpdate();
+              tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Actualité a été Modifié avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
             
         } catch (SQLException ex) {
             Logger.getLogger(CrudActualite.class.getName()).log(Level.SEVERE, null, ex);

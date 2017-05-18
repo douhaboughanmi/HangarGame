@@ -18,10 +18,7 @@ public class Console {
     private String nom ;
     private String image ; 
     private String description ;
-   
-
-    
-    private String date_sortie ;
+    private Date date_sortie ;
 
     public int getId() {
         return id;
@@ -35,7 +32,7 @@ public class Console {
         this.id = id;
     }
 
-    public Console(int id, String nom, String image, String description, String date_sortie) {
+    public Console(int id, String nom, String image, String description, Date date_sortie) {
         this.id = id;
         this.nom = nom;
         this.image = image;
@@ -49,7 +46,7 @@ public class Console {
     
     }
     
-    public Console(String nom,String image,String description,String date_sortie)
+    public Console(String nom,String image,String description,Date date_sortie)
     {
     this.nom = nom;
     this.image =image ; 
@@ -71,7 +68,7 @@ public class Console {
     }
 
   
-    public void setDate_sortie(String date_sortie) {
+    public void setDate_sortie(Date date_sortie) {
         this.date_sortie = date_sortie;
     }
 
@@ -89,7 +86,7 @@ public class Console {
 
   
 
-    public String getDate_sortie() {
+    public Date getDate_sortie() {
         return date_sortie;
     }
     @Override
@@ -137,6 +134,6 @@ public class Console {
 
     @Override
     public String toString() {
-        return "Console{" + "nom=" + nom + ", image=" + image + ", description=" + description + ",  date_sortie=" + date_sortie + '}';
+        return nom;
     }
 }

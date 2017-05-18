@@ -21,6 +21,7 @@ public class Annonces {
     private int prix;
     private InputStream inputStream;
     private String gamer ;
+    private int gamerID ;
     private String pathImage;
 
     public String getPathImage() {
@@ -31,7 +32,7 @@ public class Annonces {
         this.pathImage = pathImage;
     }
 
-    public Annonces(int idAnnonces, String nomAnnonces, String typeAnnonces, String consoleAnnonces, String descriptionAnnonces, int prix, InputStream inputStream, String gamer, String pathImage) {
+    public Annonces(int idAnnonces, String nomAnnonces, String typeAnnonces, String consoleAnnonces, String descriptionAnnonces, int prix, InputStream inputStream, int gamer, String pathImage) {
         this.idAnnonces = idAnnonces;
         this.nomAnnonces = nomAnnonces;
         this.typeAnnonces = typeAnnonces;
@@ -39,12 +40,15 @@ public class Annonces {
         this.descriptionAnnonces = descriptionAnnonces;
         this.prix = prix;
         this.inputStream = inputStream;
-        this.gamer = gamer;
+        this.gamerID = gamer;
         this.pathImage = pathImage;
     }
 
     public String getGamer() {
         return gamer;
+    }
+     public int getGamerID() {
+        return gamerID;
     }
 
     public void setGamer(String gamer) {

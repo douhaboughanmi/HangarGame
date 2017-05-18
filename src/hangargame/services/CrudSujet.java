@@ -2,6 +2,10 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package hangargame.services;
 
@@ -22,7 +26,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -49,8 +52,8 @@ public class CrudSujet implements ISujetCrud {
     @Override
     public void ajoutersujet(Sujet s) {
         try {
-            String ajoutStatement = "insert into sujet_forum( nomsujet,categorie, textsujet,etatsujet,gamer) "
-                    + "VALUES(?,?,?,'2','hamza')";
+            String ajoutStatement = "insert into forum_sujet( titre,categorie, contenue,username) "
+                    + "VALUES(?,?,?,'hamza')";
 
             prpste = connect.prepareStatement(ajoutStatement);
             prpste.setString(1, s.getNomSujet());
@@ -66,7 +69,7 @@ public class CrudSujet implements ISujetCrud {
     @Override
     public void supprimerSujet(String s) {
         try {
-            String supprimerstatment = "delete from sujet_forum where nomsujet = ?";
+            String supprimerstatment = "delete from forum_sujet where titre = ?";
 
             prpste = connect.prepareStatement(supprimerstatment);
             prpste.setString(1, s);
@@ -82,17 +85,16 @@ public class CrudSujet implements ISujetCrud {
     public ArrayList<Sujet> rechercherSujet(String s) {
         ArrayList<Sujet> ls = new ArrayList<>();
         try {
-            String req4 = "SELECT `nomsujet`,`datepub`, `note` from sujet_forum , evaluation_sujet"
-                    + " WHERE sujet_forum.nomsujet = evaluation_sujet.sujet "
-                    + "AND sujet_forum.nomsujet=?";
+            String req4 = "SELECT `titre`,`date`,id "
+                + "from forum_sujet where titre=?";
 
             prpste = connect.prepareStatement(req4);
             prpste.setString(1, s);
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                String titre = rs.getString("nomsujet");
-                Timestamp date = rs.getTimestamp("datepub");
-                int note = rs.getInt("note");
+                String titre = rs.getString("titre");
+                Timestamp date = rs.getTimestamp("date");
+                int note = rs.getInt("id");
                 Sujet cm = new Sujet(titre, date, note);
                 ls.add(cm);
             }
@@ -106,8 +108,8 @@ public class CrudSujet implements ISujetCrud {
     @Override
     public ArrayList<Sujet> AffichageSuhetSujetCategorie() {
         ArrayList<Sujet> ls = new ArrayList<>();
-        String req = "SELECT `sujet`,`datepub`, `note` "
-                + "from sujet_forum e, evaluation_sujet ev WHERE e.nomsujet = ev.sujet";
+        String req = "SELECT `titre`,`date` "
+                + "from forum_sujet ";
 
         try {
 
@@ -115,10 +117,10 @@ public class CrudSujet implements ISujetCrud {
 
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                String titre = rs.getString("sujet");
-                Timestamp date = rs.getTimestamp("datepub");
-                int note = rs.getInt("note");
-                Sujet cm = new Sujet(titre, date, note);
+                String titre = rs.getString("titre");
+                Timestamp date = rs.getTimestamp("date");
+
+                Sujet cm = new Sujet(titre, date);
                 ls.add(cm);
 
             }
@@ -131,9 +133,7 @@ public class CrudSujet implements ISujetCrud {
     //Afficher un sujet
     @Override
     public Sujet consulterSujet(String s) {
-        String req = "SELECT `nomsujet`,`textsujet`,`datepub`,`gamer`,`categorie`, `note`, count(commentaire_forum.idcomm) \n"
-                + "       As sommecomm from sujet_forum  ,evaluation_sujet ,commentaire_forum  \n"
-                + "                 where commentaire_forum.sujet = sujet_forum.nomsujet              AND  sujet_forum.nomsujet=evaluation_sujet.sujet AND sujet_forum.nomsujet=?";
+        String req = "select * from forum_sujet WHERE titre = ?";
         Sujet sujet = null;
         try {
 
@@ -141,14 +141,14 @@ public class CrudSujet implements ISujetCrud {
             prpste.setString(1, s);
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                String nomsujet = rs.getString("nomsujet");
-                Timestamp datesujet = rs.getTimestamp("datepub");
-                String textsujet = rs.getString("textsujet");
+                String nomsujet = rs.getString("titre");
+                Timestamp datesujet = rs.getTimestamp("date");
+                String textsujet = rs.getString("contenue");
                 String categorie = rs.getString("categorie");
-                String gamer = rs.getString("gamer");
-                int note = rs.getInt("note");
-                int sommecom = rs.getInt("sommecomm");
-                sujet = new Sujet(nomsujet, textsujet, categorie, datesujet, sommecom, gamer, note);
+                String gamer = rs.getString("username");
+                int id = rs.getInt("id");
+
+                sujet = new Sujet(nomsujet, textsujet, categorie, datesujet, gamer, id);
             }
 
         } catch (SQLException ex) {
@@ -161,7 +161,7 @@ public class CrudSujet implements ISujetCrud {
     @Override
     public ArrayList<Sujet> afficherHistoriquePersonnel(String s) {
         ArrayList<Sujet> ls = new ArrayList<>();
-        String req = "select `nomsujet`,`datepub` from sujet_forum where `gamer`=?";
+        String req = "select `titre`,`date` from forum_sujet where `username`=?";
 
         try {
 
@@ -169,8 +169,8 @@ public class CrudSujet implements ISujetCrud {
             prpste.setString(1, s);
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                String nomsujet = rs.getString("nomsujet");
-                Timestamp datepub = rs.getTimestamp("datepub");
+                String nomsujet = rs.getString("titre");
+                Timestamp datepub = rs.getTimestamp("date");
                 Sujet st = new Sujet(nomsujet, datepub);
                 ls.add(st);
                 System.out.println(nomsujet);
@@ -184,8 +184,32 @@ public class CrudSujet implements ISujetCrud {
     }
 
     @Override
+    public ArrayList<Sujet> afficherFavorisPersonnel(String s) {
+        ArrayList<Sujet> ls = new ArrayList<>();
+        String req = "SELECT `titreSujet`,`contenue` FROM `favorissujets` where `propr`=?";
+
+        try {
+
+            prpste = connect.prepareStatement(req);
+            prpste.setString(1, s);
+            ResultSet rs = prpste.executeQuery();
+            while (rs.next()) {
+                String titreSujet = rs.getString("titreSujet");
+                String textSujet = rs.getString("contenue");
+                Sujet st = new Sujet(titreSujet, textSujet);
+                ls.add(st);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ls;
+
+    }
+
+    @Override
     public int tolalJaime(String s) {
-        String req = "SELECT SUM(`note`) as somme from evaluation_sujet where email_gamer=?";
+        String req = "SELECT SUM(`nbrlike`) as somme from forum_evaluation where iduser=(select id from gamer where username=?)";
         int sommenotes = 0;
         try {
 
@@ -206,13 +230,8 @@ public class CrudSujet implements ISujetCrud {
     }
 
     @Override
-    public int totalSignal(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public int totalSujet() {
-        String req = "select count(`sujet`) sommesujet from evaluation_sujet";
+        String req = "select count(`titre`) sommesujet from forum_sujet";
         int sommesujet = 0;
         try {
 
@@ -232,49 +251,46 @@ public class CrudSujet implements ISujetCrud {
 
     @Override
     public void signalerSujet(String s) {
-        int idsujet=0;
-                String gamer="";
-        
-        String req = "SELECT idsujet,gamer as gr,nomsujet from sujet_forum where nomsujet= ?";
+        int idsujet = 0;
+        String gamer = "";
+
+        String req = "SELECT id,user,titre from forum_sujet where titre= ?";
         try {
 
             prpste = connect.prepareStatement(req);
             prpste.setString(1, s);
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                idsujet = rs.getInt("idsujet");
-                gamer = rs.getString("gr");
+                idsujet = rs.getInt("id");
+                gamer = rs.getString("user");
                 System.out.println(idsujet + gamer);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         String req2 = "INSERT INTO `signalisation`(`idObjet`, `typeSignalisation`, `gamerSignale`, `nbrSignalisation`)"
-                        + " VALUES (" + idsujet + ",'Sujet','" + gamer +"',1"
-                        + ")";
+
+        String req2 = "INSERT INTO `forum_signalisation`( `sujet`, `nb_signalisation`, `user`)"
+                + " VALUES ("+idsujet+",'1',"+gamer+")";
 
         try {
             prpste = connect.prepareStatement(req2);
-             int res = prpste.executeUpdate();
+            int res = prpste.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CrudSujet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-               
 
     }
 
     @Override
     public void updateSignale(String s) {
-       String req ="UPDATE `signalisation` SET `nbrSignalisation`= `nbrSignalisation`+1 "
-               + "WHERE `idObjet` = (SELECT idsujet from sujet_forum WHERE nomsujet= ?)";
+        String req = "UPDATE `forum_signalisation` SET `nb_signalisation`= `nb_signalisation`+1 "
+                + "WHERE `sujet` = (SELECT id from forum_sujet WHERE titre= ?)";
         try {
 
             prpste = connect.prepareStatement(req);
             prpste.setString(1, s);
-            int  rs = prpste.executeUpdate();
-           
+            int rs = prpste.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,60 +298,62 @@ public class CrudSujet implements ISujetCrud {
 
     @Override
     public int verifSujetSignl(String s) {
-       int nbrSignalisation = 0 ; 
-       
-       String req="select nbrSignalisation FROM signalisation WHERE `idObjet` = ( SELECT idsujet from sujet_forum WHERE nomsujet= ?)";
-       
-         try {
+        int nbrSignalisation = 0;
+
+        String req = "select nb_signalisation FROM forum_signalisation WHERE `sujet` = ( SELECT id from forum_sujet WHERE titre= ?)";
+
+        try {
 
             prpste = connect.prepareStatement(req);
             prpste.setString(1, s);
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
-                nbrSignalisation = rs.getInt("nbrSignalisation");
-                
+                nbrSignalisation = rs.getInt("nb_signalisation");
+
                 System.out.println(nbrSignalisation);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       return nbrSignalisation;
+
+        return nbrSignalisation;
     }
 
     @Override
     public int verifGamerSujet(String s, String g) {
-        int nbrSignalGamer =0;
-        String req ="select count(`idSignalisation`) as sommgamer "
-                + "from signalisation where idObjet = (select idsujet from sujet_forum where nomsujet= ?) AND gamerSignale = ?";
-             try {
-
-            prpste = connect.prepareStatement(req);
-            prpste.setString(1, s);
-            prpste.setString(2, g);
-            ResultSet  rs = prpste.executeQuery();
-              while (rs.next()) {
-                nbrSignalGamer = rs.getInt("sommgamer");
-                
-                System.out.println(nbrSignalGamer);
-            }
-            
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             return nbrSignalGamer;
-    }
-
-    @Override
-    public void ajouterFavoris(String s) {
-        String req  = "update sujet_forum set etatsujet =1 where nomsujet = ? ";
+        int nbrSignalGamer = 0;
+        String req = "select count(`id`) as sommgamer "
+                + "from forum_signalisation where sujet = (select titre from forum_sujet where titre= ?) AND user = ?";
         try {
 
             prpste = connect.prepareStatement(req);
             prpste.setString(1, s);
-            int  rs = prpste.executeUpdate();
-           
+            prpste.setString(2, g);
+            ResultSet rs = prpste.executeQuery();
+            while (rs.next()) {
+                nbrSignalGamer = rs.getInt("sommgamer");
+
+                System.out.println(nbrSignalGamer);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nbrSignalGamer;
+    }
+
+    @Override
+    public void ajouterFavoris(String titre, String cont, String prop) {
+        String req = "INSERT INTO `favorisSujets`(`titreSujet`, `contenue`, `propr`) "
+                + "VALUES (?,?,?)";
+        try {
+
+            prpste = connect.prepareStatement(req);
+            prpste.setString(1, titre);
+            prpste.setString(2, cont);
+            prpste.setString(3, prop);
+            int rs = prpste.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -343,8 +361,8 @@ public class CrudSujet implements ISujetCrud {
 
     @Override
     public int tolalSignale(String s) {
-       int sommsign=0;
-        String req="select SUM(`nbrSignalisation`) as sommsign FROM signalisation where `idObjet` In ( select idsujet from sujet_forum where gamer= ?)";
+        int sommsign = 0;
+        String req = "select SUM(`nb_signalisation`) as sommsign FROM  forum_signalisation where `sujet` In ( select id from forum_sujet where username= ?)";
         try {
 
             prpste = connect.prepareStatement(req);
@@ -352,12 +370,18 @@ public class CrudSujet implements ISujetCrud {
             ResultSet rs = prpste.executeQuery();
             while (rs.next()) {
                 sommsign = rs.getInt("sommsign");
-                
+
                 System.out.println(sommsign);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrudAnnonces.class.getName()).log(Level.SEVERE, null, ex);
         }
-       return sommsign;
+        return sommsign;
     }
+
+    @Override
+    public int totalSignal(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

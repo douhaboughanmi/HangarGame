@@ -20,19 +20,19 @@
         <panes>
             <TitledPane animated="false" text="Actualité">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="259.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="259.0">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" onAction="#AffichageActualiteClient" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="News" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Evenement" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" onAction="#VersEvenement" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Evenement" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutY="84.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Tournoi" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" layoutY="84.0" onAction="#TournoiAffichage" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Tournoi" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -44,16 +44,16 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </TitledPane>
-            <TitledPane animated="false" text="Vidéo">
+            <TitledPane animated="false" prefHeight="196.0" prefWidth="261.0" text="Vidéo">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="259.0">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Live" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" onAction="#deplacerVerslive" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Live" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Vidéo test" textFill="#0b0753">
+                        <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" onAction="#deplacerVersVideoTest" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Vidéo test" textFill="#0b0753">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -71,11 +71,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-    <TitledPane animated="false" text="Jeux vidéo">
+    <TitledPane animated="false" onMouseClicked="#AffichageJEUCLIENT" text="Jeux vidéo">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TitledPane>
-      <TitledPane animated="false" text="Console">
+      <TitledPane animated="false" onMouseClicked="#AffichageConsoleClient" text="Console">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -89,22 +89,22 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="259.0">
                <children>
-                  <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Information personnelle" textFill="#0b0753">
+                  <JFXButton accessibleText="GoToIUserInformation" buttonType="RAISED" onAction="#InformationPersonnelle" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Information personnelle" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes annonces" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="42.0" onAction="#deplacerMesAnnonces" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes annonces" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutY="84.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes favoris" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutY="84.0" onAction="#depalcerVersMesFavoris" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Mes favoris" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutY="124.0" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Changer mot de passe" textFill="#0b0753">
+                  <JFXButton buttonType="RAISED" layoutY="124.0" onAction="#ChangePassword" prefHeight="40.0" prefWidth="261.0" style="-fx-background-color: #b4b2e4;" text="Changer mot de passe" textFill="#0b0753">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -116,6 +116,5 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </TitledPane>
-      <Accordion />
    </children>
 </VBox>

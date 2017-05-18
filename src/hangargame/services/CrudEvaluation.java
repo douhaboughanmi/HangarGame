@@ -17,6 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -52,6 +56,12 @@ public class CrudEvaluation implements IEvaluationCrud {
             prepste.setString(3, e.getNom_jeu());
             prepste.setInt(4, e.getNote());
              prepste.executeUpdate();
+              tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Note a été ajouté avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
             
         } catch (SQLException ex) {
             Logger.getLogger(CrudEvaluation.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,5 +105,10 @@ public class CrudEvaluation implements IEvaluationCrud {
         }
         return data;
     }
+    
+    
+    
+    
+    
 }
 

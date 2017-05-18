@@ -42,6 +42,7 @@ public interface ISujetCrud {
 
     public int verifGamerSujet(String s, String g);
 
-    public void ajouterFavoris(String s);
+    public void ajouterFavoris(String titre,String cont,String prop);
+    public ArrayList<Sujet> afficherFavorisPersonnel(String s);
 
 }

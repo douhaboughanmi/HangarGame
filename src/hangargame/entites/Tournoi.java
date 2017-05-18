@@ -21,19 +21,19 @@ public class Tournoi {
     private int nbr_max ;
     private LocalDate datedebut ;
     private LocalDate datefin ;
-    private String id_gamer ;
+    
 
     public Tournoi() {
     }
 
-    public Tournoi(int id , String nom, String nom_jeu, int nbr_max, LocalDate datedebut, LocalDate datefin,String id_gamer) {
+    public Tournoi(int id , String nom, String nom_jeu, int nbr_max, LocalDate datedebut, LocalDate datefin) {
         this.id=id;
         this.nom = nom;
         this.nom_jeu = nom_jeu;
         this.nbr_max = nbr_max;
         this.datedebut = datedebut;
         this.datefin = datefin;
-        this.id_gamer = id_gamer ;
+        
     }
 
     public int getId() {
@@ -60,9 +60,7 @@ public class Tournoi {
         return datefin;
     }
 
-    public String getId_gamer() {
-        return id_gamer;
-    }
+   
 
     public void setId(int id) {
         this.id = id;
@@ -88,13 +86,11 @@ public class Tournoi {
         this.datefin = datefin;
     }
 
-    public void setId_gamer(String id_gamer) {
-        this.id_gamer = id_gamer;
-    }
+    
 
     @Override
     public String toString() {
-        return "Tournoi{" + "id=" + id + ", nom=" + nom + ", nom_jeu=" + nom_jeu + ", nbr_max=" + nbr_max + ", datedebut=" + datedebut + ", datefin=" + datefin + ", id_gamer=" + id_gamer + '}';
+        return "Tournoi{" + "id=" + id + ", nom=" + nom + ", nom_jeu=" + nom_jeu + ", nbr_max=" + nbr_max + ", datedebut=" + datedebut + ", datefin=" + datefin+ '}';
     }
 
     @Override

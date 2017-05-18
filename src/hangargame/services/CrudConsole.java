@@ -10,6 +10,7 @@ import hangargame.entites.Console;
 import hangargame.entites.JeuxVideo;
 import hangargame.serviceinterface.IConsoleCrud;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +22,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -53,10 +58,16 @@ public class CrudConsole implements IConsoleCrud{
             prepste.setString(2,c.getImage() );
            
             prepste.setString(3,c.getDescription());
-             prepste.setString(4,c.getDate_sortie());
+             prepste.setDate(4,c.getDate_sortie());
                prepste.executeUpdate();
              
                System.out.println("c'est fait");
+                tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Console a été ajouté avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
             
         } catch (SQLException ex) {
             Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,6 +84,12 @@ public class CrudConsole implements IConsoleCrud{
             prepste.setString(1, nom);
             prepste.execute();
             System.out.println("ciiiiiiiii ");
+             tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Console a été supprimé avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
         } catch (SQLException ex) {
             Logger.getLogger(CrudConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,11 +116,17 @@ public class CrudConsole implements IConsoleCrud{
             prepste.setString(1, c.getNom());
          //   prepste.setString(2, c.getImage());
             prepste.setString(2, c.getDescription());
-            prepste.setString(3, c.getDate_sortie());
+            prepste.setDate(3, c.getDate_sortie());
             prepste.setInt(4, c.getId());
             //System.out.println(c.getId());
             prepste.executeUpdate();
             System.out.println("c'est fait");
+             tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("console a été modifié avec succes");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
           
             
         } catch (SQLException ex) {
@@ -116,7 +139,7 @@ public class CrudConsole implements IConsoleCrud{
           try {
             ResultSet rs = connect.createStatement().executeQuery("select * from console");
             while (rs.next()) {
-                data.add(new Console(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5)));
+                data.add(new Console(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getDate(5)));
             }
         } catch (SQLException ex) {
             System.err.println("Erreur" + ex);
@@ -138,12 +161,12 @@ public class CrudConsole implements IConsoleCrud{
                 String nomc = rs.getString("nom");
                 
 
-                // String datej = rs.getString("date_sortie");
+                 Date datej = rs.getDate("date_sortie");
                 String desc = rs.getString("description");
                  String imagee = rs.getString("image");
 
                 //Timestamp dateAnnonces = rs.getTimestamp("dataAjout");
-                Console con = new Console(idcon, nomc, "", desc, "");
+                Console con = new Console(idcon, nomc, "", desc, datej);
               //  JeuxVideo jj = new JeuxVideo(nomj, genrej, "",desc, "","", "");
                 
                 list.add(con);
@@ -158,7 +181,7 @@ public class CrudConsole implements IConsoleCrud{
     @Override
     public List<Console> reccuperer2() {
         
-        String query = "Select nom from console";
+        String query = "Select * from console";
         try {
             prepste = connect.prepareStatement(query);
             ResultSet rs = prepste.executeQuery();
@@ -166,6 +189,7 @@ public class CrudConsole implements IConsoleCrud{
                 
                 String nomc = rs.getString("nom");
                   Console con = new Console(nomc);
+                  con.setId(rs.getInt("id"));
               //  JeuxVideo jj = new JeuxVideo(nomj, genrej, "",desc, "","", "");
                 
                 list.add(con);

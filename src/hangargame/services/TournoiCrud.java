@@ -44,7 +44,7 @@ public class TournoiCrud implements ITournoiCrud {
     @Override
     public void ajouterTournoi(Tournoi e) {
 
-        String req1 = "insert into tournoi (nom,nom_jeu,nbr_max,datedebut,datefin,id_gamer)values(?,?,?,?,?,?)";
+        String req1 = "insert into tournoi (nom,nom_jeu,nbr_max,datedebut,datefin)values(?,?,?,?,?)";
         try {
 
             prepste = connect.prepareStatement(req1);
@@ -53,7 +53,7 @@ public class TournoiCrud implements ITournoiCrud {
             prepste.setInt(3, e.getNbr_max());
             prepste.setDate(4, java.sql.Date.valueOf(e.getDatedebut()));
             prepste.setDate(5,java.sql.Date.valueOf(e.getDatefin()));
-            prepste.setString(6, e.getId_gamer());
+            
             prepste.executeUpdate();
             // System.out.println("Louaaayyy");
         } catch (SQLException ex) {
@@ -101,7 +101,7 @@ public class TournoiCrud implements ITournoiCrud {
             ResultSet rs = connect.createStatement().executeQuery("select * from tournoi");
             while (rs.next()) {
 
-                data.add(new Tournoi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5).toLocalDate(), rs.getDate(6).toLocalDate(), rs.getString(7)));
+                data.add(new Tournoi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5).toLocalDate(), rs.getDate(6).toLocalDate()));
             }
         } catch (SQLException ex) {
             System.err.println("Erreur" + ex);

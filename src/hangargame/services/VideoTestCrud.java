@@ -3,7 +3,7 @@ package hangargame.services;
 import hangargame.connexionDB.ConnexionSingleton;
 import hangargame.entites.VideoTest;
 import hangargame.serviceinterface.ICrudVideoTest;
-import hangargame.controller.LoginController;
+import hangargame.xml.LoginController;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 
 /**
@@ -45,7 +49,7 @@ public class VideoTestCrud implements ICrudVideoTest{
 
     @Override
     public void ajouter(VideoTest v) {
-        String req1= " insert into video_test ( nom,url,description,date,genre,console,user)values( ?,?,?,?,?,?,?)";
+        String req1= " insert into video_test ( nom,url,description,date,genre,console,usernom)values( ?,?,?,?,?,?,?)";
          try {
                
              	
@@ -64,6 +68,14 @@ public class VideoTestCrud implements ICrudVideoTest{
              
              prepste.executeUpdate();
              System.out.println("ajout avec fait");
+             
+             tray.notification.TrayNotification tr = new TrayNotification();
+            tr.setTitle("Terminé");
+            tr.setMessage("Votre Video a été ajouter");
+            tr.setNotificationType(NotificationType.SUCCESS);
+            tr.setAnimationType(AnimationType.SLIDE);
+            tr.showAndDismiss(Duration.seconds(4));
+             
            
          } catch (SQLException ex) {
              Logger.getLogger(VideoTestCrud.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,7 +155,7 @@ public class VideoTestCrud implements ICrudVideoTest{
                          Timestamp d = res.getTimestamp("date");
                          String e = res.getString("genre");
                          String f = res.getString("console");
-                         String g = res.getString("user");
+                         String g = res.getString("usernom");
                          
                          
                          VideoTest v = new VideoTest(i,a, b, c,d ,e, f,g);
@@ -166,7 +178,7 @@ public class VideoTestCrud implements ICrudVideoTest{
             data = FXCollections.observableArrayList();
             ResultSet rs = connect.createStatement().executeQuery("select * from video_test");
             while (rs.next()) {
-                data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7),rs.getString(8)));
+                data.add(new VideoTest(rs.getInt(1),rs.getString(4), rs.getString(5) ,rs.getString(6),rs.getTimestamp(7), rs.getString(8),rs.getString(2),rs.getString(9)));
             }
         } catch (SQLException ex) {
             System.err.println("Erreur" + ex);
@@ -176,14 +188,19 @@ public class VideoTestCrud implements ICrudVideoTest{
          
          }
          
+         
          public ObservableList<VideoTest>  afficherVideoTestUser(String loginStat){
          
-         
+             
+            // String a = loginStat.toString();
+             System.out.println(loginStat);
           try {
             Connection connect;
             connect = ConnexionSingleton.getInstance();
+          //  prepste.setString(1, LoginController.LoginStatic);
             data = FXCollections.observableArrayList();
-            ResultSet rs = connect.createStatement().executeQuery("select id , nom , url , description , date , genre , console from video_test where user ='marwen' ");
+           
+            ResultSet rs = connect.createStatement().executeQuery("select id , nom , url , description , date , genre , console from video_test where usernom='maw'");
             while (rs.next()) {
                 data.add(new VideoTest(rs.getInt(1),rs.getString(2), rs.getString(3) ,rs.getString(4),rs.getTimestamp(5), rs.getString(6),rs.getString(7)));
             }

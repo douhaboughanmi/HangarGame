@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Hamza
  */
 public interface ICommentaireCrud {
-    public void ajouterComentaire(CommentaireSujet c);
+    public void ajouterComentaire(CommentaireSujet c,int s);
  public void supprimerCommentaire(CommentaireSujet c);
  public void afficherCommentaire();
    public ArrayList<CommentaireSujet> afficherCommentaire(String s);

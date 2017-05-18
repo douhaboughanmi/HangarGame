@@ -13,13 +13,35 @@ public class Participants {
     
     int id_tounoi;
       String Login ;
+      String nomTournoi;
+      String statut ;
 
     public Participants() {
     }
 
-    public Participants(int id_tounoi, String Login) {
+   
+
+    public String getNomTournoi() {
+        return nomTournoi;
+    }
+
+    public void setNomTournoi(String nomTournoi) {
+        this.nomTournoi = nomTournoi;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    public Participants(int id_tounoi, String Login, String nomTournoi, String statut) {
         this.id_tounoi = id_tounoi;
         this.Login = Login;
+        this.nomTournoi = nomTournoi;
+        this.statut = statut;
     }
 
     public int getId_tounoi() {

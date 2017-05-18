@@ -20,7 +20,7 @@ public class JeuxVideo {
     private String date_sortie ; 
     private String description ;
     private String image ; 
-    private String nom_console ; 
+    private int id_console ; 
     
 
 
@@ -35,27 +35,44 @@ public class JeuxVideo {
     public JeuxVideo() {
     }
 
-    
-   
-
-    public JeuxVideo(String nom, String genre, String date_sortie, String description, String image, String nom_console) {
+    public JeuxVideo(int id, String nom, String genre, String date_sortie, String description, String image) {
+        this.id = id;
         this.nom = nom;
         this.genre = genre;
         this.date_sortie = date_sortie;
         this.description = description;
         this.image = image;
-        this.nom_console = nom_console;
+    }
+
+    public JeuxVideo(String nom, String genre, String date_sortie, String description, String image) {
+        this.nom = nom;
+        this.genre = genre;
+        this.date_sortie = date_sortie;
+        this.description = description;
+        this.image = image;
+    }
+
+    
+   
+
+    public JeuxVideo(String nom, String genre, String date_sortie, String description, String image,  int id_console) {
+        this.nom = nom;
+        this.genre = genre;
+        this.date_sortie = date_sortie;
+        this.description = description;
+        this.image = image;
+        this.id_console = id_console;
         
     }
     
-    public JeuxVideo(int id ,String nom, String genre, String date_sortie, String description, String image, String nom_console) {
+    public JeuxVideo(int id ,String nom, String genre, String date_sortie, String description, String image, int id_console) {
         this.nom = nom;
         this.id=id;
         this.genre = genre;
         this.date_sortie = date_sortie;
         this.description = description;
         this.image = image;
-        this.nom_console = nom_console;
+        this.id_console = id_console;
        
     }
 
@@ -79,8 +96,8 @@ public class JeuxVideo {
         return image;
     }
 
-    public String getNom_console() {
-        return nom_console;
+    public int getId_console() {
+        return id_console;
     }
 
    
@@ -104,13 +121,13 @@ public class JeuxVideo {
         this.image = image;
     }
 
-    public void setNom_console(String nom_console) {
-        this.nom_console = nom_console;
+    public void setId_console(int id_console) {
+        this.id_console = id_console;
     }
 
     @Override
     public String toString() {
-        return "JeuxVideo{" + "nom=" + nom + ", genre=" + genre + ", date_sortie=" + date_sortie + ", description=" + description + ", image=" + image + ", nom_console=" + nom_console +  '}';
+        return "JeuxVideo{" + "nom=" + nom + ", genre=" + genre + ", date_sortie=" + date_sortie + ", description=" + description + ", image=" + image + ", id_console=" + id_console +  '}';
     }
 
     
@@ -125,7 +142,7 @@ public class JeuxVideo {
         hash = 89 * hash + Objects.hashCode(this.date_sortie);
         hash = 89 * hash + Objects.hashCode(this.description);
         hash = 89 * hash + Objects.hashCode(this.image);
-        hash = 89 * hash + Objects.hashCode(this.nom_console);
+        hash = 89 * hash + Objects.hashCode(this.id_console);
        
         return hash;
     }
@@ -157,7 +174,7 @@ public class JeuxVideo {
         if (!Objects.equals(this.image, other.image)) {
             return false;
         }
-        if (!Objects.equals(this.nom_console, other.nom_console)) {
+        if (!Objects.equals(this.id_console, other.id_console)) {
             return false;
         }
       
